@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "322567249626",
+    "project_id": "pankaj-trust",
+    "storage_bucket": "pankaj-trust.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322567249626:android:0fa64ba786c81999c74fe3",
+        "android_client_info": {
+          "package_name": "com.example.pankaj_cloudfirestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb1P58mnoUFjHX36ld0qzCNG-eMWJOVn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

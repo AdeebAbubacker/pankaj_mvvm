@@ -1,0 +1,73 @@
+import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:panakj_app/core/db/boxes/family_status_box.dart';
+import 'package:panakj_app/core/model/failure/mainfailure.dart';
+import 'package:panakj_app/core/model/family_data/family_data.dart';
+import 'package:panakj_app/core/model/sibling_data/sibling_data.dart';
+
+import 'package:panakj_app/core/service/family_service.dart';
+import 'package:panakj_app/core/service/post_personalinfoservice.dart';
+
+part 'family_info_event.dart';
+part 'family_info_state.dart';
+part 'family_info_bloc.freezed.dart';
+
+class FamilyInfoBloc extends Bloc<FamilyInfoEvent, FamilyInfoState> {
+  final FamilyInfoService familyInfoService;
+  FamilyInfoBloc(this.familyInfoService) : super(FamilyInfoState.initial()) {
+    on<PostFamilyInfo>((event, emit) async {
+      try {
+        final response = await familyInfoService.postfamilyInfoservice(
+          fathername: event.fathername,
+          falive: event.falive,
+          fdisabled: event.fdisabled,
+          focupation: event.focupation,
+          fincome: event.fincome,
+          frelation: event.frelation,
+          mothername: event.mothername,
+          malive: event.malive,
+          mdisabled: event.mdisabled,
+          mocupation: event.mocupation,
+          mincome: event.mincome,
+          mrelation: event.mrelation,
+          guardainame: event.guardianname,
+          galive: event.galive,
+          gdisabled: event.gdisabled,
+          gocupation: event.gocupation,
+          gincome: event.gincome,
+        );
+        final response2 = await familyInfoService.postSiblingsToSupabase(
+            student_id: event.student_id);
+        await Poststudent1InviteService()
+            .poststudent1InviteService(id: 9999999, appl_status: '50');
+        emit(state.copyWith(
+            isLoading: false,
+            isError: false,
+            successorFailure: optionOf(right(response))));
+        print('from bloc file sucess');
+
+        int startIndex = 0;
+      } catch (e) {
+        if (e is FormatException) {
+          // Handle non-JSON response
+          print('Invalid JSON format: $e');
+          emit(state.copyWith(
+              isLoading: false,
+              isError: true,
+              successorFailure: optionOf(left(
+                  MainFailure.clientFailure(message: 'Invalid JSON format')))));
+        } else {
+          print('from bloc file errorr');
+          emit(state.copyWith(
+              isLoading: false,
+              isError: true,
+              successorFailure: optionOf(
+                  left(MainFailure.clientFailure(message: e.toString())))));
+        }
+        await Future.delayed(Duration.zero);
+        emit(FamilyInfoState.initial());
+      }
+    });
+  }
+}
