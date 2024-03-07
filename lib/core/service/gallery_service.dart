@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class GalleryService {
   Future<EventGallery> getGalleryData() async {
     try {
-      final response = await http.get(Uri.parse('https://ptvue.tekpeak.in/api/dropdown_values'));
+      final response = await http.get(Uri.parse('https://ptvue.tekpeak.in/api/event/gallery'));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
