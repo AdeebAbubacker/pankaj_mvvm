@@ -2,42 +2,44 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:panakj_app/core/model/failure/mainfailure.dart';
-import 'package:panakj_app/core/model/school_group/school_group.dart';
+import 'package:panakj_app/core/model/parents_education/parents_education.dart';
 import 'package:panakj_app/core/service/get_all_fieldverification_service.dart';
 
-part 'school_group_event.dart';
-part 'school_group_state.dart';
-part 'school_group_bloc.freezed.dart';
+part 'house_roof_event.dart';
+part 'house_roof_state.dart';
+part 'house_roof_bloc.freezed.dart';
 
-class SchoolGroupBloc extends Bloc<SchoolGroupEvent, SchoolGroupState> {
-  final GetAllFieldVerficationService schoolGroupService;
 
-  SchoolGroupBloc(this.schoolGroupService) : super(SchoolGroupState.initial()) {
-    on<Getschoolgroup>((event, emit) async {
+
+class HouseRoofBloc extends Bloc<HouseRoofEvent, HouseRoofState> {
+  final GetAllFieldVerficationService getAllFieldVerficationService;
+  HouseRoofBloc(this.getAllFieldVerficationService)
+      : super(HouseRoofState.initial()) {
+    on<Gethouseroof>((event, emit) async {
       emit(
-        const SchoolGroupState(
+        const HouseRoofState(
             isLoading: true,
             isError: false,
-            recipients: [],
+            lifestatus: [],
             successorFailure: None()),
       );
       try {
-        final List<SchoolGroup> response =
-            await schoolGroupService.getAllSchoolGroups();
+        final List<FieldVerificationModel> response =
+            await getAllFieldVerficationService.houseRoof();
         print('my applicants are ---------------- ${response.length}');
-        emit(SchoolGroupState(
+        emit(HouseRoofState(
           isLoading: false,
           isError: false,
-          recipients: response,
+          lifestatus: response,
           successorFailure: optionOf(right(response)),
         ));
         print('success ${response.length}');
       } catch (e) {
         print('Error caught: $e');
-        emit(SchoolGroupState(
+        emit(HouseRoofState(
           isLoading: false,
           isError: true,
-          recipients: [],
+          lifestatus: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
@@ -46,3 +48,6 @@ class SchoolGroupBloc extends Bloc<SchoolGroupEvent, SchoolGroupState> {
     });
   }
 }
+
+
+

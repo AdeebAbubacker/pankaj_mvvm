@@ -1,16 +1,16 @@
-class LifeStatus {
+class FieldVerificationModel{
   final int? id;
   final String? name;
   final int? status;
 
-  LifeStatus({
+  FieldVerificationModel({
     this.id,
     this.name,
     this.status,
   });
 
-  factory LifeStatus.fromJson(Map<String, dynamic> json) {
-    return LifeStatus(
+  factory FieldVerificationModel.fromJson(Map<String, dynamic> json) {
+    return FieldVerificationModel(
       id: json['id'],
       name: json['name'],
       status: json['status'],

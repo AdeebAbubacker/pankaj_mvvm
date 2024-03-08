@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:panakj_app/core/model/failure/mainfailure.dart';
 import 'package:panakj_app/ui/screens/student/screens/home_screen/navigation_screen.dart';
-import 'package:panakj_app/ui/screens/student/screens/home_screen/students_home_screen.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 import 'package:panakj_app/ui/view_model/auth/auth_bloc.dart';
 

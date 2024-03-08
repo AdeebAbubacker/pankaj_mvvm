@@ -1,21 +1,19 @@
-part of 'life_status_bloc.dart';
+part of 'monthly_income_bloc.dart';
 
 @freezed
-
-
-class LifeStatusState with _$LifeStatusState {
-  factory LifeStatusState.initial() {
-    return const LifeStatusState(
+class MonthlyIncomeState with _$MonthlyIncomeState {
+  factory MonthlyIncomeState.initial() {
+    return const MonthlyIncomeState(
       isLoading: false,
       isError: false,
       lifestatus: [],
       successorFailure: None(),
     );
   }
-  const factory LifeStatusState({
+  const factory MonthlyIncomeState({
     required bool isLoading,
     required bool isError,
     required List<FieldVerificationModel> lifestatus,
     required Option<Either<MainFailure, List<FieldVerificationModel>>> successorFailure,
-  }) = _LifeStatusState;
+  }) = _MonthlyIncomeState;
 }

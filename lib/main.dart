@@ -8,8 +8,13 @@ import 'package:panakj_app/core/db/adapters/cache_screen4_adapter/cache_screen4_
 import 'package:panakj_app/core/db/adapters/college_adapter/college_adapter.dart';
 import 'package:panakj_app/core/db/adapters/course_adapter/course_adapter.dart';
 import 'package:panakj_app/core/db/adapters/family_success_status/family_status_adapter.dart';
+import 'package:panakj_app/core/db/adapters/house_plaster_adapter/house_plaster_adapter.dart';
+import 'package:panakj_app/core/db/adapters/house_plotsize_adapter/house_plotsize_adapter.dart';
+import 'package:panakj_app/core/db/adapters/house_roof_adapter/house_roof_adapter.dart';
 import 'package:panakj_app/core/db/adapters/life_status_adapter/life_status_adapter.dart';
 import 'package:panakj_app/core/db/adapters/occupation_adapter/occupation_adapter.dart';
+import 'package:panakj_app/core/db/adapters/parents_education_adapter/parents_education_adapter.dart';
+import 'package:panakj_app/core/db/adapters/parents_income/parents_income_adapter.dart';
 import 'package:panakj_app/core/db/adapters/personal_info_adapter/personal_info_adapter.dart';
 import 'package:panakj_app/core/db/adapters/qualification_adapter/qualification_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_adapter/school_adapter.dart';
@@ -26,8 +31,12 @@ import 'package:panakj_app/core/db/boxes/cache_screen4_box.dart';
 import 'package:panakj_app/core/db/boxes/college_box.dart';
 import 'package:panakj_app/core/db/boxes/course_box.dart';
 import 'package:panakj_app/core/db/boxes/family_status_box.dart';
+import 'package:panakj_app/core/db/boxes/house_plot_size.dart';
+import 'package:panakj_app/core/db/boxes/house_roof.dart';
 import 'package:panakj_app/core/db/boxes/life_status_box.dart';
 import 'package:panakj_app/core/db/boxes/occupation_box.dart';
+import 'package:panakj_app/core/db/boxes/parents_education_box.dart';
+import 'package:panakj_app/core/db/boxes/parents_income_box.dart';
 import 'package:panakj_app/core/db/boxes/personal_info_box.dart';
 import 'package:panakj_app/core/db/boxes/qualification_box.dart';
 import 'package:panakj_app/core/db/boxes/school_box.dart';
@@ -53,10 +62,11 @@ import 'package:panakj_app/core/service/post_personalinfoservice.dart';
 import 'package:panakj_app/core/service/qualification_service.dart';
 import 'package:panakj_app/core/service/recepient_service.dart';
 import 'package:panakj_app/core/service/residential_service.dart';
-import 'package:panakj_app/core/service/school_group_service.dart';
+import 'package:panakj_app/core/service/get_all_fieldverification_service.dart';
 import 'package:panakj_app/core/service/school_service.dart';
 import 'package:panakj_app/core/service/trancate_service.dart';
 import 'package:panakj_app/firebase_options.dart';
+import 'package:panakj_app/ui/screens/admin/admin_dashboard/admin_dashboard.dart';
 import 'package:panakj_app/ui/screens/auth/splash_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/home/widgets/question_one.dart';
 import 'package:panakj_app/ui/view_model/Dob/dob_bloc.dart';
@@ -75,7 +85,12 @@ import 'package:panakj_app/ui/view_model/get_news/get_news_bloc.dart';
 import 'package:panakj_app/ui/view_model/getcolleges/getcolleges_bloc.dart';
 import 'package:panakj_app/ui/view_model/getschool/getschool_bloc.dart';
 import 'package:panakj_app/ui/view_model/horizontal_radio_btn/horizontal_radio_btn_bloc.dart';
+import 'package:panakj_app/ui/view_model/house_plastering/house_plastering_bloc.dart';
+import 'package:panakj_app/ui/view_model/house_plot_size/house_plot_size_bloc.dart';
+import 'package:panakj_app/ui/view_model/house_roof/house_roof_bloc.dart';
 import 'package:panakj_app/ui/view_model/life_status/life_status_bloc.dart';
+import 'package:panakj_app/ui/view_model/monthly_income/monthly_income_bloc.dart';
+import 'package:panakj_app/ui/view_model/parents_education/parents_education_bloc.dart';
 import 'package:panakj_app/ui/view_model/personalInfo/personal_info_bloc.dart';
 import 'package:panakj_app/ui/view_model/post_residentail_data/post_residentail_data_bloc.dart';
 import 'package:panakj_app/ui/view_model/question1_res/question1_res_bloc.dart';
@@ -130,10 +145,21 @@ void main() async {
   Hive.registerAdapter(CollegeDBAdapter());
   Hive.registerAdapter(SchoolGroupDBAdapter());
   Hive.registerAdapter(LifeStatusDBAdapter());
+  Hive.registerAdapter(ParentsEducationDBAdapter());
+  Hive.registerAdapter(ParentsIncomeDBAdapter());
+  Hive.registerAdapter(HousePlotSizeDBAdapter());
+  Hive.registerAdapter(HouseRoofDBAdapter());
+   Hive.registerAdapter(HousePlasterDBAdapter());
 
   ///----------------open box-------------------------------------------------
   bankBox = await Hive.openBox<BankDB>('bankBox');
+  houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
+  houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
+  houseroofBox = await Hive.openBox<HouseRoofDB>('houseroofBox');
   lifestatusInfoBox = await Hive.openBox<LifeStatusDB>('lifestatusInfoBox');
+  parentsIncomeBox = await Hive.openBox<ParentsIncomeDB>('parentsIncomeBox');
+  parentsEducationBox =
+      await Hive.openBox<ParentsEducationDB>('parentsEducationBox');
   school_group_box = await Hive.openBox<SchoolGroupDB>('school_group_box');
   personalInfoBox = await Hive.openBox<personalInfoDB>('personalInfoBox');
   courseBox = await Hive.openBox<CourseDB>('courseBox');
@@ -192,7 +218,7 @@ class MyApp extends StatelessWidget {
   final TruncateService truncateService = TruncateService();
   final FieldVerificationService fieldVerificationService =
       FieldVerificationService();
-  final GetAllFieldVerficationService schoolGroupService =
+  final GetAllFieldVerficationService getAllFieldVerficationService =
       GetAllFieldVerficationService();
 
   MyApp({Key? key}) : super(key: key);
@@ -310,19 +336,36 @@ class MyApp extends StatelessWidget {
           create: (context) => TruncateBloc(truncateService),
         ),
         BlocProvider(
-          create: (context) => SchoolGroupBloc(schoolGroupService),
+          create: (context) => SchoolGroupBloc(getAllFieldVerficationService),
         ),
         BlocProvider(
-          create: (context) => LifeStatusBloc(schoolGroupService),
+          create: (context) => LifeStatusBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ParentsEducationBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) => MonthlyIncomeBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) => HousePlotSizeBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) => HouseRoofBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              HousePlasteringBloc(getAllFieldVerficationService),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: '',
         theme: ThemeData(useMaterial3: false),
-        // home: AdminDashboard(),
+        home: AdminDashboard(),
         //   home: const FieldVerificationScreen(),
-        home: const SplashScreen(),
+        //  home: const SplashScreen(),
       ),
     );
   }

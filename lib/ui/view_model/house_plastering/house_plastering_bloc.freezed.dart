@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'life_status_bloc.dart';
+part of 'house_plastering_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,58 +15,59 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LifeStatusEvent {
+mixin _$HousePlasteringEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getlifeStatus,
+    required TResult Function() gethouseplastering,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getlifeStatus,
+    TResult? Function()? gethouseplastering,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getlifeStatus,
+    TResult Function()? gethouseplastering,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetlifeStatus value) getlifeStatus,
+    required TResult Function(Gethouseplastering value) gethouseplastering,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetlifeStatus value)? getlifeStatus,
+    TResult? Function(Gethouseplastering value)? gethouseplastering,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetlifeStatus value)? getlifeStatus,
+    TResult Function(Gethouseplastering value)? gethouseplastering,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LifeStatusEventCopyWith<$Res> {
-  factory $LifeStatusEventCopyWith(
-          LifeStatusEvent value, $Res Function(LifeStatusEvent) then) =
-      _$LifeStatusEventCopyWithImpl<$Res, LifeStatusEvent>;
+abstract class $HousePlasteringEventCopyWith<$Res> {
+  factory $HousePlasteringEventCopyWith(HousePlasteringEvent value,
+          $Res Function(HousePlasteringEvent) then) =
+      _$HousePlasteringEventCopyWithImpl<$Res, HousePlasteringEvent>;
 }
 
 /// @nodoc
-class _$LifeStatusEventCopyWithImpl<$Res, $Val extends LifeStatusEvent>
-    implements $LifeStatusEventCopyWith<$Res> {
-  _$LifeStatusEventCopyWithImpl(this._value, this._then);
+class _$HousePlasteringEventCopyWithImpl<$Res,
+        $Val extends HousePlasteringEvent>
+    implements $HousePlasteringEventCopyWith<$Res> {
+  _$HousePlasteringEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +84,7 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$LifeStatusEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$HousePlasteringEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -97,7 +98,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'LifeStatusEvent.started()';
+    return 'HousePlasteringEvent.started()';
   }
 
   @override
@@ -113,7 +114,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getlifeStatus,
+    required TResult Function() gethouseplastering,
   }) {
     return started();
   }
@@ -122,7 +123,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getlifeStatus,
+    TResult? Function()? gethouseplastering,
   }) {
     return started?.call();
   }
@@ -131,7 +132,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getlifeStatus,
+    TResult Function()? gethouseplastering,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +145,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetlifeStatus value) getlifeStatus,
+    required TResult Function(Gethouseplastering value) gethouseplastering,
   }) {
     return started(this);
   }
@@ -153,7 +154,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetlifeStatus value)? getlifeStatus,
+    TResult? Function(Gethouseplastering value)? gethouseplastering,
   }) {
     return started?.call(this);
   }
@@ -162,7 +163,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetlifeStatus value)? getlifeStatus,
+    TResult Function(Gethouseplastering value)? gethouseplastering,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,40 +173,40 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements LifeStatusEvent {
+abstract class _Started implements HousePlasteringEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$GetlifeStatusImplCopyWith<$Res> {
-  factory _$$GetlifeStatusImplCopyWith(
-          _$GetlifeStatusImpl value, $Res Function(_$GetlifeStatusImpl) then) =
-      __$$GetlifeStatusImplCopyWithImpl<$Res>;
+abstract class _$$GethouseplasteringImplCopyWith<$Res> {
+  factory _$$GethouseplasteringImplCopyWith(_$GethouseplasteringImpl value,
+          $Res Function(_$GethouseplasteringImpl) then) =
+      __$$GethouseplasteringImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetlifeStatusImplCopyWithImpl<$Res>
-    extends _$LifeStatusEventCopyWithImpl<$Res, _$GetlifeStatusImpl>
-    implements _$$GetlifeStatusImplCopyWith<$Res> {
-  __$$GetlifeStatusImplCopyWithImpl(
-      _$GetlifeStatusImpl _value, $Res Function(_$GetlifeStatusImpl) _then)
+class __$$GethouseplasteringImplCopyWithImpl<$Res>
+    extends _$HousePlasteringEventCopyWithImpl<$Res, _$GethouseplasteringImpl>
+    implements _$$GethouseplasteringImplCopyWith<$Res> {
+  __$$GethouseplasteringImplCopyWithImpl(_$GethouseplasteringImpl _value,
+      $Res Function(_$GethouseplasteringImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GetlifeStatusImpl implements _GetlifeStatus {
-  const _$GetlifeStatusImpl();
+class _$GethouseplasteringImpl implements Gethouseplastering {
+  const _$GethouseplasteringImpl();
 
   @override
   String toString() {
-    return 'LifeStatusEvent.getlifeStatus()';
+    return 'HousePlasteringEvent.gethouseplastering()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetlifeStatusImpl);
+        (other.runtimeType == runtimeType && other is _$GethouseplasteringImpl);
   }
 
   @override
@@ -215,29 +216,29 @@ class _$GetlifeStatusImpl implements _GetlifeStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getlifeStatus,
+    required TResult Function() gethouseplastering,
   }) {
-    return getlifeStatus();
+    return gethouseplastering();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getlifeStatus,
+    TResult? Function()? gethouseplastering,
   }) {
-    return getlifeStatus?.call();
+    return gethouseplastering?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getlifeStatus,
+    TResult Function()? gethouseplastering,
     required TResult orElse(),
   }) {
-    if (getlifeStatus != null) {
-      return getlifeStatus();
+    if (gethouseplastering != null) {
+      return gethouseplastering();
     }
     return orElse();
   }
@@ -246,40 +247,40 @@ class _$GetlifeStatusImpl implements _GetlifeStatus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetlifeStatus value) getlifeStatus,
+    required TResult Function(Gethouseplastering value) gethouseplastering,
   }) {
-    return getlifeStatus(this);
+    return gethouseplastering(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetlifeStatus value)? getlifeStatus,
+    TResult? Function(Gethouseplastering value)? gethouseplastering,
   }) {
-    return getlifeStatus?.call(this);
+    return gethouseplastering?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetlifeStatus value)? getlifeStatus,
+    TResult Function(Gethouseplastering value)? gethouseplastering,
     required TResult orElse(),
   }) {
-    if (getlifeStatus != null) {
-      return getlifeStatus(this);
+    if (gethouseplastering != null) {
+      return gethouseplastering(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetlifeStatus implements LifeStatusEvent {
-  const factory _GetlifeStatus() = _$GetlifeStatusImpl;
+abstract class Gethouseplastering implements HousePlasteringEvent {
+  const factory Gethouseplastering() = _$GethouseplasteringImpl;
 }
 
 /// @nodoc
-mixin _$LifeStatusState {
+mixin _$HousePlasteringState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   List<FieldVerificationModel> get lifestatus =>
@@ -288,15 +289,15 @@ mixin _$LifeStatusState {
       get successorFailure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LifeStatusStateCopyWith<LifeStatusState> get copyWith =>
+  $HousePlasteringStateCopyWith<HousePlasteringState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LifeStatusStateCopyWith<$Res> {
-  factory $LifeStatusStateCopyWith(
-          LifeStatusState value, $Res Function(LifeStatusState) then) =
-      _$LifeStatusStateCopyWithImpl<$Res, LifeStatusState>;
+abstract class $HousePlasteringStateCopyWith<$Res> {
+  factory $HousePlasteringStateCopyWith(HousePlasteringState value,
+          $Res Function(HousePlasteringState) then) =
+      _$HousePlasteringStateCopyWithImpl<$Res, HousePlasteringState>;
   @useResult
   $Res call(
       {bool isLoading,
@@ -307,9 +308,10 @@ abstract class $LifeStatusStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LifeStatusStateCopyWithImpl<$Res, $Val extends LifeStatusState>
-    implements $LifeStatusStateCopyWith<$Res> {
-  _$LifeStatusStateCopyWithImpl(this._value, this._then);
+class _$HousePlasteringStateCopyWithImpl<$Res,
+        $Val extends HousePlasteringState>
+    implements $HousePlasteringStateCopyWith<$Res> {
+  _$HousePlasteringStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -346,11 +348,11 @@ class _$LifeStatusStateCopyWithImpl<$Res, $Val extends LifeStatusState>
 }
 
 /// @nodoc
-abstract class _$$LifeStatusStateImplCopyWith<$Res>
-    implements $LifeStatusStateCopyWith<$Res> {
-  factory _$$LifeStatusStateImplCopyWith(_$LifeStatusStateImpl value,
-          $Res Function(_$LifeStatusStateImpl) then) =
-      __$$LifeStatusStateImplCopyWithImpl<$Res>;
+abstract class _$$HousePlasteringStateImplCopyWith<$Res>
+    implements $HousePlasteringStateCopyWith<$Res> {
+  factory _$$HousePlasteringStateImplCopyWith(_$HousePlasteringStateImpl value,
+          $Res Function(_$HousePlasteringStateImpl) then) =
+      __$$HousePlasteringStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -362,11 +364,11 @@ abstract class _$$LifeStatusStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LifeStatusStateImplCopyWithImpl<$Res>
-    extends _$LifeStatusStateCopyWithImpl<$Res, _$LifeStatusStateImpl>
-    implements _$$LifeStatusStateImplCopyWith<$Res> {
-  __$$LifeStatusStateImplCopyWithImpl(
-      _$LifeStatusStateImpl _value, $Res Function(_$LifeStatusStateImpl) _then)
+class __$$HousePlasteringStateImplCopyWithImpl<$Res>
+    extends _$HousePlasteringStateCopyWithImpl<$Res, _$HousePlasteringStateImpl>
+    implements _$$HousePlasteringStateImplCopyWith<$Res> {
+  __$$HousePlasteringStateImplCopyWithImpl(_$HousePlasteringStateImpl _value,
+      $Res Function(_$HousePlasteringStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -377,7 +379,7 @@ class __$$LifeStatusStateImplCopyWithImpl<$Res>
     Object? lifestatus = null,
     Object? successorFailure = null,
   }) {
-    return _then(_$LifeStatusStateImpl(
+    return _then(_$HousePlasteringStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -400,8 +402,8 @@ class __$$LifeStatusStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LifeStatusStateImpl implements _LifeStatusState {
-  const _$LifeStatusStateImpl(
+class _$HousePlasteringStateImpl implements _HousePlasteringState {
+  const _$HousePlasteringStateImpl(
       {required this.isLoading,
       required this.isError,
       required final List<FieldVerificationModel> lifestatus,
@@ -426,14 +428,14 @@ class _$LifeStatusStateImpl implements _LifeStatusState {
 
   @override
   String toString() {
-    return 'LifeStatusState(isLoading: $isLoading, isError: $isError, lifestatus: $lifestatus, successorFailure: $successorFailure)';
+    return 'HousePlasteringState(isLoading: $isLoading, isError: $isError, lifestatus: $lifestatus, successorFailure: $successorFailure)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LifeStatusStateImpl &&
+            other is _$HousePlasteringStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -450,18 +452,19 @@ class _$LifeStatusStateImpl implements _LifeStatusState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LifeStatusStateImplCopyWith<_$LifeStatusStateImpl> get copyWith =>
-      __$$LifeStatusStateImplCopyWithImpl<_$LifeStatusStateImpl>(
-          this, _$identity);
+  _$$HousePlasteringStateImplCopyWith<_$HousePlasteringStateImpl>
+      get copyWith =>
+          __$$HousePlasteringStateImplCopyWithImpl<_$HousePlasteringStateImpl>(
+              this, _$identity);
 }
 
-abstract class _LifeStatusState implements LifeStatusState {
-  const factory _LifeStatusState(
+abstract class _HousePlasteringState implements HousePlasteringState {
+  const factory _HousePlasteringState(
       {required final bool isLoading,
       required final bool isError,
       required final List<FieldVerificationModel> lifestatus,
       required final Option<Either<MainFailure, List<FieldVerificationModel>>>
-          successorFailure}) = _$LifeStatusStateImpl;
+          successorFailure}) = _$HousePlasteringStateImpl;
 
   @override
   bool get isLoading;
@@ -474,6 +477,6 @@ abstract class _LifeStatusState implements LifeStatusState {
       get successorFailure;
   @override
   @JsonKey(ignore: true)
-  _$$LifeStatusStateImplCopyWith<_$LifeStatusStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HousePlasteringStateImplCopyWith<_$HousePlasteringStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -15,16 +15,16 @@ class FieldVerificationService {
     required int f_life_status,
     required int m_life_status,
     required int f_education,
-     required int m_education,
-      required int plot_size,
-       required int water_source,
-        required int rental_house,
+    required int m_education,
+    required int plot_size,
+    required int water_source,
+    required int rental_house,
   }) async {
     try {
       // Create a map of data to be added to Supabase
       final response = await _client.from('field_verification').upsert({
-        'id': 9,
-        'application_id': 12,
+        'id': 12,
+        'application_id': 14,
         'hall_ticket': 1,
         'group': 1,
         'father_life_status': 2,

@@ -5,17 +5,26 @@ import 'package:panakj_app/core/model/failure/mainfailure.dart';
 import 'package:panakj_app/core/model/parents_education/parents_education.dart';
 import 'package:panakj_app/core/service/get_all_fieldverification_service.dart';
 
-part 'life_status_event.dart';
-part 'life_status_state.dart';
-part 'life_status_bloc.freezed.dart';
+part 'monthly_income_event.dart';
+part 'monthly_income_state.dart';
+part 'monthly_income_bloc.freezed.dart';
 
-class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
+// class MonthlyIncomeBloc extends Bloc<MonthlyIncomeEvent, MonthlyIncomeState> {
+//   MonthlyIncomeBloc() : super(_Initial()) {
+//     on<MonthlyIncomeEvent>((event, emit) {
+//       // TODO: implement event handler
+//     });
+//   }
+// }
+
+
+class MonthlyIncomeBloc extends Bloc<MonthlyIncomeEvent, MonthlyIncomeState> {
   final GetAllFieldVerficationService getAllFieldVerficationService;
-  LifeStatusBloc(this.getAllFieldVerficationService)
-      : super(LifeStatusState.initial()) {
-    on<_GetlifeStatus>((event, emit) async {
+  MonthlyIncomeBloc(this.getAllFieldVerficationService)
+      : super(MonthlyIncomeState.initial()) {
+    on<Getmonthlyincome>((event, emit) async {
       emit(
-        const LifeStatusState(
+        const MonthlyIncomeState(
             isLoading: true,
             isError: false,
             lifestatus: [],
@@ -23,9 +32,9 @@ class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
       );
       try {
         final List<FieldVerificationModel> response =
-            await getAllFieldVerficationService.lifeStatus();
+            await getAllFieldVerficationService.monthlyincome();
         print('my applicants are ---------------- ${response.length}');
-        emit(LifeStatusState(
+        emit(MonthlyIncomeState(
           isLoading: false,
           isError: false,
           lifestatus: response,
@@ -34,7 +43,7 @@ class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
         print('success ${response.length}');
       } catch (e) {
         print('Error caught: $e');
-        emit(LifeStatusState(
+        emit(MonthlyIncomeState(
           isLoading: false,
           isError: true,
           lifestatus: [],
@@ -46,3 +55,4 @@ class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
     });
   }
 }
+

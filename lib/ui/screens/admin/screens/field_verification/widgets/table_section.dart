@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:panakj_app/core/constant/constants.dart';
-import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/select_option.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_plaster_bottom_sheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_plotsize_bottom_sheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_roof_bottom_sheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/life_status_bottom_sheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/parents_education_bottomsheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/marks_section.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/parents_income_bottomsheet.dart';
 import 'package:panakj_app/ui/screens/student/widgets/spacer_height.dart';
 
 class ParentsTable extends StatelessWidget {
@@ -37,60 +42,50 @@ class ParentsTable extends StatelessWidget {
               DataColumn(label: Text('Father')),
               DataColumn(label: Text('Mother')),
             ],
-            rows: const [
+            rows: [
               DataRow(cells: [
                 DataCell(Text('Life status', style: homeContentStyle)),
-                DataCell(
-                  SelectOption(
-                    options: ['Not alive', 'Disabled', 'Disease'],
-                  ),
-                ),
-                DataCell(
-                  SelectOption(
-                    options: ['Not alive', 'Disabled', 'Disease'],
-                  ),
-                ),
+                DataCell(LifeStatusBottomSheet(
+                  title: '',
+                )
+                    // SelectOption(
+                    //   options: ['Not alive', 'Disabled', 'Disease'],
+                    // ),
+                    ),
+                DataCell(LifeStatusBottomSheet(
+                  title: '',
+                )),
               ]),
               DataRow(
                 cells: [
                   DataCell(Text('Education', style: homeContentStyle)),
                   DataCell(
-                    SelectOption(
-                      options: ['0 to 4th Std.', '5 to 10th'],
-                    ),
-                  ),
-                  DataCell(
-                    SelectOption(
-                      options: ['0 to 4th Std.', '5 to 10th'],
-                    ),
-                  ),
+                      // SelectOption(
+                      //   options: ['0 to 4th Std.', '5 to 10th'],
+                      // ),
+                      ParentsEducationBottomSheet(
+                    title: '',
+                  )
+                      // LifeStatusBottomSheet(
+                      //   title: '',
+                      // ),
+                      ),
+                  DataCell(ParentsEducationBottomSheet(
+                    title: '',
+                  )),
                 ],
               ),
               DataRow(
                 cells: [
                   DataCell(Text('Month inc.', style: homeContentStyle)),
                   DataCell(
-                    SelectOption(
-                      options: [
-                        'Rs. 0 to 3,000',
-                        'Rs. 3,001 to 5,000',
-                        'Rs. 5001 to 8,000',
-                        'Rs. 8,001 to 12,000',
-                        'Rs. 12,001 to 15,000',
-                        'Rs. 15,001 to 18,000'
-                      ],
+                    ParentsIncomeBottomSheet(
+                      title: '',
                     ),
                   ),
                   DataCell(
-                    SelectOption(
-                      options: [
-                        'Rs. 0 to 3,000',
-                        'Rs. 3,001 to 5,000',
-                        'Rs. 5001 to 8,000',
-                        'Rs. 8,001 to 12,000',
-                        'Rs. 12,001 to 15,000',
-                        'Rs. 15,001 to 18,000'
-                      ],
+                    ParentsIncomeBottomSheet(
+                      title: '',
                     ),
                   ),
                 ],
@@ -112,9 +107,6 @@ class ResidentialTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Column(
         children: [
-          const Row(
-            children: [],
-          ),
           DataTable(
             dividerThickness: 0,
             border: TableBorder.all(
@@ -124,46 +116,27 @@ class ResidentialTable extends StatelessWidget {
               DataColumn(label: Text('Title')),
               DataColumn(label: Text('Residential Details')),
             ],
-            rows: const [
+            rows: [
               DataRow(cells: [
-                DataCell(Text('Plot size', style: homeContentStyle)),
+                const DataCell(Text('Plot size', style: homeContentStyle)),
                 DataCell(
-                  SelectOption(
-                    options: [
-                      '0 to 5 cents',
-                      '6 to 10 cents',
-                      '11 to 15 cents',
-                      '16 to 20 cents',
-                      '21 to 30 cents',
-                    ],
+                  HousePlotSizeBottomSheet(
+                    title: '',
                   ),
                 ),
               ]),
               DataRow(
                 cells: [
                   DataCell(Text('Roof', style: homeContentStyle)),
-                  DataCell(
-                    SelectOption(
-                      options: [
-                        'Thatched',
-                        'Tin/Asbest.',
-                        'Tile',
-                        'Concrete',
-                      ],
-                    ),
-                  ),
+                  DataCell(HouseRoofBottomSheet(title: '')),
                 ],
               ),
               DataRow(
                 cells: [
                   DataCell(Text('Plastering', style: homeContentStyle)),
                   DataCell(
-                    SelectOption(
-                      options: [
-                        'None Outside',
-                        'None Inside',
-                        'None Floor',
-                      ],
+                    HousePlasterBottomSheet(
+                      title: '',
                     ),
                   ),
                 ],
@@ -171,31 +144,17 @@ class ResidentialTable extends StatelessWidget {
               DataRow(
                 cells: [
                   DataCell(Text('Water Source', style: homeContentStyle)),
-                  DataCell(
-                    SelectOption(
-                      options: [
-                        'Pub. Tap',
-                        'Pond',
-                        'Well',
-                        'Pvt. Tap',
-                      ],
-                    ),
-                  ),
+                  DataCell(LifeStatusBottomSheet(
+                    title: '',
+                  )),
                 ],
               ),
               DataRow(
                 cells: [
                   DataCell(Text('Rental House', style: homeContentStyle)),
-                  DataCell(
-                    SelectOption(
-                      options: [
-                        'Rs. 0 to 1,000',
-                        'Rs. 1001 to 2,000',
-                        'Rs. 2001 to 3,000',
-                        'Rs. 3001 to 4,000',
-                      ],
-                    ),
-                  ),
+                  DataCell(LifeStatusBottomSheet(
+                    title: '',
+                  )),
                 ],
               ),
             ],
@@ -227,63 +186,36 @@ class SiblingsTable extends StatelessWidget {
               DataColumn(label: Text('Title')),
               DataColumn(label: Text('Siblings Details')),
             ],
-            rows: const [
+            rows: [
               DataRow(cells: [
-                DataCell(Text('1st to 10th', style: homeContentStyle)),
-                DataCell(
-                  SelectOption(
-                    options: [
-                      '0',
-                      '1',
-                      '2',
-                      '3',
-                    ],
-                  ),
-                ),
+                const DataCell(Text('1st to 10th', style: homeContentStyle)),
+                DataCell(LifeStatusBottomSheet(
+                  title: '',
+                )),
               ]),
               DataRow(
                 cells: [
-                  DataCell(Text('11th to 12th', style: homeContentStyle)),
-                  DataCell(
-                    SelectOption(
-                      options: [
-                        '0',
-                        '1',
-                        '2',
-                        '3',
-                      ],
-                    ),
-                  ),
+                  const DataCell(Text('11th to 12th', style: homeContentStyle)),
+                  DataCell(LifeStatusBottomSheet(
+                    title: '',
+                  )),
                 ],
               ),
               DataRow(
                 cells: [
-                  DataCell(Text('College', style: homeContentStyle)),
-                  DataCell(
-                    SelectOption(
-                      options: [
-                        '0',
-                        '1',
-                        '2',
-                        '3',
-                      ],
-                    ),
-                  ),
+                  const DataCell(Text('College', style: homeContentStyle)),
+                  DataCell(LifeStatusBottomSheet(
+                    title: '',
+                  )),
                 ],
               ),
               DataRow(
                 cells: [
-                  DataCell(Text('Disabled/Sick', style: homeContentStyle)),
-                  DataCell(
-                    SelectOption(
-                      options: [
-                        '0',
-                        '1',
-                        '2',
-                        '3',
-                      ],
-                    ),
-                  ),
+                  const DataCell(
+                      Text('Disabled/Sick', style: homeContentStyle)),
+                  DataCell(LifeStatusBottomSheet(
+                    title: '',
+                  )),
                 ],
               ),
             ],
@@ -303,9 +235,6 @@ class EducationalTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Column(
         children: [
-          const Row(
-            children: [],
-          ),
           DataTable(
             dividerThickness: 0,
             border: TableBorder.all(

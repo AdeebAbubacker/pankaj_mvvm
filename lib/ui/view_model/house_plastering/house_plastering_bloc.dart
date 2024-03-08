@@ -5,17 +5,27 @@ import 'package:panakj_app/core/model/failure/mainfailure.dart';
 import 'package:panakj_app/core/model/parents_education/parents_education.dart';
 import 'package:panakj_app/core/service/get_all_fieldverification_service.dart';
 
-part 'life_status_event.dart';
-part 'life_status_state.dart';
-part 'life_status_bloc.freezed.dart';
+part 'house_plastering_event.dart';
+part 'house_plastering_state.dart';
+part 'house_plastering_bloc.freezed.dart';
 
-class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
+// class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringState> {
+//   HousePlasteringBloc() : super(_Initial()) {
+//     on<HousePlasteringEvent>((event, emit) {
+//       // TODO: implement event handler
+//     });
+//   }
+// }
+
+
+
+class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringState> {
   final GetAllFieldVerficationService getAllFieldVerficationService;
-  LifeStatusBloc(this.getAllFieldVerficationService)
-      : super(LifeStatusState.initial()) {
-    on<_GetlifeStatus>((event, emit) async {
+  HousePlasteringBloc(this.getAllFieldVerficationService)
+      : super(HousePlasteringState.initial()) {
+    on<Gethouseplastering>((event, emit) async {
       emit(
-        const LifeStatusState(
+        const HousePlasteringState(
             isLoading: true,
             isError: false,
             lifestatus: [],
@@ -23,9 +33,9 @@ class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
       );
       try {
         final List<FieldVerificationModel> response =
-            await getAllFieldVerficationService.lifeStatus();
+            await getAllFieldVerficationService.housePlastering();
         print('my applicants are ---------------- ${response.length}');
-        emit(LifeStatusState(
+        emit(HousePlasteringState(
           isLoading: false,
           isError: false,
           lifestatus: response,
@@ -34,7 +44,7 @@ class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
         print('success ${response.length}');
       } catch (e) {
         print('Error caught: $e');
-        emit(LifeStatusState(
+        emit(HousePlasteringState(
           isLoading: false,
           isError: true,
           lifestatus: [],
@@ -46,3 +56,4 @@ class LifeStatusBloc extends Bloc<LifeStatusEvent, LifeStatusState> {
     });
   }
 }
+
