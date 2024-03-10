@@ -143,4 +143,44 @@ class GetAllFieldVerficationService {
             FieldVerificationModel.fromJson(json as Map<String, dynamic>))
         .toList();
   }
+   Future<List<FieldVerificationModel>> getwaterSource() async {
+    final response = await Supabase.instance.client
+        .from('house_3_water')
+        .select()
+        .execute();
+
+    if (response == null) {
+      print('error');
+      throw Exception('Failed to fetch countries');
+    }
+
+    final List<dynamic> data = response.data ?? [];
+
+    // ignore: avoid_print
+    print('my response from applicants ${data}');
+    return data
+        .map((json) =>
+            FieldVerificationModel.fromJson(json as Map<String, dynamic>))
+        .toList();
+  }
+   Future<List<FieldVerificationModel>> getrentalHouse() async {
+    final response = await Supabase.instance.client
+        .from('house_4_rent')
+        .select()
+        .execute();
+
+    if (response == null) {
+      print('error');
+      throw Exception('Failed to fetch countries');
+    }
+
+    final List<dynamic> data = response.data ?? [];
+
+    // ignore: avoid_print
+    print('my response from applicants ${data}');
+    return data
+        .map((json) =>
+            FieldVerificationModel.fromJson(json as Map<String, dynamic>))
+        .toList();
+  }
 }

@@ -1,8 +1,10 @@
-import 'package:hive_flutter/hive_flutter.dart';
-part 'parents_income_adapter.g.dart';
 
-@HiveType(typeId: 26)
-class ParentsIncomeDB {
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'water_source_adapter.g.dart';
+
+@HiveType(typeId: 30)
+class WaterSourceDB {
   @HiveField(0)
   int id;
 
@@ -12,14 +14,14 @@ class ParentsIncomeDB {
   @HiveField(2)
   String status;
 
-  ParentsIncomeDB({
+  WaterSourceDB({
     required this.id,
     required this.name,
     required this.status,
   });
 
-  factory ParentsIncomeDB.fromJson(Map<String, dynamic> json) {
-    return ParentsIncomeDB(
+  factory WaterSourceDB.fromJson(Map<String, dynamic> json) {
+    return WaterSourceDB(
       id: json['id'],
       name: json['name'],
       status: json['status'],

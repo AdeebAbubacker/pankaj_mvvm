@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 part 'personal_info_adapter.g.dart';
 
 @HiveType(typeId: 2)

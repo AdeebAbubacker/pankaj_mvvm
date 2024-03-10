@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 part 'siblingcard_adapter.g.dart'; // You need to run the build_runner to generate this file
 

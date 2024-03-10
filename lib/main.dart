@@ -17,6 +17,7 @@ import 'package:panakj_app/core/db/adapters/parents_education_adapter/parents_ed
 import 'package:panakj_app/core/db/adapters/parents_income/parents_income_adapter.dart';
 import 'package:panakj_app/core/db/adapters/personal_info_adapter/personal_info_adapter.dart';
 import 'package:panakj_app/core/db/adapters/qualification_adapter/qualification_adapter.dart';
+import 'package:panakj_app/core/db/adapters/rental_house_adapter/rental_house_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_adapter/school_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_group_adapter/school_group_adapter.dart';
 import 'package:panakj_app/core/db/adapters/siblingcard_adapter/siblingcard_adapter.dart';
@@ -24,6 +25,7 @@ import 'package:panakj_app/core/db/adapters/validation_academics/validation_acad
 import 'package:panakj_app/core/db/adapters/validation_familyscreen/validation_familyscreenadapter.dart';
 import 'package:panakj_app/core/db/adapters/validation_personalinfo/validation_personalinfoadapter.dart';
 import 'package:panakj_app/core/db/adapters/validation_residential/validation_residentialadapter.dart';
+import 'package:panakj_app/core/db/adapters/water_source_adapter/water_source_adapter.dart';
 import 'package:panakj_app/core/db/boxes/achievment_box.dart';
 import 'package:panakj_app/core/db/boxes/bank_box.dart';
 import 'package:panakj_app/core/db/boxes/cache_screen1_box.dart';
@@ -31,6 +33,7 @@ import 'package:panakj_app/core/db/boxes/cache_screen4_box.dart';
 import 'package:panakj_app/core/db/boxes/college_box.dart';
 import 'package:panakj_app/core/db/boxes/course_box.dart';
 import 'package:panakj_app/core/db/boxes/family_status_box.dart';
+import 'package:panakj_app/core/db/boxes/house_plaster.dart';
 import 'package:panakj_app/core/db/boxes/house_plot_size.dart';
 import 'package:panakj_app/core/db/boxes/house_roof.dart';
 import 'package:panakj_app/core/db/boxes/life_status_box.dart';
@@ -39,6 +42,7 @@ import 'package:panakj_app/core/db/boxes/parents_education_box.dart';
 import 'package:panakj_app/core/db/boxes/parents_income_box.dart';
 import 'package:panakj_app/core/db/boxes/personal_info_box.dart';
 import 'package:panakj_app/core/db/boxes/qualification_box.dart';
+import 'package:panakj_app/core/db/boxes/rental_house_box.dart';
 import 'package:panakj_app/core/db/boxes/school_box.dart';
 import 'package:panakj_app/core/db/boxes/school_group_box.dart';
 import 'package:panakj_app/core/db/boxes/siblingcard_box.dart';
@@ -46,6 +50,7 @@ import 'package:panakj_app/core/db/boxes/validation_academicBox.dart';
 import 'package:panakj_app/core/db/boxes/validation_familyBox.dart';
 import 'package:panakj_app/core/db/boxes/validation_personalinfoBox.dart';
 import 'package:panakj_app/core/db/boxes/validation_residentialBox.dart';
+import 'package:panakj_app/core/db/boxes/water_source_box.dart';
 import 'package:panakj_app/core/service/academic_service.dart';
 import 'package:panakj_app/core/service/applicants_service.dart';
 import 'package:panakj_app/core/service/auth_service.dart';
@@ -82,6 +87,8 @@ import 'package:panakj_app/ui/view_model/field_verification/field_verification_b
 import 'package:panakj_app/ui/view_model/get_dropdown_values/get_dropdown_values_bloc.dart';
 import 'package:panakj_app/ui/view_model/get_gallery/get_gallery_bloc.dart';
 import 'package:panakj_app/ui/view_model/get_news/get_news_bloc.dart';
+import 'package:panakj_app/ui/view_model/get_rental_house/get_rental_house_bloc.dart';
+import 'package:panakj_app/ui/view_model/get_water_source/get_water_source_bloc.dart';
 import 'package:panakj_app/ui/view_model/getcolleges/getcolleges_bloc.dart';
 import 'package:panakj_app/ui/view_model/getschool/getschool_bloc.dart';
 import 'package:panakj_app/ui/view_model/horizontal_radio_btn/horizontal_radio_btn_bloc.dart';
@@ -149,13 +156,17 @@ void main() async {
   Hive.registerAdapter(ParentsIncomeDBAdapter());
   Hive.registerAdapter(HousePlotSizeDBAdapter());
   Hive.registerAdapter(HouseRoofDBAdapter());
-   Hive.registerAdapter(HousePlasterDBAdapter());
+  Hive.registerAdapter(HousePlasterDBAdapter());
+  Hive.registerAdapter(WaterSourceDBAdapter());
+  Hive.registerAdapter(RentalHouseDBAdapter());
 
   ///----------------open box-------------------------------------------------
   bankBox = await Hive.openBox<BankDB>('bankBox');
   houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
-  houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
+  houseplasterBox = await Hive.openBox<HousePlasterDB>('houseplasterBox');
   houseroofBox = await Hive.openBox<HouseRoofDB>('houseroofBox');
+  waterSourceBox = await Hive.openBox<WaterSourceDB>('waterSourceBox');
+  rentalHouseBox = await Hive.openBox<RentalHouseDB>('rentalHouseBox');
   lifestatusInfoBox = await Hive.openBox<LifeStatusDB>('lifestatusInfoBox');
   parentsIncomeBox = await Hive.openBox<ParentsIncomeDB>('parentsIncomeBox');
   parentsEducationBox =
@@ -357,6 +368,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               HousePlasteringBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              GetWaterSourceBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              GetRentalHouseBloc(getAllFieldVerficationService),
         ),
       ],
       child: MaterialApp(

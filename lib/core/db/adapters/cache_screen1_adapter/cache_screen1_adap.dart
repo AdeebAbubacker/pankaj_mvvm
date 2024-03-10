@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 
 part 'cache_screen1_adap.g.dart';
 

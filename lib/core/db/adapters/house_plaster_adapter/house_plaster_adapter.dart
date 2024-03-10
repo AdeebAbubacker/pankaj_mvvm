@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 part 'house_plaster_adapter.g.dart';
 
 @HiveType(typeId: 29)

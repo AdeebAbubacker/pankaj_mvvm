@@ -5,20 +5,20 @@ import 'package:panakj_app/core/model/failure/mainfailure.dart';
 import 'package:panakj_app/core/model/parents_education/parents_education.dart';
 import 'package:panakj_app/core/service/get_all_fieldverification_service.dart';
 
-part 'house_plastering_event.dart';
-part 'house_plastering_state.dart';
-part 'house_plastering_bloc.freezed.dart';
+part 'get_rental_house_event.dart';
+part 'get_rental_house_state.dart';
+part 'get_rental_house_bloc.freezed.dart';
 
 
 
 
-class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringState> {
+class GetRentalHouseBloc extends Bloc<GetRentalHouseEvent, GetRentalHouseState> {
   final GetAllFieldVerficationService getAllFieldVerficationService;
-  HousePlasteringBloc(this.getAllFieldVerficationService)
-      : super(HousePlasteringState.initial()) {
-    on<Gethouseplastering>((event, emit) async {
+  GetRentalHouseBloc(this.getAllFieldVerficationService)
+      : super(GetRentalHouseState.initial()) {
+    on<GethouseRental>((event, emit) async {
       emit(
-        const HousePlasteringState(
+        const GetRentalHouseState(
             isLoading: true,
             isError: false,
             lifestatus: [],
@@ -26,9 +26,9 @@ class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringStat
       );
       try {
         final List<FieldVerificationModel> response =
-            await getAllFieldVerficationService.housePlastering();
-        print('my applicants are ---------------- ${response.length}');
-        emit(HousePlasteringState(
+            await getAllFieldVerficationService.getrentalHouse();
+        print('my renatl  source are ---------------- ${response.length}');
+        emit(GetRentalHouseState(
           isLoading: false,
           isError: false,
           lifestatus: response,
@@ -37,7 +37,7 @@ class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringStat
         print('success ${response.length}');
       } catch (e) {
         print('Error caught: $e');
-        emit(HousePlasteringState(
+        emit(GetRentalHouseState(
           isLoading: false,
           isError: true,
           lifestatus: [],
@@ -49,4 +49,5 @@ class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringStat
     });
   }
 }
+
 

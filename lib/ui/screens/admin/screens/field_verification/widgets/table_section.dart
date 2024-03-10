@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:panakj_app/core/constant/constants.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_plaster_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_plotsize_bottom_sheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_rental_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_roof_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/life_status_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/parents_education_bottomsheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/marks_section.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/parents_income_bottomsheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/water_source_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/student/widgets/spacer_height.dart';
 
 class ParentsTable extends StatelessWidget {
@@ -143,18 +145,21 @@ class ResidentialTable extends StatelessWidget {
               ),
               DataRow(
                 cells: [
-                  DataCell(Text('Water Source', style: homeContentStyle)),
-                  DataCell(LifeStatusBottomSheet(
+                   DataCell(Text('Water Source', style: homeContentStyle)),
+                  DataCell(WaterSourceBottomSheet(
                     title: '',
                   )),
+                 
                 ],
               ),
               DataRow(
                 cells: [
-                  DataCell(Text('Rental House', style: homeContentStyle)),
-                  DataCell(LifeStatusBottomSheet(
+                   DataCell(Text('Rental House', style: homeContentStyle)),
+                  DataCell(HouseRentalBottomSheet(
                     title: '',
                   )),
+
+                 
                 ],
               ),
             ],

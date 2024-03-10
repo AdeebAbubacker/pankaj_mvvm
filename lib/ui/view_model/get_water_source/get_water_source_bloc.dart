@@ -5,20 +5,19 @@ import 'package:panakj_app/core/model/failure/mainfailure.dart';
 import 'package:panakj_app/core/model/parents_education/parents_education.dart';
 import 'package:panakj_app/core/service/get_all_fieldverification_service.dart';
 
-part 'house_plastering_event.dart';
-part 'house_plastering_state.dart';
-part 'house_plastering_bloc.freezed.dart';
+part 'get_water_source_event.dart';
+part 'get_water_source_state.dart';
+part 'get_water_source_bloc.freezed.dart';
 
 
 
-
-class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringState> {
+class GetWaterSourceBloc extends Bloc<GetWaterSourceEvent, GetWaterSourceState> {
   final GetAllFieldVerficationService getAllFieldVerficationService;
-  HousePlasteringBloc(this.getAllFieldVerficationService)
-      : super(HousePlasteringState.initial()) {
-    on<Gethouseplastering>((event, emit) async {
+  GetWaterSourceBloc(this.getAllFieldVerficationService)
+      : super(GetWaterSourceState.initial()) {
+    on<GetWaterSource>((event, emit) async {
       emit(
-        const HousePlasteringState(
+        const GetWaterSourceState(
             isLoading: true,
             isError: false,
             lifestatus: [],
@@ -26,9 +25,9 @@ class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringStat
       );
       try {
         final List<FieldVerificationModel> response =
-            await getAllFieldVerficationService.housePlastering();
-        print('my applicants are ---------------- ${response.length}');
-        emit(HousePlasteringState(
+            await getAllFieldVerficationService.getwaterSource();
+        print('my water source are ---------------- ${response.length}');
+        emit(GetWaterSourceState(
           isLoading: false,
           isError: false,
           lifestatus: response,
@@ -37,7 +36,7 @@ class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringStat
         print('success ${response.length}');
       } catch (e) {
         print('Error caught: $e');
-        emit(HousePlasteringState(
+        emit(GetWaterSourceState(
           isLoading: false,
           isError: true,
           lifestatus: [],
@@ -49,4 +48,5 @@ class HousePlasteringBloc extends Bloc<HousePlasteringEvent, HousePlasteringStat
     });
   }
 }
+
 

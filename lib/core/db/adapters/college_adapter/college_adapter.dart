@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
  part 'college_adapter.g.dart';
 
 @HiveType(typeId: 19)

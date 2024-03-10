@@ -1,4 +1,5 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 part 'achievment_adapter.g.dart';
 
 @HiveType(typeId: 16)
