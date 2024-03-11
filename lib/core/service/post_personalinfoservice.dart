@@ -75,3 +75,52 @@ class Poststudent1InviteService {
     return PersonalInfo();
   }
 }
+
+
+
+
+
+// api service
+
+// Future<PersonalInfo> postPersonalInfoService({
+//   required String name,
+//   required String gender,
+//   required String dob,
+//   required String phone,
+//   required String address,
+//   required String email,
+//   required String bankAccName,
+//   required String bankAccNo,
+//   required int bankId,
+//   required String bankIfsc,
+// }) async {
+//   try {
+//     final Map<String, dynamic> formData = {
+//       'name': name,
+//       'gender': gender,
+//       'dob': dob,
+//       'phone': phone,
+//       'address': address,
+//       'email': email,
+//       'bank_acc_name': bankAccName,
+//       'bank_acc_no': bankAccNo,
+//       'bank_name': bankId.toString(),
+//       'bank_ifsc': bankIfsc,
+//     };
+
+//     final response = await http.post(
+//       Uri.parse('https://ptvue.tekpeak.in/api/personalInfo'),
+//       body: formData,
+//     );
+
+//     if (response.statusCode == 200) {
+//       // Assuming PersonalInfo is returned from the API response
+//       return PersonalInfo.fromJson(json.decode(response.body));
+//     } else {
+//       throw Exception('Failed to post personal info: ${response.statusCode}');
+//     }
+//   } catch (e) {
+//     print('Error posting personal info: $e');
+//     throw e;
+//   }
+// }

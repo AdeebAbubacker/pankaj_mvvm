@@ -72,7 +72,6 @@ import 'package:panakj_app/core/service/school_service.dart';
 import 'package:panakj_app/core/service/trancate_service.dart';
 import 'package:panakj_app/firebase_options.dart';
 import 'package:panakj_app/ui/screens/admin/admin_dashboard/admin_dashboard.dart';
-import 'package:panakj_app/ui/screens/auth/splash_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/home/widgets/question_one.dart';
 import 'package:panakj_app/ui/view_model/Dob/dob_bloc.dart';
 import 'package:panakj_app/ui/view_model/acadmicdetails/academic_bloc.dart';

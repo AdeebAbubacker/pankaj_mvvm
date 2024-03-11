@@ -13,10 +13,9 @@ import 'package:panakj_app/ui/view_model/field_verification/field_verification_b
 
 class FieldVerificationScreen extends StatelessWidget {
   FieldVerificationScreen({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 244, 244),
       appBar: PreferredSize(
@@ -174,8 +173,11 @@ class FieldVerificationScreen extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {
                         context.read<FieldVerificationBloc>().add(
-                            const FieldVerificationEvent
-                                .postfieldverification());
+                                const FieldVerificationEvent
+                                    .postfieldverification(
+                              f_life_status: 2,
+                              m_life_status: 1,
+                            ));
                       },
                       child: const Text('submit'))
                   // RedSubmitButton(),

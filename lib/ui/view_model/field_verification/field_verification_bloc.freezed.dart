@@ -19,19 +19,22 @@ mixin _$FieldVerificationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() postfieldverification,
+    required TResult Function(int f_life_status, int m_life_status)
+        postfieldverification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? postfieldverification,
+    TResult? Function(int f_life_status, int m_life_status)?
+        postfieldverification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? postfieldverification,
+    TResult Function(int f_life_status, int m_life_status)?
+        postfieldverification,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,7 +118,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() postfieldverification,
+    required TResult Function(int f_life_status, int m_life_status)
+        postfieldverification,
   }) {
     return started();
   }
@@ -124,7 +128,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? postfieldverification,
+    TResult? Function(int f_life_status, int m_life_status)?
+        postfieldverification,
   }) {
     return started?.call();
   }
@@ -133,7 +138,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? postfieldverification,
+    TResult Function(int f_life_status, int m_life_status)?
+        postfieldverification,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -185,6 +191,8 @@ abstract class _$$PostfieldverificationImplCopyWith<$Res> {
           _$PostfieldverificationImpl value,
           $Res Function(_$PostfieldverificationImpl) then) =
       __$$PostfieldverificationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int f_life_status, int m_life_status});
 }
 
 /// @nodoc
@@ -195,55 +203,93 @@ class __$$PostfieldverificationImplCopyWithImpl<$Res>
   __$$PostfieldverificationImplCopyWithImpl(_$PostfieldverificationImpl _value,
       $Res Function(_$PostfieldverificationImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? f_life_status = null,
+    Object? m_life_status = null,
+  }) {
+    return _then(_$PostfieldverificationImpl(
+      f_life_status: null == f_life_status
+          ? _value.f_life_status
+          : f_life_status // ignore: cast_nullable_to_non_nullable
+              as int,
+      m_life_status: null == m_life_status
+          ? _value.m_life_status
+          : m_life_status // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$PostfieldverificationImpl implements Postfieldverification {
-  const _$PostfieldverificationImpl();
+  const _$PostfieldverificationImpl(
+      {required this.f_life_status, required this.m_life_status});
+
+  @override
+  final int f_life_status;
+  @override
+  final int m_life_status;
 
   @override
   String toString() {
-    return 'FieldVerificationEvent.postfieldverification()';
+    return 'FieldVerificationEvent.postfieldverification(f_life_status: $f_life_status, m_life_status: $m_life_status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PostfieldverificationImpl);
+            other is _$PostfieldverificationImpl &&
+            (identical(other.f_life_status, f_life_status) ||
+                other.f_life_status == f_life_status) &&
+            (identical(other.m_life_status, m_life_status) ||
+                other.m_life_status == m_life_status));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, f_life_status, m_life_status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PostfieldverificationImplCopyWith<_$PostfieldverificationImpl>
+      get copyWith => __$$PostfieldverificationImplCopyWithImpl<
+          _$PostfieldverificationImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() postfieldverification,
+    required TResult Function(int f_life_status, int m_life_status)
+        postfieldverification,
   }) {
-    return postfieldverification();
+    return postfieldverification(f_life_status, m_life_status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? postfieldverification,
+    TResult? Function(int f_life_status, int m_life_status)?
+        postfieldverification,
   }) {
-    return postfieldverification?.call();
+    return postfieldverification?.call(f_life_status, m_life_status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? postfieldverification,
+    TResult Function(int f_life_status, int m_life_status)?
+        postfieldverification,
     required TResult orElse(),
   }) {
     if (postfieldverification != null) {
-      return postfieldverification();
+      return postfieldverification(f_life_status, m_life_status);
     }
     return orElse();
   }
@@ -282,7 +328,15 @@ class _$PostfieldverificationImpl implements Postfieldverification {
 }
 
 abstract class Postfieldverification implements FieldVerificationEvent {
-  const factory Postfieldverification() = _$PostfieldverificationImpl;
+  const factory Postfieldverification(
+      {required final int f_life_status,
+      required final int m_life_status}) = _$PostfieldverificationImpl;
+
+  int get f_life_status;
+  int get m_life_status;
+  @JsonKey(ignore: true)
+  _$$PostfieldverificationImplCopyWith<_$PostfieldverificationImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

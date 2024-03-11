@@ -1,4 +1,5 @@
 import 'package:panakj_app/core/model/personal_info/personal_info.dart';
+import 'package:panakj_app/core/model/residential_data/residential_data.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FieldVerificationService {
@@ -8,7 +9,7 @@ class FieldVerificationService {
     autoRefreshToken: true,
   );
 
-  Future<PersonalInfo> fieldVerificationService({
+  Future fieldVerificationService({
     required int app_id,
     required int hall_ticket,
     required int group,
@@ -27,8 +28,8 @@ class FieldVerificationService {
         'application_id': 14,
         'hall_ticket': 1,
         'group': 1,
-        'father_life_status': 2,
-        'mother_life_status': 2,
+        'father_life_status': f_life_status,
+        'mother_life_status': m_life_status,
         'father_education': 2,
         'mother_education': 2,
         'plot_size': 2,
@@ -45,6 +46,6 @@ class FieldVerificationService {
       print('Error posting personal info: $e');
       throw e;
     }
-    return PersonalInfo();
+    return ResidentialData();
   }
 }
