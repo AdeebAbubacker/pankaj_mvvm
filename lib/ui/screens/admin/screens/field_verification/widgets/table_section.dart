@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:panakj_app/core/constant/constants.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/card/sibling_current_status.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_plaster_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_plotsize_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/house_rental_bottom_sheet.dart';
@@ -8,7 +9,9 @@ import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/l
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/parents_education_bottomsheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/marks_section.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/parents_income_bottomsheet.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/sibling_edu_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/water_source_bottom_sheet.dart';
+import 'package:panakj_app/ui/screens/student/screens/academics/widgets/achievments_card.dart';
 import 'package:panakj_app/ui/screens/student/widgets/spacer_height.dart';
 
 class ParentsTable extends StatelessWidget {
@@ -145,21 +148,18 @@ class ResidentialTable extends StatelessWidget {
               ),
               DataRow(
                 cells: [
-                   DataCell(Text('Water Source', style: homeContentStyle)),
+                  DataCell(Text('Water Source', style: homeContentStyle)),
                   DataCell(WaterSourceBottomSheet(
                     title: '',
                   )),
-                 
                 ],
               ),
               DataRow(
                 cells: [
-                   DataCell(Text('Rental House', style: homeContentStyle)),
+                  DataCell(Text('Rental House', style: homeContentStyle)),
                   DataCell(HouseRentalBottomSheet(
                     title: '',
                   )),
-
-                 
                 ],
               ),
             ],
@@ -170,66 +170,69 @@ class ResidentialTable extends StatelessWidget {
   }
 }
 
-class SiblingsTable extends StatelessWidget {
-  const SiblingsTable({Key? key}) : super(key: key);
+// class SiblingsTable extends StatelessWidget {
+//   const SiblingsTable({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Column(
-        children: [
-          const Row(
-            children: [],
-          ),
-          DataTable(
-            dividerThickness: 0,
-            border: TableBorder.all(
-                color: const Color.fromARGB(255, 255, 255, 255)),
-            columnSpacing: 75,
-            columns: const [
-              DataColumn(label: Text('Title')),
-              DataColumn(label: Text('Siblings Details')),
-            ],
-            rows: [
-              DataRow(cells: [
-                const DataCell(Text('1st to 10th', style: homeContentStyle)),
-                DataCell(LifeStatusBottomSheet(
-                  title: '',
-                )),
-              ]),
-              DataRow(
-                cells: [
-                  const DataCell(Text('11th to 12th', style: homeContentStyle)),
-                  DataCell(LifeStatusBottomSheet(
-                    title: '',
-                  )),
-                ],
-              ),
-              DataRow(
-                cells: [
-                  const DataCell(Text('College', style: homeContentStyle)),
-                  DataCell(LifeStatusBottomSheet(
-                    title: '',
-                  )),
-                ],
-              ),
-              DataRow(
-                cells: [
-                  const DataCell(
-                      Text('Disabled/Sick', style: homeContentStyle)),
-                  DataCell(LifeStatusBottomSheet(
-                    title: '',
-                  )),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       scrollDirection: Axis.horizontal,
+//       child: Column(
+//         children: [
+//           const Row(
+//             children: [],
+//           ),
+//           DataTable(
+//             dividerThickness: 0,
+//             border: TableBorder.all(
+//                 color: const Color.fromARGB(255, 255, 255, 255)),
+//             columnSpacing: 75,
+//             columns: const [
+//               DataColumn(label: Text('Title')),
+//               DataColumn(label: Text('Siblings Details')),
+//             ],
+//             rows: [
+//               DataRow(cells: [
+//                 const DataCell(Text('1st to 10th', style: homeContentStyle)),
+//                 DataCell(SiblingEducationalBottomSheet(
+//                   title: '',
+//                 )),
+//                 // DataCell(LifeStatusBottomSheet(
+//                 //   title: '',
+//                 // )),
+//               ]),
+//               DataRow(
+//                 cells: [
+//                   const DataCell(Text('11th to 12th', style: homeContentStyle)),
+//                   DataCell(LifeStatusBottomSheet(
+//                     title: '',
+//                   )),
+//                 ],
+//               ),
+//               DataRow(
+//                 cells: [
+//                   const DataCell(Text('College', style: homeContentStyle)),
+//                   DataCell(LifeStatusBottomSheet(
+//                     title: '',
+//                   )),
+//                 ],
+//               ),
+//               DataRow(
+//                 cells: [
+//                   const DataCell(
+//                       Text('Disabled/Sick', style: homeContentStyle)),
+//                   DataCell(LifeStatusBottomSheet(
+//                     title: '',
+//                   )),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class EducationalTable extends StatelessWidget {
   const EducationalTable({Key? key}) : super(key: key);
@@ -269,3 +272,20 @@ class EducationalTable extends StatelessWidget {
     );
   }
 }
+
+class SiblingsTable extends StatelessWidget {
+  const SiblingsTable({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Siblings Section'),
+        SiblingCurrentStatusCard(),
+      ],
+    );
+  }
+}
+
+
+

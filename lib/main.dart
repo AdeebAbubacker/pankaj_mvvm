@@ -20,6 +20,7 @@ import 'package:panakj_app/core/db/adapters/qualification_adapter/qualification_
 import 'package:panakj_app/core/db/adapters/rental_house_adapter/rental_house_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_adapter/school_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_group_adapter/school_group_adapter.dart';
+import 'package:panakj_app/core/db/adapters/sibling_education_adapter/sibling_education_adapter.dart';
 import 'package:panakj_app/core/db/adapters/siblingcard_adapter/siblingcard_adapter.dart';
 import 'package:panakj_app/core/db/adapters/validation_academics/validation_academicadapter.dart';
 import 'package:panakj_app/core/db/adapters/validation_familyscreen/validation_familyscreenadapter.dart';
@@ -45,6 +46,7 @@ import 'package:panakj_app/core/db/boxes/qualification_box.dart';
 import 'package:panakj_app/core/db/boxes/rental_house_box.dart';
 import 'package:panakj_app/core/db/boxes/school_box.dart';
 import 'package:panakj_app/core/db/boxes/school_group_box.dart';
+import 'package:panakj_app/core/db/boxes/sibling_education_box.dart';
 import 'package:panakj_app/core/db/boxes/siblingcard_box.dart';
 import 'package:panakj_app/core/db/boxes/validation_academicBox.dart';
 import 'package:panakj_app/core/db/boxes/validation_familyBox.dart';
@@ -72,9 +74,13 @@ import 'package:panakj_app/core/service/school_service.dart';
 import 'package:panakj_app/core/service/trancate_service.dart';
 import 'package:panakj_app/firebase_options.dart';
 import 'package:panakj_app/ui/screens/admin/admin_dashboard/admin_dashboard.dart';
+import 'package:panakj_app/ui/screens/admin/screens/field_verification/screens/field_verification_screen.dart';
+import 'package:panakj_app/ui/screens/auth/splash_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/home/widgets/question_one.dart';
+import 'package:panakj_app/ui/trancate_screen.dart';
 import 'package:panakj_app/ui/view_model/Dob/dob_bloc.dart';
 import 'package:panakj_app/ui/view_model/acadmicdetails/academic_bloc.dart';
+import 'package:panakj_app/ui/view_model/alive_ordisabled_fieldadmin/alive_ordisabled_fieldadmin_bloc.dart';
 import 'package:panakj_app/ui/view_model/applicants/applicants_bloc.dart';
 import 'package:panakj_app/ui/view_model/auth/auth_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxfirst/checkboxfirst_bloc.dart';
@@ -87,6 +93,7 @@ import 'package:panakj_app/ui/view_model/get_dropdown_values/get_dropdown_values
 import 'package:panakj_app/ui/view_model/get_gallery/get_gallery_bloc.dart';
 import 'package:panakj_app/ui/view_model/get_news/get_news_bloc.dart';
 import 'package:panakj_app/ui/view_model/get_rental_house/get_rental_house_bloc.dart';
+import 'package:panakj_app/ui/view_model/get_sibling_education/get_sibling_education_bloc.dart';
 import 'package:panakj_app/ui/view_model/get_water_source/get_water_source_bloc.dart';
 import 'package:panakj_app/ui/view_model/getcolleges/getcolleges_bloc.dart';
 import 'package:panakj_app/ui/view_model/getschool/getschool_bloc.dart';
@@ -158,11 +165,14 @@ void main() async {
   Hive.registerAdapter(HousePlasterDBAdapter());
   Hive.registerAdapter(WaterSourceDBAdapter());
   Hive.registerAdapter(RentalHouseDBAdapter());
+  Hive.registerAdapter(SiblingEducationDBAdapter());
 
   ///----------------open box-------------------------------------------------
   bankBox = await Hive.openBox<BankDB>('bankBox');
   houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
   houseplasterBox = await Hive.openBox<HousePlasterDB>('houseplasterBox');
+  siblingeducationbox =
+      await Hive.openBox<SiblingEducationDB>('siblingeducationbox');
   houseroofBox = await Hive.openBox<HouseRoofDB>('houseroofBox');
   waterSourceBox = await Hive.openBox<WaterSourceDB>('waterSourceBox');
   rentalHouseBox = await Hive.openBox<RentalHouseDB>('rentalHouseBox');
@@ -376,14 +386,21 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               GetRentalHouseBloc(getAllFieldVerficationService),
         ),
+        BlocProvider(
+          create: (context) =>
+              GetSiblingEducationBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) => AliveOrdisabledFieldadminBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: '',
         theme: ThemeData(useMaterial3: false),
-        home: AdminDashboard(),
-        //   home: const FieldVerificationScreen(),
-        //  home: const SplashScreen(),
+       home: AdminDashboard(),
+
+      //   home: const PostScreen(),
       ),
     );
   }

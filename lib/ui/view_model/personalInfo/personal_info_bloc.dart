@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:panakj_app/core/model/failure/mainfailure.dart';
 import 'package:panakj_app/core/model/personal_info/personal_info.dart';
+
 import 'package:panakj_app/core/service/post_personalinfoservice.dart';
 
 part 'personal_info_event.dart';

@@ -15,6 +15,7 @@ import 'package:panakj_app/core/db/adapters/parents_income/parents_income_adapte
 import 'package:panakj_app/core/db/adapters/rental_house_adapter/rental_house_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_adapter/school_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_group_adapter/school_group_adapter.dart';
+import 'package:panakj_app/core/db/adapters/sibling_education_adapter/sibling_education_adapter.dart';
 import 'package:panakj_app/core/db/adapters/water_source_adapter/water_source_adapter.dart';
 import 'package:panakj_app/core/db/boxes/college_box.dart';
 import 'package:panakj_app/core/db/boxes/house_plaster.dart';
@@ -26,6 +27,7 @@ import 'package:panakj_app/core/db/boxes/parents_income_box.dart';
 import 'package:panakj_app/core/db/boxes/rental_house_box.dart';
 import 'package:panakj_app/core/db/boxes/school_box.dart';
 import 'package:panakj_app/core/db/boxes/school_group_box.dart';
+import 'package:panakj_app/core/db/boxes/sibling_education_box.dart';
 import 'package:panakj_app/core/db/boxes/water_source_box.dart';
 import 'package:panakj_app/ui/screens/admin/screens/application_screen/application_screen.dart';
 import 'package:panakj_app/ui/screens/admin/screens/college_screen/college_screen.dart';
@@ -37,6 +39,7 @@ import 'package:panakj_app/ui/screens/admin/screens/school_screen/school_screen.
 import 'package:panakj_app/ui/screens/admin/screens/top_grade_screen/topgrade_screen.dart';
 import 'package:panakj_app/ui/screens/auth/login_screen.dart';
 import 'package:panakj_app/ui/view_model/get_rental_house/get_rental_house_bloc.dart';
+import 'package:panakj_app/ui/view_model/get_sibling_education/get_sibling_education_bloc.dart';
 import 'package:panakj_app/ui/view_model/get_water_source/get_water_source_bloc.dart';
 import 'package:panakj_app/ui/view_model/getcolleges/getcolleges_bloc.dart';
 import 'package:panakj_app/ui/view_model/getschool/getschool_bloc.dart';
@@ -68,6 +71,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   Map<int?, String?>? houseroofData;
   Map<int?, String?>? watersourceData;
   Map<int?, String?>? rentalhouseData;
+  Map<int?, String?>? siblingEducationalData;
   var schoolslist;
   var colleges;
   var schools;
@@ -79,6 +83,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   var houseplaster;
   var watersource;
   var rentalhouse;
+  var siblingeducation;
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +110,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
           .add(const GetWaterSourceEvent.getWaterSource());
       BlocProvider.of<GetRentalHouseBloc>(context)
           .add(const GetRentalHouseEvent.gethouseRental());
+      BlocProvider.of<GetSiblingEducationBloc>(context)
+          .add(const GetSiblingEducationEvent.getSiblingEducation());
     });
 
     final amindashBoardContents = [
@@ -653,6 +660,44 @@ class _AdminDashboardState extends State<AdminDashboard> {
                                         rentalhouse = rentalHouseBox.getAt(i),
                                         print(
                                             'Renatl house at index $i: id=${rentalhouse.id}, name=${rentalhouse.name}')
+                                      }
+                                  }
+                              }),
+                    );
+                  }
+                },
+              ),
+              BlocListener<GetSiblingEducationBloc, GetSiblingEducationState>(
+                listener: (context, state) {
+                  if (state.isError) {}
+                  if (state.isLoading) {
+                  } else {
+                    state.successorFailure.fold(
+                      () => () {},
+                      (either) => either.fold(
+                          (failure) => {print('Failure')},
+                          (success) => {
+                                siblingEducationalData = Map.fromIterables(
+                                    success!.toList().map((e) => e.id),
+                                    success!.toList().map((e) => e.name)),
+                                siblingeducationbox =
+                                    Hive.box<SiblingEducationDB>('siblingeducationbox'),
+                                siblingEducationalData!.forEach((id, name) {
+                                  siblingeducationbox.put(
+                                      id as int,
+                                      SiblingEducationDB(
+                                        id: id,
+                                        name: name as String,
+                                        status: '',
+                                      ));
+                                }),
+                                for (var i = 0; i < siblingeducationbox.length; i++)
+                                  {
+                                    if (i < siblingeducationbox.length)
+                                      {
+                                        siblingeducation = siblingeducationbox.getAt(i),
+                                        print(
+                                            'Siblings Education at index $i: id=${siblingeducation.id}, name=${siblingeducation.name}')
                                       }
                                   }
                               }),

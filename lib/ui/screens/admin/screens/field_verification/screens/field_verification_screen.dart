@@ -111,7 +111,8 @@ class FieldVerificationScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   width: 390,
-                  height: 1735,
+                   height:5035,
+                  // height: 1735,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadius.all(Radius.circular(7))),

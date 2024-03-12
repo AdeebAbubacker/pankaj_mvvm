@@ -420,7 +420,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                       print(
                                           'Branch IFSC from db: ${data.BranchIFSC}');
                                     }
-                                    print(success.data.toString());
+                                    // print(success.data.toString());
                                     scrollController.jumpTo(0.0);
                                     handleNextPage(1);
                                   },
