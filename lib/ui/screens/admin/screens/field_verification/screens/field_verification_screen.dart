@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:panakj_app/core/colors/colors.dart';
 import 'package:panakj_app/core/constant/constants.dart';
+import 'package:panakj_app/core/db/adapters/sibling_data_FV_adapter/sibling_data_FV_adapter.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/group_bottom_sheet.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/table_section.dart';
 import 'package:panakj_app/ui/screens/student/widgets/input_label.dart';
@@ -16,180 +20,195 @@ class FieldVerificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 244, 244),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(67.0),
-        child: AppBar(
-          elevation: 4,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu,
-              color: Color.fromARGB(
-                255,
-                75,
-                75,
-                74,
-              ),
-            ),
-          ),
-          centerTitle: true,
-          title: Text(
-            'Pankaj Trust',
-            style: GoogleFonts.mPlus1p(
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'FieldVerification',
-                  style: recepeintdashcontent,
+    return StreamBuilder(
+        stream: Hive.box<SiblingDataFVDB>('siblingdataFVbox').watch(),
+        builder: (context, snapshot) {
+          final Box<SiblingDataFVDB> box =
+              Hive.box<SiblingDataFVDB>('siblingdataFVbox');
+          final numberOfAchievements = box.length;
+          double dynamicHeight = 1652 + (numberOfAchievements * 198);
+
+          Timer.periodic(Duration(seconds: 3), (timer) {
+            print("Number of siblings1 : ${box.isEmpty}");
+            print("Number of  siblings 2 : ${box.keys.length}");
+            print("Number of  siblings 3 : ${box.length}");
+          });
+          return Scaffold(
+            backgroundColor: const Color.fromARGB(255, 245, 244, 244),
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(67.0),
+              child: AppBar(
+                elevation: 4,
+                backgroundColor: Colors.white,
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.menu,
+                    color: Color.fromARGB(
+                      255,
+                      75,
+                      75,
+                      74,
+                    ),
+                  ),
+                ),
+                centerTitle: true,
+                title: Text(
+                  'Pankaj Trust',
+                  style: GoogleFonts.mPlus1p(
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 390,
-                  height: 355,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.all(Radius.circular(7))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          'Applicants Details',
-                          style: kCardFilterTextStyle,
-                        ),
+            ),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'FieldVerification',
+                        style: recepeintdashcontent,
                       ),
-                      Container(
-                        height: 2,
-                        width: 389,
-                        color: khorizontlinecolor,
-                      ),
-                      MyPadding(
-                        widget: Column(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 390,
+                        height: 355,
+                        decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.all(Radius.circular(7))),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const HeightSpacer(),
-                            LabelNumericalText(
-                                numericalfocusnode: FocusNode(),
-                                mytext: 'Application no',
-                                numController: TextEditingController()),
-                            const HeightSpacer(),
-                            LabelNumericalText(
-                                numericalfocusnode: FocusNode(),
-                                mytext: 'Hall Ticket no',
-                                numController: TextEditingController()),
-                            const HeightSpacer(),
-                            InputLabel(mytext: 'School group'),
-                            SchoolGroupBottomSheet(
-                              title: 'school group ',
-                            )
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                'Applicants Details',
+                                style: kCardFilterTextStyle,
+                              ),
+                            ),
+                            Container(
+                              height: 2,
+                              width: 389,
+                              color: khorizontlinecolor,
+                            ),
+                            MyPadding(
+                              widget: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const HeightSpacer(),
+                                  LabelNumericalText(
+                                      numericalfocusnode: FocusNode(),
+                                      mytext: 'Application no',
+                                      numController: TextEditingController()),
+                                  const HeightSpacer(),
+                                  LabelNumericalText(
+                                      numericalfocusnode: FocusNode(),
+                                      mytext: 'Hall Ticket no',
+                                      numController: TextEditingController()),
+                                  const HeightSpacer(),
+                                  InputLabel(mytext: 'School group'),
+                                  SchoolGroupBottomSheet(
+                                    title: 'school group ',
+                                  )
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 390,
-                   height:5035,
-                  // height: 1735,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.all(Radius.circular(7))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          'Poverty Related Details',
-                          style: kCardFilterTextStyle,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 390,
+                        height: dynamicHeight,
+                        // height: 2035,
+                        // height: 1735,
+                        decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.all(Radius.circular(7))),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                'Poverty Related Details',
+                                style: kCardFilterTextStyle,
+                              ),
+                            ),
+                            Container(
+                              height: 2,
+                              width: 382,
+                              color: khorizontlinecolor,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const HeightSpacer(),
+                                const ParentsTable(),
+                                const SizedBox(height: 30),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    'assets/house.png',
+                                    width: 170,
+                                  ),
+                                ),
+                                const ResidentialTable(),
+                                const SizedBox(height: 30),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    'assets/siblings.png',
+                                    width: 170,
+                                  ),
+                                ),
+                                const SiblingsTable(),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    'assets/educational.jpg',
+                                    width: 170,
+                                  ),
+                                ),
+                                const EducationalTable(),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      Container(
-                        height: 2,
-                        width: 382,
-                        color: khorizontlinecolor,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const HeightSpacer(),
-                          const ParentsTable(),
-                          const SizedBox(height: 30),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset(
-                              'assets/house.png',
-                              width: 170,
-                            ),
-                          ),
-                          const ResidentialTable(),
-                          const SizedBox(height: 30),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset(
-                              'assets/siblings.png',
-                              width: 170,
-                            ),
-                          ),
-                          const SiblingsTable(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset(
-                              'assets/educational.jpg',
-                              width: 170,
-                            ),
-                          ),
-                          const EducationalTable(),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              context.read<FieldVerificationBloc>().add(
+                                      const FieldVerificationEvent
+                                          .postfieldverification(
+                                    f_life_status: 2,
+                                    m_life_status: 1,
+                                  ));
+                            },
+                            child: const Text('submit'))
+                        // RedSubmitButton(),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                  ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        context.read<FieldVerificationBloc>().add(
-                                const FieldVerificationEvent
-                                    .postfieldverification(
-                              f_life_status: 2,
-                              m_life_status: 1,
-                            ));
-                      },
-                      child: const Text('submit'))
-                  // RedSubmitButton(),
-                ],
-              ),
-              const SizedBox(height: 30),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
 }
 

@@ -6,7 +6,7 @@ class PersonalInfoState with _$PersonalInfoState {
     return PersonalInfoState(
       isLoading: false,
       isError: false,
-      personalInfo: PersonalInfo(),
+      personalInfo: PersonalInfoData(),
       successorFailure: const None(),
     );
   }
@@ -14,7 +14,7 @@ class PersonalInfoState with _$PersonalInfoState {
   const factory PersonalInfoState({
     required bool isLoading,
     required bool isError,
-    required PersonalInfo personalInfo,
-    required Option<Either<MainFailure, PersonalInfo>> successorFailure,
+    required PersonalInfoData personalInfo,
+    required Option<Either<MainFailure, PersonalInfoData>> successorFailure,
   }) = _AuthState;
 }

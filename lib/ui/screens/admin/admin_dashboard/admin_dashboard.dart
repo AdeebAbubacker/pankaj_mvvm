@@ -34,6 +34,7 @@ import 'package:panakj_app/ui/screens/admin/screens/college_screen/college_scree
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/screens/field_verification_screen.dart';
 import 'package:panakj_app/ui/screens/admin/screens/form_screen/form_screen.dart';
 import 'package:panakj_app/ui/screens/admin/screens/graph_screen/graph_screen.dart';
+import 'package:panakj_app/ui/screens/admin/screens/invite_student_screen/invite_student_screen.dart';
 import 'package:panakj_app/ui/screens/admin/screens/reciptent_screen/reciptent_screen.dart';
 import 'package:panakj_app/ui/screens/admin/screens/school_screen/school_screen.dart';
 import 'package:panakj_app/ui/screens/admin/screens/top_grade_screen/topgrade_screen.dart';
@@ -151,6 +152,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
         color: const Color.fromARGB(255, 86, 63, 219),
       ),
       Icon(
+        Icons.person_add_alt_1_outlined,
+        size: iconsize,
+        color: Color.fromARGB(255, 212, 0, 28),
+      ),
+      Icon(
         EvaIcons.activityOutline,
         size: iconsize,
         color: const Color(0xFF00BCD4),
@@ -165,6 +171,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
       "Schools",
       "Colleges",
       "Forms and Letter",
+      "Invite Student",
       "Analytics",
     ];
 
@@ -681,7 +688,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
                                     success!.toList().map((e) => e.id),
                                     success!.toList().map((e) => e.name)),
                                 siblingeducationbox =
-                                    Hive.box<SiblingEducationDB>('siblingeducationbox'),
+                                    Hive.box<SiblingEducationDB>(
+                                        'siblingeducationbox'),
                                 siblingEducationalData!.forEach((id, name) {
                                   siblingeducationbox.put(
                                       id as int,
@@ -691,11 +699,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
                                         status: '',
                                       ));
                                 }),
-                                for (var i = 0; i < siblingeducationbox.length; i++)
+                                for (var i = 0;
+                                    i < siblingeducationbox.length;
+                                    i++)
                                   {
                                     if (i < siblingeducationbox.length)
                                       {
-                                        siblingeducation = siblingeducationbox.getAt(i),
+                                        siblingeducation =
+                                            siblingeducationbox.getAt(i),
                                         print(
                                             'Siblings Education at index $i: id=${siblingeducation.id}, name=${siblingeducation.name}')
                                       }
@@ -840,6 +851,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
             case 6:
               return const FormScreen();
             case 7:
+              return  InviteStudentScreen();
+            case 8:
               return const GraphScreen();
             default:
               return Container();

@@ -531,8 +531,8 @@ abstract class PostPersonalInfo implements PersonalInfoEvent {
 mixin _$PersonalInfoState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  PersonalInfo get personalInfo => throw _privateConstructorUsedError;
-  Option<Either<MainFailure, PersonalInfo>> get successorFailure =>
+  PersonalInfoData get personalInfo => throw _privateConstructorUsedError;
+  Option<Either<MainFailure, PersonalInfoData>> get successorFailure =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -549,8 +549,8 @@ abstract class $PersonalInfoStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isError,
-      PersonalInfo personalInfo,
-      Option<Either<MainFailure, PersonalInfo>> successorFailure});
+      PersonalInfoData personalInfo,
+      Option<Either<MainFailure, PersonalInfoData>> successorFailure});
 }
 
 /// @nodoc
@@ -583,11 +583,11 @@ class _$PersonalInfoStateCopyWithImpl<$Res, $Val extends PersonalInfoState>
       personalInfo: null == personalInfo
           ? _value.personalInfo
           : personalInfo // ignore: cast_nullable_to_non_nullable
-              as PersonalInfo,
+              as PersonalInfoData,
       successorFailure: null == successorFailure
           ? _value.successorFailure
           : successorFailure // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, PersonalInfo>>,
+              as Option<Either<MainFailure, PersonalInfoData>>,
     ) as $Val);
   }
 }
@@ -603,8 +603,8 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isError,
-      PersonalInfo personalInfo,
-      Option<Either<MainFailure, PersonalInfo>> successorFailure});
+      PersonalInfoData personalInfo,
+      Option<Either<MainFailure, PersonalInfoData>> successorFailure});
 }
 
 /// @nodoc
@@ -635,11 +635,11 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       personalInfo: null == personalInfo
           ? _value.personalInfo
           : personalInfo // ignore: cast_nullable_to_non_nullable
-              as PersonalInfo,
+              as PersonalInfoData,
       successorFailure: null == successorFailure
           ? _value.successorFailure
           : successorFailure // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, PersonalInfo>>,
+              as Option<Either<MainFailure, PersonalInfoData>>,
     ));
   }
 }
@@ -658,9 +658,9 @@ class _$AuthStateImpl implements _AuthState {
   @override
   final bool isError;
   @override
-  final PersonalInfo personalInfo;
+  final PersonalInfoData personalInfo;
   @override
-  final Option<Either<MainFailure, PersonalInfo>> successorFailure;
+  final Option<Either<MainFailure, PersonalInfoData>> successorFailure;
 
   @override
   String toString() {
@@ -696,8 +696,8 @@ abstract class _AuthState implements PersonalInfoState {
   const factory _AuthState(
       {required final bool isLoading,
       required final bool isError,
-      required final PersonalInfo personalInfo,
-      required final Option<Either<MainFailure, PersonalInfo>>
+      required final PersonalInfoData personalInfo,
+      required final Option<Either<MainFailure, PersonalInfoData>>
           successorFailure}) = _$AuthStateImpl;
 
   @override
@@ -705,9 +705,9 @@ abstract class _AuthState implements PersonalInfoState {
   @override
   bool get isError;
   @override
-  PersonalInfo get personalInfo;
+  PersonalInfoData get personalInfo;
   @override
-  Option<Either<MainFailure, PersonalInfo>> get successorFailure;
+  Option<Either<MainFailure, PersonalInfoData>> get successorFailure;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

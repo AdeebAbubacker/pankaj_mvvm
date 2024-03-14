@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:panakj_app/core/model/failure/mainfailure.dart';
-import 'package:panakj_app/core/model/personal_info/personal_info.dart';
+import 'package:panakj_app/core/model/personal_info_data/personal_info_data.dart';
 
 import 'package:panakj_app/core/service/post_personalinfoservice.dart';
 
@@ -40,7 +40,7 @@ class PersonalInfoBloc extends Bloc<PersonalInfoEvent, PersonalInfoState> {
             successorFailure: optionOf(right(response))));
       } catch (e) {
         print(
-            '---------------------------------------------failure occures in bloc');
+            '---------------------------------------------failure occures in bloc ${e.toString()}');
         emit(state.copyWith(
             isLoading: false,
             isError: true,

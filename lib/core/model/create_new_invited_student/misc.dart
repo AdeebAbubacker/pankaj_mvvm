@@ -4,10 +4,10 @@ part 'misc.g.dart';
 
 @JsonSerializable()
 class Misc {
-	@JsonKey(name: 'record_id') 
-	int? recordId;
+	@JsonKey(name: 'user_id') 
+	int? userId;
 
-	Misc({this.recordId});
+	Misc({this.userId});
 
 	factory Misc.fromJson(Map<String, dynamic> json) => _$MiscFromJson(json);
 

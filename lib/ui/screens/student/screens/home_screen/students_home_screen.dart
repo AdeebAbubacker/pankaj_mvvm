@@ -268,14 +268,24 @@ class _StudentsHomeScreenState extends State<StudentsHomeScreen> {
                       backgroundImage: AssetImage('assets/scarlet.jpg')),
                   TextButton(
                     onPressed: () {
-                      SharedPreferences.getInstance()
-                          .then((prefs) => prefs.clear());
-                      Navigator.pushAndRemoveUntil(
+                      SharedPreferences.getInstance().then((prefs) {
+                        prefs
+                            .clear(); // Clear all data stored in SharedPreferences
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Login(),
-                          ),
-                          (route) => false);
+                              builder: (context) => const Login()),
+                          (route) => false,
+                        );
+                      });
+                      // SharedPreferences.getInstance()
+                      //     .then((prefs) => prefs.clear());
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const Login(),
+                      //     ),
+                      //     (route) => false);
                     },
                     child: const Text("Logout"),
                   ),

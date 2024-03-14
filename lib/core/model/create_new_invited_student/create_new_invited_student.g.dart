@@ -1,28 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'personal_info.dart';
+part of 'create_new_invited_student.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PersonalInfo _$PersonalInfoFromJson(Map<String, dynamic> json) => PersonalInfo(
-      status: json['status'] as int?,
-      count: json['count'] as int?,
+CreateNewInvitedStudent _$CreateNewInvitedStudentFromJson(
+        Map<String, dynamic> json) =>
+    CreateNewInvitedStudent(
+      status: json['status'] as bool?,
       message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : Data.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+          .toList(),
       misc: json['misc'] == null
           ? null
           : Misc.fromJson(json['misc'] as Map<String, dynamic>),
+      errors: json['errors'] as List<dynamic>?,
     );
 
-Map<String, dynamic> _$PersonalInfoToJson(PersonalInfo instance) =>
+Map<String, dynamic> _$CreateNewInvitedStudentToJson(
+        CreateNewInvitedStudent instance) =>
     <String, dynamic>{
       'status': instance.status,
-      'count': instance.count,
       'message': instance.message,
       'data': instance.data,
       'misc': instance.misc,
+      'errors': instance.errors,
     };

@@ -281,11 +281,14 @@ class SiblingsTable extends StatelessWidget {
     return Column(
       children: [
         Text('Siblings Section'),
-        SiblingCurrentStatusCard(),
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: SiblingCurrentStatusCard(),
+        ),
       ],
     );
   }
 }
-
-
-

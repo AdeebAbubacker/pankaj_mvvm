@@ -20,6 +20,7 @@ import 'package:panakj_app/core/db/adapters/qualification_adapter/qualification_
 import 'package:panakj_app/core/db/adapters/rental_house_adapter/rental_house_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_adapter/school_adapter.dart';
 import 'package:panakj_app/core/db/adapters/school_group_adapter/school_group_adapter.dart';
+import 'package:panakj_app/core/db/adapters/sibling_data_FV_adapter/sibling_data_FV_adapter.dart';
 import 'package:panakj_app/core/db/adapters/sibling_education_adapter/sibling_education_adapter.dart';
 import 'package:panakj_app/core/db/adapters/siblingcard_adapter/siblingcard_adapter.dart';
 import 'package:panakj_app/core/db/adapters/validation_academics/validation_academicadapter.dart';
@@ -46,6 +47,7 @@ import 'package:panakj_app/core/db/boxes/qualification_box.dart';
 import 'package:panakj_app/core/db/boxes/rental_house_box.dart';
 import 'package:panakj_app/core/db/boxes/school_box.dart';
 import 'package:panakj_app/core/db/boxes/school_group_box.dart';
+import 'package:panakj_app/core/db/boxes/sibling_data_fv_box.dart';
 import 'package:panakj_app/core/db/boxes/sibling_education_box.dart';
 import 'package:panakj_app/core/db/boxes/siblingcard_box.dart';
 import 'package:panakj_app/core/db/boxes/validation_academicBox.dart';
@@ -74,7 +76,6 @@ import 'package:panakj_app/core/service/school_service.dart';
 import 'package:panakj_app/core/service/trancate_service.dart';
 import 'package:panakj_app/firebase_options.dart';
 import 'package:panakj_app/ui/screens/admin/admin_dashboard/admin_dashboard.dart';
-import 'package:panakj_app/ui/screens/admin/screens/field_verification/screens/field_verification_screen.dart';
 import 'package:panakj_app/ui/screens/auth/splash_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/home/widgets/question_one.dart';
 import 'package:panakj_app/ui/trancate_screen.dart';
@@ -86,6 +87,8 @@ import 'package:panakj_app/ui/view_model/auth/auth_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxfirst/checkboxfirst_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxsec/checkboxsec_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxthird/checkboxthird_bloc.dart';
+import 'package:panakj_app/ui/view_model/createnew_studentinvite_list/createnew_studentinvite_list_bloc.dart';
+import 'package:panakj_app/ui/view_model/delete_student_invitelist/delete_student_invitelist_bloc.dart';
 import 'package:panakj_app/ui/view_model/family/family_bloc.dart';
 import 'package:panakj_app/ui/view_model/familyInfo/family_info_bloc.dart';
 import 'package:panakj_app/ui/view_model/field_verification/field_verification_bloc.dart';
@@ -124,7 +127,9 @@ import 'package:panakj_app/ui/view_model/selected_school/selected_school_bloc.da
 import 'package:panakj_app/ui/view_model/students_app_form/students_app_form_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:panakj_app/ui/view_model/students_invite_list/students_invite_list_bloc.dart';
 import 'package:panakj_app/ui/view_model/truncate/truncate_bloc.dart';
+import 'package:panakj_app/ui/view_model/update_studentinvite_list/update_studentinvite_list_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -166,11 +171,13 @@ void main() async {
   Hive.registerAdapter(WaterSourceDBAdapter());
   Hive.registerAdapter(RentalHouseDBAdapter());
   Hive.registerAdapter(SiblingEducationDBAdapter());
+  Hive.registerAdapter(SiblingDataFVDBAdapter());
 
   ///----------------open box-------------------------------------------------
   bankBox = await Hive.openBox<BankDB>('bankBox');
   houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
   houseplasterBox = await Hive.openBox<HousePlasterDB>('houseplasterBox');
+  siblingdataFVbox = await Hive.openBox<SiblingDataFVDB>('siblingdataFVbox');
   siblingeducationbox =
       await Hive.openBox<SiblingEducationDB>('siblingeducationbox');
   houseroofBox = await Hive.openBox<HouseRoofDB>('houseroofBox');
@@ -391,16 +398,37 @@ class MyApp extends StatelessWidget {
               GetSiblingEducationBloc(getAllFieldVerficationService),
         ),
         BlocProvider(
+          create: (context) =>
+              StudentsInviteListBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              CreatenewStudentinviteListBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UpdateStudentinviteListBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
+          create: (context) =>
+              DeleteStudentInvitelistBloc(getAllFieldVerficationService),
+        ),
+        BlocProvider(
           create: (context) => AliveOrdisabledFieldadminBloc(),
         ),
       ],
       child: MaterialApp(
+        theme: ThemeData(
+          useMaterial3: false,
+        ),
         debugShowCheckedModeBanner: false,
         title: '',
-        theme: ThemeData(useMaterial3: false),
-       home: AdminDashboard(),
-
-      //   home: const PostScreen(),
+        //  theme: ThemeData(useMaterial3: false),
+        //  home: AdminDashboard(),
+        home: const SplashScreen(),
+        //   home: const PostScreen(),
+        //  home: const PostScreen(),
+        //   home: EditStudentData(),
       ),
     );
   }

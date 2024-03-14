@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
               // Navigate to home screen on successful login
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) =>  const NavigationScreen(),
+                  builder: (context) => const NavigationScreen(),
                 ),
               );
               // You can also perform any other actions on success
@@ -123,12 +123,13 @@ class _LoginState extends State<Login> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          BlocProvider.of<AuthBloc>(context).add(
+                           BlocProvider.of<AuthBloc>(context).add(
                             AuthEvent.signInWithEmailAndPassword(
                               email: emailController.text,
                               password: passwordController.text,
                             ),
                           );
+
                           setState(() {
                             showDots = true;
                           });

@@ -7,9 +7,9 @@ part of 'misc.dart';
 // **************************************************************************
 
 Misc _$MiscFromJson(Map<String, dynamic> json) => Misc(
-      recordId: json['record_id'] as int?,
+      count: json['count'] as int?,
     );
 
 Map<String, dynamic> _$MiscToJson(Misc instance) => <String, dynamic>{
-      'record_id': instance.recordId,
+      'count': instance.count,
     };

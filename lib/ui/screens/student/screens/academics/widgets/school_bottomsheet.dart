@@ -203,6 +203,9 @@ class _schoolBottomSheetState extends State<schoolBottomSheet> {
                                     final selectedBankObject = schoolBox.values
                                         .firstWhere((schools) =>
                                             schools.name == selectedBankName);
+                                             final selectedBankId = schoolBox.values
+                                        .firstWhere((schools) =>
+                                            schools.id == selectedBankName);
 
                                     textController.text =
                                         selectedBankObject.name;
@@ -210,7 +213,7 @@ class _schoolBottomSheetState extends State<schoolBottomSheet> {
                                     BlocProvider.of<SelectedSchoolBloc>(context)
                                         .add(SelectedSchoolEvent.selectedSchool(
                                             selectedSchool:
-                                                selectedBankObject.id!.toInt()));
+                                                selectedBankId.id!.toInt()));
                                   } else if (index < displayedSchools.length) {
                                     final selectedBankName =
                                         displayedSchools[index];
@@ -254,6 +257,7 @@ class _schoolBottomSheetState extends State<schoolBottomSheet> {
       return true;
     });
   }
+
 
   void _searchFromHive(String searchTerm) {
     if (mounted) {

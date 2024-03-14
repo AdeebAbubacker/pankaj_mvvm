@@ -345,7 +345,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authsuccess,
+    required TResult Function(AuthResponse user) authsuccess,
     required TResult Function(String message) authError,
   }) =>
       throw _privateConstructorUsedError;
@@ -353,7 +353,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authsuccess,
+    TResult? Function(AuthResponse user)? authsuccess,
     TResult? Function(String message)? authError,
   }) =>
       throw _privateConstructorUsedError;
@@ -361,7 +361,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authsuccess,
+    TResult Function(AuthResponse user)? authsuccess,
     TResult Function(String message)? authError,
     required TResult orElse(),
   }) =>
@@ -450,7 +450,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authsuccess,
+    required TResult Function(AuthResponse user) authsuccess,
     required TResult Function(String message) authError,
   }) {
     return initial();
@@ -461,7 +461,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authsuccess,
+    TResult? Function(AuthResponse user)? authsuccess,
     TResult? Function(String message)? authError,
   }) {
     return initial?.call();
@@ -472,7 +472,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authsuccess,
+    TResult Function(AuthResponse user)? authsuccess,
     TResult Function(String message)? authError,
     required TResult orElse(),
   }) {
@@ -564,7 +564,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authsuccess,
+    required TResult Function(AuthResponse user) authsuccess,
     required TResult Function(String message) authError,
   }) {
     return loading();
@@ -575,7 +575,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authsuccess,
+    TResult? Function(AuthResponse user)? authsuccess,
     TResult? Function(String message)? authError,
   }) {
     return loading?.call();
@@ -586,7 +586,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authsuccess,
+    TResult Function(AuthResponse user)? authsuccess,
     TResult Function(String message)? authError,
     required TResult orElse(),
   }) {
@@ -644,7 +644,7 @@ abstract class _$$AuthsuccessImplCopyWith<$Res> {
           _$AuthsuccessImpl value, $Res Function(_$AuthsuccessImpl) then) =
       __$$AuthsuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({AuthResponse user});
 }
 
 /// @nodoc
@@ -664,7 +664,7 @@ class __$$AuthsuccessImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as AuthResponse,
     ));
   }
 }
@@ -675,7 +675,7 @@ class _$AuthsuccessImpl implements _Authsuccess {
   const _$AuthsuccessImpl({required this.user});
 
   @override
-  final User user;
+  final AuthResponse user;
 
   @override
   String toString() {
@@ -704,7 +704,7 @@ class _$AuthsuccessImpl implements _Authsuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authsuccess,
+    required TResult Function(AuthResponse user) authsuccess,
     required TResult Function(String message) authError,
   }) {
     return authsuccess(user);
@@ -715,7 +715,7 @@ class _$AuthsuccessImpl implements _Authsuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authsuccess,
+    TResult? Function(AuthResponse user)? authsuccess,
     TResult? Function(String message)? authError,
   }) {
     return authsuccess?.call(user);
@@ -726,7 +726,7 @@ class _$AuthsuccessImpl implements _Authsuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authsuccess,
+    TResult Function(AuthResponse user)? authsuccess,
     TResult Function(String message)? authError,
     required TResult orElse(),
   }) {
@@ -775,9 +775,10 @@ class _$AuthsuccessImpl implements _Authsuccess {
 }
 
 abstract class _Authsuccess implements AuthState {
-  const factory _Authsuccess({required final User user}) = _$AuthsuccessImpl;
+  const factory _Authsuccess({required final AuthResponse user}) =
+      _$AuthsuccessImpl;
 
-  User get user;
+  AuthResponse get user;
   @JsonKey(ignore: true)
   _$$AuthsuccessImplCopyWith<_$AuthsuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -849,7 +850,7 @@ class _$AuthErrorImpl implements _AuthError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) authsuccess,
+    required TResult Function(AuthResponse user) authsuccess,
     required TResult Function(String message) authError,
   }) {
     return authError(message);
@@ -860,7 +861,7 @@ class _$AuthErrorImpl implements _AuthError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? authsuccess,
+    TResult? Function(AuthResponse user)? authsuccess,
     TResult? Function(String message)? authError,
   }) {
     return authError?.call(message);
@@ -871,7 +872,7 @@ class _$AuthErrorImpl implements _AuthError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? authsuccess,
+    TResult Function(AuthResponse user)? authsuccess,
     TResult Function(String message)? authError,
     required TResult orElse(),
   }) {

@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:panakj_app/core/db/adapters/achievment_adapter/achievment_adapter.dart';
-import 'package:panakj_app/core/db/boxes/achievment_box.dart';
+import 'package:panakj_app/core/db/adapters/sibling_data_FV_adapter/sibling_data_FV_adapter.dart';
 import 'package:panakj_app/ui/screens/admin/screens/field_verification/widgets/sibling_edu_bottom_sheet.dart';
-import 'package:panakj_app/ui/screens/student/screens/academics/widgets/file_picker.dart';
-import 'package:panakj_app/ui/screens/student/screens/academics/widgets/drop_down_menu.dart';
-import 'package:panakj_app/ui/screens/student/widgets/input_label.dart';
-import 'package:panakj_app/ui/screens/student/widgets/label_inputText.dart';
 import 'package:panakj_app/ui/screens/student/widgets/spacer_height.dart';
 import 'dart:async';
 import 'package:hive/hive.dart';
 import 'package:panakj_app/ui/view_model/alive_ordisabled_fieldadmin/alive_ordisabled_fieldadmin_bloc.dart';
+import 'package:panakj_app/ui/view_model/selctedbank/selctedbank_bloc.dart';
 
 const kvioletColor3 = Colors.purple; // Replace with your color definition
-
 
 class SiblingCurrentStatusCard extends StatefulWidget {
   const SiblingCurrentStatusCard({super.key});
@@ -37,21 +32,20 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
   void initState() {
     _firstcard();
     // TODO: implement initState
-    Timer.periodic(Duration(seconds: 7), (timer) {
+    Timer.periodic(const Duration(seconds: 7), (timer) {
       _printValuesWithKeys();
     });
     super.initState();
   }
 
   void _printValuesWithKeys() {
-    final box = Hive.box<AchievmentDB>('achievmentBox');
+    final box = Hive.box<SiblingDataFVDB>('siblingdataFVbox');
     final List<int> keys = box.keys.cast<int>().toList();
     for (int key in keys) {
       final achievment = box.get(key);
       if (achievment != null) {
-        print('ID: $key, Achievement: ${achievment.achievmentController}');
-        print('ID: $key, category: ${achievment.category}');
-        print('ID: $key, uploadfile: ${achievment.uploadfile}');
+        print('ID: $key, life_status : ${achievment.life_status}');
+        print('ID: $key, qualification : ${achievment.qualification}');
       } else {
         print('ID: $key, Achievement: No Achievement');
       }
@@ -65,13 +59,11 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
       controllers[currentKey] = controller;
       controller.addListener(() {
         // Update the corresponding value in Hive using the correct key
-        Hive.box<AchievmentDB>('achievmentBox').put(
+        Hive.box<SiblingDataFVDB>('siblingdataFVbox').put(
           currentKey,
-          AchievmentDB(
-            category: selectedDropdownValue ?? 'No Category',
-            uploadfile: 'ss',
-            achievmentController:
-                controller.text.isNotEmpty ? controller.text : 'No Achievement',
+          SiblingDataFVDB(
+            life_status: false,
+            qualification: 1,
           ),
         );
       });
@@ -85,24 +77,20 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
       final currentKey = _currentKeynormal; // Store the current key
       final controller = TextEditingController();
       controllers[currentKey] = controller;
-      Hive.box<AchievmentDB>('achievmentBox').put(
+      Hive.box<SiblingDataFVDB>('siblingdataFVbox').put(
         currentKey,
-        AchievmentDB(
-          category: selectedDropdownValue ?? 'No Category',
-          uploadfile: 'ss',
-          achievmentController:
-              controller.text.isNotEmpty ? controller.text : 'No Achievement',
+        SiblingDataFVDB(
+          life_status: false,
+          qualification: 1,
         ),
       );
       controller.addListener(() {
         // Update the corresponding value in Hive using the correct key
-        Hive.box<AchievmentDB>('achievmentBox').put(
+        Hive.box<SiblingDataFVDB>('siblingdataFVbox').put(
           currentKey,
-          AchievmentDB(
-            category: selectedDropdownValue ?? 'No Category',
-            uploadfile: 'ss',
-            achievmentController:
-                controller.text.isNotEmpty ? controller.text : 'No Achievement',
+          SiblingDataFVDB(
+            life_status: false,
+            qualification: 1,
           ),
         );
       });
@@ -115,24 +103,22 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
 
   // Function to delete a card by its key
   void _deleteCard(int key) async {
-    await Hive.box<AchievmentDB>('achievmentBox').delete(key);
+    await Hive.box<SiblingDataFVDB>('siblingdataFVbox').delete(key);
     setState(() {
-      controllers[key]
-          ?.dispose(); 
+      controllers[key]?.dispose();
       controllers.remove(key);
       cards.remove(key);
-    
     });
   }
 
   void _updateHiveData(int key) {
     // Update Hive data using the provided key
-    Hive.box<AchievmentDB>('achievmentBox').put(
+    Hive.box<SiblingDataFVDB>('siblingdataFVbox').put(
       key,
-      AchievmentDB(
-        achievmentController: controllers[key]?.text ?? 'No Achievement',
-        category: selectedDropdownValue ?? 'No Category',
-        uploadfile: 'ss',
+      SiblingDataFVDB(
+        life_status:
+            context.read<AliveOrdisabledFieldadminBloc>().state.alivetrue,
+        qualification: context.read<SelctedbankBloc>().state.selectedBank,
       ),
     );
   }
@@ -154,7 +140,7 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
             color: Colors.transparent,
           ),
         ),
-        Container(
+        SizedBox(
           width: 400,
           height: 198,
           child: Column(
@@ -190,16 +176,16 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
               ),
               Row(
                 children: [
-                  Text('Qualification'),
-                  Spacer(),
+                  const Text('Qualification'),
+                  const Spacer(),
                   SiblingEducationalBottomSheet(title: ''),
                 ],
               ),
               Row(
                 children: [
-                  Text('Alive or Disabled'),
-                  Spacer(),
-                  Text('Yes'),
+                  const Text('Alive or Disabled'),
+                  const Spacer(),
+                  const Text('Yes'),
                   BlocBuilder<AliveOrdisabledFieldadminBloc,
                       AliveOrdisabledFieldadminState>(
                     bloc: bloc,
@@ -207,13 +193,13 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
                       return Checkbox(
                         value: state.alivetrue,
                         onChanged: (value) {
-                          bloc.add(
-                              AliveOrdisabledFieldadminEvent.togglealive());
+                          bloc.add(const AliveOrdisabledFieldadminEvent
+                              .togglealive());
                         },
                       );
                     },
                   ),
-                  Text('No'),
+                  const Text('No'),
                   BlocBuilder<AliveOrdisabledFieldadminBloc,
                       AliveOrdisabledFieldadminState>(
                     bloc: bloc, // Pass the bloc instance here
@@ -221,8 +207,8 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
                       return Checkbox(
                         value: state.notalivefalse,
                         onChanged: (value) {
-                          bloc.add(
-                              AliveOrdisabledFieldadminEvent.togglenotalive());
+                          bloc.add(const AliveOrdisabledFieldadminEvent
+                              .togglenotalive());
                         },
                       );
                     },
@@ -244,12 +230,12 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
           onTap: () {
             _updateHiveData(key);
           },
-          child: Container(
+          child: const SizedBox(
             width: 400,
             height: 136,
           ),
         ),
-        Container(
+        SizedBox(
           width: 400,
           height: 136,
           child: Column(
@@ -258,16 +244,16 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
               const HeightSpacer(),
               Row(
                 children: [
-                  Text('Qualification'),
-                  Spacer(),
+                  const Text('Qualification'),
+                  const Spacer(),
                   SiblingEducationalBottomSheet(title: ''),
                 ],
               ),
               Row(
                 children: [
-                  Text('Alive or Disabled'),
-                  Spacer(),
-                  Text('Yes'),
+                  const Text('Alive or Disabled'),
+                  const Spacer(),
+                  const Text('Yes'),
                   BlocBuilder<AliveOrdisabledFieldadminBloc,
                       AliveOrdisabledFieldadminState>(
                     builder: (context, state) {
@@ -278,12 +264,13 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
                             .alivetrue,
                         onChanged: (value) {
                           context.read<AliveOrdisabledFieldadminBloc>().add(
-                              AliveOrdisabledFieldadminEvent.togglealive());
+                              const AliveOrdisabledFieldadminEvent
+                                  .togglealive());
                         },
                       );
                     },
                   ),
-                  Text('No'),
+                  const Text('No'),
                   BlocBuilder<AliveOrdisabledFieldadminBloc,
                       AliveOrdisabledFieldadminState>(
                     builder: (context, state) {
@@ -294,7 +281,8 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
                             .notalivefalse,
                         onChanged: (value) {
                           context.read<AliveOrdisabledFieldadminBloc>().add(
-                              AliveOrdisabledFieldadminEvent.togglenotalive());
+                              const AliveOrdisabledFieldadminEvent
+                                  .togglenotalive());
                         },
                       );
                     },
