@@ -265,7 +265,7 @@ class GetAllFieldVerficationService {
 
     // Encode the form data using JSON encoding
     final encodedFormData = jsonEncode(formData);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     // Print the stored access token
     String accessToken = prefs.getString('accessToken') ?? 'Access Token empty';
     print('Stored Access Token: $accessToken');
@@ -324,11 +324,10 @@ class GetAllFieldVerficationService {
 
     // Encode the form data using JSON encoding
     final encodedFormData = jsonEncode(formData);
-          SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     // Print the stored access token
     String accessToken = prefs.getString('accessToken') ?? 'Access Token empty';
     print('Stored Access Token: $accessToken');
-
 
     try {
       final response = await http.post(
@@ -368,11 +367,10 @@ class GetAllFieldVerficationService {
     // final authToken =
     //     "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNDk1YzJjMzZhZjhjMzdjNTA4ZjQ2MWY3NmNmYTkwMjllMDgzYjY2OTViZWMyZDI3YzViNTQ2NTNmZDQ0ZDE5YzhmZDM0ZTFjOTUwZjA0OGUiLCJpYXQiOjE3MTAyMzUzMTIuMzQyMTEzLCJuYmYiOjE3MTAyMzUzMTIuMzQyMTE1LCJleHAiOjE3NDE3NzEzMTIuMzM5MTE3LCJzdWIiOiIxNSIsInNjb3BlcyI6W119.sctqM_IL31kUsn_X__FJHVDBCSYKHDgBSjRCrDJvh0xtWYw28CQS_mZ8UxWTWibPHFujnxhRNjCyAPrKz56_oE-Tn5vBrI0O3JRmbQm0vcMxjzYnqSyiffbxUpq7Jq1XDRV3d8QIgkpR_nQw8ctVm_ApEP-3-xpENXUZK0Qq06f5cQfqjD3LT5e3MrWl3GzaLS-S3VFFMxLtw7GyrD_sq6PHQ2nhydTBfTsMoqmHmyCykPR8iVZHgUgbSwpuvSici5fZ0KTtmrn8tpp1gc6WiuhYVpEJ6G_CnatyIfLbfXm5yalygWqaZE98QddFn52-XDXzHR4LnVFZowbk5NL79yEQVFvIO_eUhcFRZ1VO-1s8taeP3Z7fO7boykcR4RKGIqUzRz4NBDiUB1gUNQ-tvGLV8I6D_PHVrx4mVCE-RzFChrO-0ErXenkzXZLWRcE9029NvzhCOkP5vyxgCUwgYYeZ4mhQ9jJXsahKRGTrOKDNJxtMhmi7RoX3CglcYP17d2zP2Dw3hb8I-MA-yjNbITnnep2YaV78sMbk1hRcj4yGa5yqDb7AF6COSqyv-lu4Ulpj3Tb7vUq4xHN4WM7y89Bqsz4JYNxJnwbWqehZRfak5_4m4xjoo9Q7g84KHOvB-orQ0_t2ZPX0tukuQG-zpDYH7tP9tlnckZerobgNbic"; // Replace with your actual token
 
-          SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     // Print the stored access token
     String accessToken = prefs.getString('accessToken') ?? 'Access Token empty';
     print('Stored Access Token: $accessToken');
-
 
     try {
       final response = await http.post(

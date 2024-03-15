@@ -4,35 +4,35 @@ part 'sibling.g.dart';
 
 @JsonSerializable()
 class Sibling {
-	@JsonKey(name: 'student_id') 
-	int? studentId;
-	String? name;
-	String? gender;
-	@JsonKey(name: 'highest_qualification') 
-	int? highestQualification;
-	int? course;
-	int? occupation;
-	@JsonKey(name: 'updated_at') 
-	DateTime? updatedAt;
-	@JsonKey(name: 'created_at') 
-	DateTime? createdAt;
-	int? id;
+  @JsonKey(name: 'student_id')
+  dynamic studentId;
+  dynamic name;
+  dynamic gender;
 
-	Sibling({
-		this.studentId, 
-		this.name, 
-		this.gender, 
-		this.highestQualification, 
-		this.course, 
-		this.occupation, 
-		this.updatedAt, 
-		this.createdAt, 
-		this.id, 
-	});
+  dynamic highestQualification;
+  dynamic course;
+  dynamic occupation;
 
-	factory Sibling.fromJson(Map<String, dynamic> json) {
-		return _$SiblingFromJson(json);
-	}
+  dynamic updatedAt;
+  dynamic createdAt;
+  dynamic dynamiccreatedAt;
+  int? id;
 
-	Map<String, dynamic> toJson() => _$SiblingToJson(this);
+  Sibling({
+    this.studentId,
+    this.name,
+    this.gender,
+    this.highestQualification,
+    this.course,
+    this.occupation,
+    this.updatedAt,
+    this.createdAt,
+    this.id,
+  });
+
+  factory Sibling.fromJson(Map<String, dynamic> json) {
+    return _$SiblingFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() => _$SiblingToJson(this);
 }

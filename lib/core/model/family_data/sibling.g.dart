@@ -7,29 +7,26 @@ part of 'sibling.dart';
 // **************************************************************************
 
 Sibling _$SiblingFromJson(Map<String, dynamic> json) => Sibling(
-      studentId: json['student_id'] as int?,
-      name: json['name'] as String?,
-      gender: json['gender'] as String?,
-      highestQualification: json['highest_qualification'] as int?,
-      course: json['course'] as int?,
-      occupation: json['occupation'] as int?,
-      updatedAt: json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      studentId: json['student_id'],
+      name: json['name'],
+      gender: json['gender'],
+      highestQualification: json['highestQualification'],
+      course: json['course'],
+      occupation: json['occupation'],
+      updatedAt: json['updatedAt'],
+      createdAt: json['createdAt'],
       id: json['id'] as int?,
-    );
+    )..dynamiccreatedAt = json['dynamiccreatedAt'];
 
 Map<String, dynamic> _$SiblingToJson(Sibling instance) => <String, dynamic>{
       'student_id': instance.studentId,
       'name': instance.name,
       'gender': instance.gender,
-      'highest_qualification': instance.highestQualification,
+      'highestQualification': instance.highestQualification,
       'course': instance.course,
       'occupation': instance.occupation,
-      'updated_at': instance.updatedAt?.toIso8601String(),
-      'created_at': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt,
+      'createdAt': instance.createdAt,
+      'dynamiccreatedAt': instance.dynamiccreatedAt,
       'id': instance.id,
     };

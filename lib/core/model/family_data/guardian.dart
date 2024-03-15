@@ -4,43 +4,37 @@ part 'guardian.g.dart';
 
 @JsonSerializable()
 class Guardian {
-	int? id;
 	@JsonKey(name: 'student_id') 
-	int? studentId;
+	dynamic studentId;
 	String? name;
 	String? relation;
 	dynamic phone;
 	dynamic email;
-	dynamic dob;
-	@JsonKey(name: 'highest_qualification') 
 	dynamic highestQualification;
 	dynamic occupation;
-	int? income;
-	int? alive;
-	int? disabled;
-	@JsonKey(name: 'created_at') 
-	DateTime? createdAt;
-	@JsonKey(name: 'updated_at') 
-	DateTime? updatedAt;
-	@JsonKey(name: 'deleted_at') 
-	dynamic deletedAt;
+	dynamic income;
+	dynamic alive;
+	dynamic disabled;
+	
+	dynamic? updatedAt;
+
+	dynamic? createdAt;
+	dynamic id;
 
 	Guardian({
-		this.id, 
 		this.studentId, 
 		this.name, 
 		this.relation, 
 		this.phone, 
 		this.email, 
-		this.dob, 
 		this.highestQualification, 
 		this.occupation, 
 		this.income, 
 		this.alive, 
 		this.disabled, 
-		this.createdAt, 
 		this.updatedAt, 
-		this.deletedAt, 
+		this.createdAt, 
+		this.id, 
 	});
 
 	factory Guardian.fromJson(Map<String, dynamic> json) {

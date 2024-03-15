@@ -13,6 +13,8 @@ class ApiEndpoint {
       "https://ptvue.tekpeak.in/api/academic/513497";
   static const String residentailinfo =
       "https://ptvue.tekpeak.in/api/home/513491";
+
+  static const String baseUrl = "https://pankajtrust.org/api";
 }
 
 // Nb: logic will be if already submitted in family api index value should be + 3 when we post

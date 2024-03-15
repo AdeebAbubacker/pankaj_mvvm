@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:panakj_app/core/model/family_data/family_data.dart';
 import 'package:panakj_app/core/model/sibling_data/sibling_data.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -169,5 +171,68 @@ class FamilyInfoService {
     final response = await _client.from('student_4_siblings').upsert({
       'name': student_id,
     }).execute();
+  }
+}
+
+
+
+
+class SampleServcie {
+  Future<FamilyData> sampleServcie() async {
+     
+     final rawData = {
+      "guardians": [
+        {
+          "name": "Ravi11",
+          "alive": 1,
+          "disabled": 1,
+          "ocupation": 99,
+          "income": 12000,
+          "relation": "father"
+        },
+        {
+          "name": "Sathi",
+          "alive": 1,
+          "disabled": 1,
+          "ocupation": 99,
+          "income": 0,
+          "relation": "mother"
+        },
+        {
+          "name": "akash11",
+          "alive": 1,
+          "disabled": 1,
+          "ocupation": 89,
+          "income": 12000,
+          "relation": "guardian"
+        }
+      ],
+      "siblings": [
+        {
+          "name": "Shyam",
+          "gender": "m",
+          "qualification": 2,
+          "course": 5,
+          "occupation": 9
+        }
+      ]
+    };
+
+    final response = await http.post(
+      Uri.parse('https://pankajtrust.org/api/student/family_info?id=513491'),
+      body: jsonEncode(rawData),
+      headers: {
+          'Content-Type': 'application/json', // Set content type to JSON
+        },
+    );
+
+    if (response.statusCode == 200) {
+      print('response fro aaaaaaaaaapi ${response.body.toString()}');
+      return FamilyData.fromJson(json.decode(response.body));
+    } else {
+      // Handle error response if needed
+      print('Failed to post personal info: ${response.statusCode}');
+      throw Exception('Failed to post personal info: ${response.statusCode}');
+    }
   }
 }

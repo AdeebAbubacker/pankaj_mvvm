@@ -425,10 +425,10 @@ class MyApp extends StatelessWidget {
         title: '',
         //  theme: ThemeData(useMaterial3: false),
         //  home: AdminDashboard(),
-        home: const SplashScreen(),
+          home: const SplashScreen(),
         //   home: const PostScreen(),
         //  home: const PostScreen(),
-        //   home: EditStudentData(),
+      //  home: EditStudentData(),
       ),
     );
   }
