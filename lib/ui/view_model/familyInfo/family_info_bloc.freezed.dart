@@ -21,24 +21,21 @@ mixin _$FamilyInfoEvent {
     required TResult Function() started,
     required TResult Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)
         postFamilyInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -47,24 +44,21 @@ mixin _$FamilyInfoEvent {
     TResult? Function()? started,
     TResult? Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)?
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)?
         postFamilyInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,24 +67,21 @@ mixin _$FamilyInfoEvent {
     TResult Function()? started,
     TResult Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)?
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)?
         postFamilyInfo,
     required TResult orElse(),
   }) =>
@@ -175,24 +166,21 @@ class _$StartedImpl implements _Started {
     required TResult Function() started,
     required TResult Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)
         postFamilyInfo,
   }) {
     return started();
@@ -204,24 +192,21 @@ class _$StartedImpl implements _Started {
     TResult? Function()? started,
     TResult? Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)?
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)?
         postFamilyInfo,
   }) {
     return started?.call();
@@ -233,24 +218,21 @@ class _$StartedImpl implements _Started {
     TResult Function()? started,
     TResult Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)?
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)?
         postFamilyInfo,
     required TResult orElse(),
   }) {
@@ -304,24 +286,21 @@ abstract class _$$PostFamilyInfoImplCopyWith<$Res> {
   @useResult
   $Res call(
       {String? fathername,
-      int? falive,
-      int? fdisabled,
-      int? focupation,
-      int? fincome,
-      String? frelation,
-      String? mothername,
-      int? malive,
-      int? mdisabled,
-      int? mocupation,
-      int? mincome,
-      String? mrelation,
-      String? guardianname,
-      int? galive,
-      int? gdisabled,
-      int? gocupation,
-      int? gincome,
-      String? grelation,
-      int? student_id});
+      String? falive,
+      String? fdisabled,
+      String? focupation,
+      String? fincome,
+      String? mathername,
+      String? malive,
+      String? mdisabled,
+      String? mocupation,
+      String? mincome,
+      String? gathername,
+      String? galive,
+      String? gdisabled,
+      String? gocupation,
+      String? gincome,
+      dynamic SiblingsdatafromHive});
 }
 
 /// @nodoc
@@ -340,20 +319,17 @@ class __$$PostFamilyInfoImplCopyWithImpl<$Res>
     Object? fdisabled = freezed,
     Object? focupation = freezed,
     Object? fincome = freezed,
-    Object? frelation = freezed,
-    Object? mothername = freezed,
+    Object? mathername = freezed,
     Object? malive = freezed,
     Object? mdisabled = freezed,
     Object? mocupation = freezed,
     Object? mincome = freezed,
-    Object? mrelation = freezed,
-    Object? guardianname = freezed,
+    Object? gathername = freezed,
     Object? galive = freezed,
     Object? gdisabled = freezed,
     Object? gocupation = freezed,
     Object? gincome = freezed,
-    Object? grelation = freezed,
-    Object? student_id = freezed,
+    Object? SiblingsdatafromHive = freezed,
   }) {
     return _then(_$PostFamilyInfoImpl(
       fathername: freezed == fathername
@@ -363,75 +339,63 @@ class __$$PostFamilyInfoImplCopyWithImpl<$Res>
       falive: freezed == falive
           ? _value.falive
           : falive // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       fdisabled: freezed == fdisabled
           ? _value.fdisabled
           : fdisabled // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       focupation: freezed == focupation
           ? _value.focupation
           : focupation // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       fincome: freezed == fincome
           ? _value.fincome
           : fincome // ignore: cast_nullable_to_non_nullable
-              as int?,
-      frelation: freezed == frelation
-          ? _value.frelation
-          : frelation // ignore: cast_nullable_to_non_nullable
               as String?,
-      mothername: freezed == mothername
-          ? _value.mothername
-          : mothername // ignore: cast_nullable_to_non_nullable
+      mathername: freezed == mathername
+          ? _value.mathername
+          : mathername // ignore: cast_nullable_to_non_nullable
               as String?,
       malive: freezed == malive
           ? _value.malive
           : malive // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       mdisabled: freezed == mdisabled
           ? _value.mdisabled
           : mdisabled // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       mocupation: freezed == mocupation
           ? _value.mocupation
           : mocupation // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       mincome: freezed == mincome
           ? _value.mincome
           : mincome // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mrelation: freezed == mrelation
-          ? _value.mrelation
-          : mrelation // ignore: cast_nullable_to_non_nullable
               as String?,
-      guardianname: freezed == guardianname
-          ? _value.guardianname
-          : guardianname // ignore: cast_nullable_to_non_nullable
+      gathername: freezed == gathername
+          ? _value.gathername
+          : gathername // ignore: cast_nullable_to_non_nullable
               as String?,
       galive: freezed == galive
           ? _value.galive
           : galive // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       gdisabled: freezed == gdisabled
           ? _value.gdisabled
           : gdisabled // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       gocupation: freezed == gocupation
           ? _value.gocupation
           : gocupation // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       gincome: freezed == gincome
           ? _value.gincome
           : gincome // ignore: cast_nullable_to_non_nullable
-              as int?,
-      grelation: freezed == grelation
-          ? _value.grelation
-          : grelation // ignore: cast_nullable_to_non_nullable
               as String?,
-      student_id: freezed == student_id
-          ? _value.student_id
-          : student_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      SiblingsdatafromHive: freezed == SiblingsdatafromHive
+          ? _value.SiblingsdatafromHive
+          : SiblingsdatafromHive // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -445,63 +409,54 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
       this.fdisabled,
       this.focupation,
       this.fincome,
-      this.frelation,
-      this.mothername,
+      this.mathername,
       this.malive,
       this.mdisabled,
       this.mocupation,
       this.mincome,
-      this.mrelation,
-      this.guardianname,
+      this.gathername,
       this.galive,
       this.gdisabled,
       this.gocupation,
       this.gincome,
-      this.grelation,
-      this.student_id});
+      this.SiblingsdatafromHive});
 
   @override
   final String? fathername;
   @override
-  final int? falive;
+  final String? falive;
   @override
-  final int? fdisabled;
+  final String? fdisabled;
   @override
-  final int? focupation;
+  final String? focupation;
   @override
-  final int? fincome;
+  final String? fincome;
   @override
-  final String? frelation;
+  final String? mathername;
   @override
-  final String? mothername;
+  final String? malive;
   @override
-  final int? malive;
+  final String? mdisabled;
   @override
-  final int? mdisabled;
+  final String? mocupation;
   @override
-  final int? mocupation;
+  final String? mincome;
   @override
-  final int? mincome;
+  final String? gathername;
   @override
-  final String? mrelation;
+  final String? galive;
   @override
-  final String? guardianname;
+  final String? gdisabled;
   @override
-  final int? galive;
+  final String? gocupation;
   @override
-  final int? gdisabled;
+  final String? gincome;
   @override
-  final int? gocupation;
-  @override
-  final int? gincome;
-  @override
-  final String? grelation;
-  @override
-  final int? student_id;
+  final dynamic SiblingsdatafromHive;
 
   @override
   String toString() {
-    return 'FamilyInfoEvent.postFamilyInfo(fathername: $fathername, falive: $falive, fdisabled: $fdisabled, focupation: $focupation, fincome: $fincome, frelation: $frelation, mothername: $mothername, malive: $malive, mdisabled: $mdisabled, mocupation: $mocupation, mincome: $mincome, mrelation: $mrelation, guardianname: $guardianname, galive: $galive, gdisabled: $gdisabled, gocupation: $gocupation, gincome: $gincome, grelation: $grelation, student_id: $student_id)';
+    return 'FamilyInfoEvent.postFamilyInfo(fathername: $fathername, falive: $falive, fdisabled: $fdisabled, focupation: $focupation, fincome: $fincome, mathername: $mathername, malive: $malive, mdisabled: $mdisabled, mocupation: $mocupation, mincome: $mincome, gathername: $gathername, galive: $galive, gdisabled: $gdisabled, gocupation: $gocupation, gincome: $gincome, SiblingsdatafromHive: $SiblingsdatafromHive)';
   }
 
   @override
@@ -517,55 +472,45 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
             (identical(other.focupation, focupation) ||
                 other.focupation == focupation) &&
             (identical(other.fincome, fincome) || other.fincome == fincome) &&
-            (identical(other.frelation, frelation) ||
-                other.frelation == frelation) &&
-            (identical(other.mothername, mothername) ||
-                other.mothername == mothername) &&
+            (identical(other.mathername, mathername) ||
+                other.mathername == mathername) &&
             (identical(other.malive, malive) || other.malive == malive) &&
             (identical(other.mdisabled, mdisabled) ||
                 other.mdisabled == mdisabled) &&
             (identical(other.mocupation, mocupation) ||
                 other.mocupation == mocupation) &&
             (identical(other.mincome, mincome) || other.mincome == mincome) &&
-            (identical(other.mrelation, mrelation) ||
-                other.mrelation == mrelation) &&
-            (identical(other.guardianname, guardianname) ||
-                other.guardianname == guardianname) &&
+            (identical(other.gathername, gathername) ||
+                other.gathername == gathername) &&
             (identical(other.galive, galive) || other.galive == galive) &&
             (identical(other.gdisabled, gdisabled) ||
                 other.gdisabled == gdisabled) &&
             (identical(other.gocupation, gocupation) ||
                 other.gocupation == gocupation) &&
             (identical(other.gincome, gincome) || other.gincome == gincome) &&
-            (identical(other.grelation, grelation) ||
-                other.grelation == grelation) &&
-            (identical(other.student_id, student_id) ||
-                other.student_id == student_id));
+            const DeepCollectionEquality()
+                .equals(other.SiblingsdatafromHive, SiblingsdatafromHive));
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        fathername,
-        falive,
-        fdisabled,
-        focupation,
-        fincome,
-        frelation,
-        mothername,
-        malive,
-        mdisabled,
-        mocupation,
-        mincome,
-        mrelation,
-        guardianname,
-        galive,
-        gdisabled,
-        gocupation,
-        gincome,
-        grelation,
-        student_id
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      fathername,
+      falive,
+      fdisabled,
+      focupation,
+      fincome,
+      mathername,
+      malive,
+      mdisabled,
+      mocupation,
+      mincome,
+      gathername,
+      galive,
+      gdisabled,
+      gocupation,
+      gincome,
+      const DeepCollectionEquality().hash(SiblingsdatafromHive));
 
   @JsonKey(ignore: true)
   @override
@@ -580,24 +525,21 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
     required TResult Function() started,
     required TResult Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)
         postFamilyInfo,
   }) {
     return postFamilyInfo(
@@ -606,20 +548,17 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
         fdisabled,
         focupation,
         fincome,
-        frelation,
-        mothername,
+        mathername,
         malive,
         mdisabled,
         mocupation,
         mincome,
-        mrelation,
-        guardianname,
+        gathername,
         galive,
         gdisabled,
         gocupation,
         gincome,
-        grelation,
-        student_id);
+        SiblingsdatafromHive);
   }
 
   @override
@@ -628,24 +567,21 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
     TResult? Function()? started,
     TResult? Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)?
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)?
         postFamilyInfo,
   }) {
     return postFamilyInfo?.call(
@@ -654,20 +590,17 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
         fdisabled,
         focupation,
         fincome,
-        frelation,
-        mothername,
+        mathername,
         malive,
         mdisabled,
         mocupation,
         mincome,
-        mrelation,
-        guardianname,
+        gathername,
         galive,
         gdisabled,
         gocupation,
         gincome,
-        grelation,
-        student_id);
+        SiblingsdatafromHive);
   }
 
   @override
@@ -676,24 +609,21 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
     TResult Function()? started,
     TResult Function(
             String? fathername,
-            int? falive,
-            int? fdisabled,
-            int? focupation,
-            int? fincome,
-            String? frelation,
-            String? mothername,
-            int? malive,
-            int? mdisabled,
-            int? mocupation,
-            int? mincome,
-            String? mrelation,
-            String? guardianname,
-            int? galive,
-            int? gdisabled,
-            int? gocupation,
-            int? gincome,
-            String? grelation,
-            int? student_id)?
+            String? falive,
+            String? fdisabled,
+            String? focupation,
+            String? fincome,
+            String? mathername,
+            String? malive,
+            String? mdisabled,
+            String? mocupation,
+            String? mincome,
+            String? gathername,
+            String? galive,
+            String? gdisabled,
+            String? gocupation,
+            String? gincome,
+            dynamic SiblingsdatafromHive)?
         postFamilyInfo,
     required TResult orElse(),
   }) {
@@ -704,20 +634,17 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
           fdisabled,
           focupation,
           fincome,
-          frelation,
-          mothername,
+          mathername,
           malive,
           mdisabled,
           mocupation,
           mincome,
-          mrelation,
-          guardianname,
+          gathername,
           galive,
           gdisabled,
           gocupation,
           gincome,
-          grelation,
-          student_id);
+          SiblingsdatafromHive);
     }
     return orElse();
   }
@@ -757,44 +684,38 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
 abstract class PostFamilyInfo implements FamilyInfoEvent {
   const factory PostFamilyInfo(
       {final String? fathername,
-      final int? falive,
-      final int? fdisabled,
-      final int? focupation,
-      final int? fincome,
-      final String? frelation,
-      final String? mothername,
-      final int? malive,
-      final int? mdisabled,
-      final int? mocupation,
-      final int? mincome,
-      final String? mrelation,
-      final String? guardianname,
-      final int? galive,
-      final int? gdisabled,
-      final int? gocupation,
-      final int? gincome,
-      final String? grelation,
-      final int? student_id}) = _$PostFamilyInfoImpl;
+      final String? falive,
+      final String? fdisabled,
+      final String? focupation,
+      final String? fincome,
+      final String? mathername,
+      final String? malive,
+      final String? mdisabled,
+      final String? mocupation,
+      final String? mincome,
+      final String? gathername,
+      final String? galive,
+      final String? gdisabled,
+      final String? gocupation,
+      final String? gincome,
+      final dynamic SiblingsdatafromHive}) = _$PostFamilyInfoImpl;
 
   String? get fathername;
-  int? get falive;
-  int? get fdisabled;
-  int? get focupation;
-  int? get fincome;
-  String? get frelation;
-  String? get mothername;
-  int? get malive;
-  int? get mdisabled;
-  int? get mocupation;
-  int? get mincome;
-  String? get mrelation;
-  String? get guardianname;
-  int? get galive;
-  int? get gdisabled;
-  int? get gocupation;
-  int? get gincome;
-  String? get grelation;
-  int? get student_id;
+  String? get falive;
+  String? get fdisabled;
+  String? get focupation;
+  String? get fincome;
+  String? get mathername;
+  String? get malive;
+  String? get mdisabled;
+  String? get mocupation;
+  String? get mincome;
+  String? get gathername;
+  String? get galive;
+  String? get gdisabled;
+  String? get gocupation;
+  String? get gincome;
+  dynamic get SiblingsdatafromHive;
   @JsonKey(ignore: true)
   _$$PostFamilyInfoImplCopyWith<_$PostFamilyInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;

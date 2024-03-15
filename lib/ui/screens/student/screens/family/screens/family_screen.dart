@@ -180,11 +180,11 @@ class FamilyScreen extends StatelessWidget {
         final numberOfAchievements = box.length;
         final dynamicHeight = 0 + (numberOfAchievements * 620);
 
-        Timer.periodic(Duration(seconds: 3), (timer) {
-          print("Number of siblings1 : ${box.isEmpty}");
-          print("Number of  siblings 2 : ${box.keys.length}");
-          print("Number of  siblings 3 : ${box.length}");
-        });
+        // Timer.periodic(Duration(seconds: 3), (timer) {
+        //   print("Number of siblings1 : ${box.isEmpty}");
+        //   print("Number of  siblings 2 : ${box.keys.length}");
+        //   print("Number of  siblings 3 : ${box.length}");
+        // });
 
         print("Family Layout Height: ${760 + box.keys.length * 500}");
 

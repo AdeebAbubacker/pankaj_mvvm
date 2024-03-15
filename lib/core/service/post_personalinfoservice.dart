@@ -5,8 +5,6 @@ import 'package:panakj_app/core/model/personal_info_data/personal_info_data.dart
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
-
 class Poststudent1InviteService {
   final SupabaseClient _client = SupabaseClient(
     'https://nuijjfzzemdlzirwpahw.supabase.co',
@@ -49,7 +47,7 @@ class PostPersonalInfoService {
     required String bankAccName,
     required String bankIfsc,
   }) async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     int storedBankId = prefs.getInt('selectedBank') ?? -1;
     final formData = {
       'name': name,
@@ -58,9 +56,9 @@ class PostPersonalInfoService {
       'phone': phone,
       'address': address,
       'email': email,
- 
-     // 'bank_id': bankId.toString(),
-     'bank_id': storedBankId.toString(),
+
+      // 'bank_id': bankId.toString(),
+      'bank_id': storedBankId.toString(),
       'bank_acc_no': bankAccNo,
       'bank_acc_name': bankAccName,
       'bank_ifsc': bankIfsc,

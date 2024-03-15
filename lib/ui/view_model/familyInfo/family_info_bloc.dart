@@ -19,35 +19,50 @@ class FamilyInfoBloc extends Bloc<FamilyInfoEvent, FamilyInfoState> {
     on<PostFamilyInfo>((event, emit) async {
       try {
         final response = await familyInfoService.postfamilyInfoservice(
-          fathername: event.fathername,
+          fname: event.fathername,
           falive: event.falive,
           fdisabled: event.fdisabled,
-          focupation: event.focupation,
           fincome: event.fincome,
-          frelation: event.frelation,
-          mothername: event.mothername,
+          foccupation: event.focupation,
+          mname: event.mathername,
           malive: event.malive,
           mdisabled: event.mdisabled,
-          mocupation: event.mocupation,
           mincome: event.mincome,
-          mrelation: event.mrelation,
-          guardainame: event.guardianname,
+          moccupation: event.mocupation,
+          gname: event.gathername,
           galive: event.galive,
           gdisabled: event.gdisabled,
-          gocupation: event.gocupation,
           gincome: event.gincome,
+          goccupation: event.gocupation,
+        //  SiblingsdatafromHive: event.SiblingsdatafromHive,
+
+          // fathername: event.fathername,
+          // falive: event.falive,
+          // fdisabled: event.fdisabled,
+          // focupation: event.focupation,
+          // fincome: event.fincome,
+          // frelation: event.frelation,
+          // mothername: event.mothername,
+          // malive: event.malive,
+          // mdisabled: event.mdisabled,
+          // mocupation: event.mocupation,
+          // mincome: event.mincome,
+          // mrelation: event.mrelation,
+          // guardainame: event.guardianname,
+          // galive: event.galive,
+          // gdisabled: event.gdisabled,
+          // gocupation: event.gocupation,
+          // gincome: event.gincome,
         );
-        final response2 = await familyInfoService.postSiblingsToSupabase(
-            student_id: event.student_id);
-        await Poststudent1InviteService()
-            .poststudent1InviteService(id: 9999999, appl_status: '50');
+        // final response2 = await familyInfoService.postSiblingsToSupabase(
+        //     student_id: event.student_id);
+        // await Poststudent1InviteService()
+        //     .poststudent1InviteService(id: 9999999, appl_status: '50');
         emit(state.copyWith(
             isLoading: false,
             isError: false,
             successorFailure: optionOf(right(response))));
         print('from bloc file sucess');
-
-        int startIndex = 0;
       } catch (e) {
         if (e is FormatException) {
           // Handle non-JSON response
@@ -65,8 +80,6 @@ class FamilyInfoBloc extends Bloc<FamilyInfoEvent, FamilyInfoState> {
               successorFailure: optionOf(
                   left(MainFailure.clientFailure(message: e.toString())))));
         }
-        await Future.delayed(Duration.zero);
-        emit(FamilyInfoState.initial());
       }
     });
   }

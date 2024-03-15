@@ -9,7 +9,7 @@ class PersonalInfoData {
 	bool? status;
 	String? message;
 	List<Datum>? data;
-	List<dynamic>? misc;
+	 Map<String, dynamic>? misc;
 	List<dynamic>? errors;
 
 	PersonalInfoData({

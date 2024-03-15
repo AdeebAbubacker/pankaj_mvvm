@@ -23,11 +23,11 @@ class AchievmentsScreen extends StatelessWidget {
         final numberOfAchievements = box.length;
         final dynamicHeight = 570 + (numberOfAchievements * 485);
 
-        Timer.periodic(Duration(seconds: 3), (timer) {
-          print("Number of achievments1 : ${box.isEmpty}");
-          print("Number of achievments2 : ${box.keys.length}");
-          print("Number of achievments3 : ${box.length}");
-        });
+        // Timer.periodic(Duration(seconds: 3), (timer) {
+        //   print("Number of achievments1 : ${box.isEmpty}");
+        //   print("Number of achievments2 : ${box.keys.length}");
+        //   print("Number of achievments3 : ${box.length}");
+        // });
 
         print("Family Layout Height: ${6460 + box.keys.length * 500}");
 

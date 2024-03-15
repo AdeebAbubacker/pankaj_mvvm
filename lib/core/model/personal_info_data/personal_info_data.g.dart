@@ -13,7 +13,7 @@ PersonalInfoData _$PersonalInfoDataFromJson(Map<String, dynamic> json) =>
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
-      misc: json['misc'] as List<dynamic>?,
+      misc: json['misc'] as Map<String, dynamic>?,
       errors: json['errors'] as List<dynamic>?,
     );
 
