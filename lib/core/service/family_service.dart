@@ -112,6 +112,7 @@ class FamilyInfoService {
     String? galive,
     String? gdisabled,
     String? goccupation,
+   
   }) async {
     final rawData =
 
@@ -180,15 +181,7 @@ class FamilyInfoService {
           "relation": "guardian"
         }
       ],
-      "siblings": [
-        {
-          "name": "Shyam",
-          "gender": "m",
-          "qualification": 2,
-          "course": 5,
-          "occupation": 9
-        }
-      ]
+    //  "siblings": SiblingSdtafromHive,
     };
     final response = await http.post(
       Uri.parse('https://pankajtrust.org/api/student/family_info?id=513491'),
