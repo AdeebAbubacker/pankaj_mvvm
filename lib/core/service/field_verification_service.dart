@@ -1,4 +1,4 @@
-import 'package:panakj_app/core/model/residential_data/residential_data.dart';
+import 'package:panakj_app/core/model/residential_data/residential_data_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FieldVerificationService {

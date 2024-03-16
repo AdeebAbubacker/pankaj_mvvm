@@ -1,88 +1,35 @@
-import 'package:panakj_app/core/model/residential_data/residential_data.dart';
+import 'dart:convert';
+
+import 'package:panakj_app/core/model/residential_data/residential_data_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-class FirebaseResponse<T> {
-  final bool success;
-  final T? data;
-  final String? errorMessage;
-
-  FirebaseResponse({
-    required this.success,
-    this.data,
-    this.errorMessage,
-  });
-}
-
-// class ResidentialService {
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-//   Future<ResidentialData> postResidentailService({
-//     required String houselandSize,
-//     required String housedrinkingwater,
-//     required String houseroof,
-//     required String houseOwnership,
-//   }) async {
-//     try {
-//       // Get the currently logged-in user
-//       User? user = _auth.currentUser;
-
-//       if (user != null) {
-//         Map<String, dynamic> data = {
-//           "house_land_size": houselandSize,
-//           "house_drinking_water": housedrinkingwater,
-//           "house_roof": houseroof,
-//           "house_ownership": houseOwnership,
-//         };
-
-//         // Use the set method to create a new document
-//         await _firestore
-//             .collection('post_home')
-//             .doc(user.email) // Use the user's email as the document ID
-//             .set(data);
-
-//         return ResidentialData();
-//       } else {
-//         throw Exception("User not logged in.");
-//       }
-//     } catch (e) {
-//       print('Error posting personal info: $e');
-
-//       return ResidentialData();
-//     }
-//   }
-// }
+import 'package:http/http.dart' as http;
 
 class ResidentialService {
-  final SupabaseClient _client = SupabaseClient(
-    'https://nuijjfzzemdlzirwpahw.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51aWpqZnp6ZW1kbHppcndwYWh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMjIzOTksImV4cCI6MjAyMjY5ODM5OX0.Nh83ebqzf1iGHTaGywss6WIkkNlSiPHE-OFbebPmGYY',
-    autoRefreshToken: true,
-  );
-
   Future<ResidentialData> postResidentailService({
-    required String houselandSize,
-    required String housedrinkingwater,
-    required String houseroof,
-    required String houseOwnership,
+    required String house_land_size,
+    required String house_drinking_water,
+    required String house_roof,
+    required String house_ownership,
   }) async {
-    try {
-      // Create a map of data to be added to Supabase
-      final response = await _client.from('student_2_list').upsert({
-        'id': 999999,
-        'house_drinking_water': housedrinkingwater,
-        'house_ownership': houseOwnership,
-        'house_roof': houseroof,
-        'house_land_size': houselandSize,
-      }).execute();
+    final formData = {
+      'house_land_size': house_land_size,
+      'house_drinking_water':house_drinking_water,
+      'house_roof': house_roof,
+      'house_ownership': house_ownership
+    };
 
-      if (response == null) {
-        throw Exception('Error posting personal info: ${response}');
-      }
-    } catch (e) {
-      print('Error posting personal info: $e');
-      throw e;
+    final response = await http.post(
+      Uri.parse('https://pankajtrust.org/api/student/residential?id=513491'),
+      body: formData,
+    );
+
+    if (response.statusCode == 200) {
+      print('response fro aaaaaaaaaapi ${response.body.toString()}');
+      return ResidentialData.fromJson(json.decode(response.body));
+    } else {
+      // Handle error response if needed
+      print('Failed to post personal info: ${response.statusCode}');
+      throw Exception('Failed to post personal info: ${response.statusCode}');
     }
-    return ResidentialData();
   }
 }

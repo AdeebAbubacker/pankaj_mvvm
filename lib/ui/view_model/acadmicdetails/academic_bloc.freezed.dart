@@ -604,8 +604,8 @@ abstract class PostAchievmentInfo implements AcademicEvent {
 mixin _$AcademicState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  AcademicDataModel get academicData => throw _privateConstructorUsedError;
-  Option<Either<MainFailure, AcademicDataModel>> get successorFailure =>
+  AcademicData get academicData => throw _privateConstructorUsedError;
+  Option<Either<MainFailure, AcademicData>> get successorFailure =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -622,8 +622,8 @@ abstract class $AcademicStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isError,
-      AcademicDataModel academicData,
-      Option<Either<MainFailure, AcademicDataModel>> successorFailure});
+      AcademicData academicData,
+      Option<Either<MainFailure, AcademicData>> successorFailure});
 }
 
 /// @nodoc
@@ -656,11 +656,11 @@ class _$AcademicStateCopyWithImpl<$Res, $Val extends AcademicState>
       academicData: null == academicData
           ? _value.academicData
           : academicData // ignore: cast_nullable_to_non_nullable
-              as AcademicDataModel,
+              as AcademicData,
       successorFailure: null == successorFailure
           ? _value.successorFailure
           : successorFailure // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, AcademicDataModel>>,
+              as Option<Either<MainFailure, AcademicData>>,
     ) as $Val);
   }
 }
@@ -676,8 +676,8 @@ abstract class _$$AcadenicStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isError,
-      AcademicDataModel academicData,
-      Option<Either<MainFailure, AcademicDataModel>> successorFailure});
+      AcademicData academicData,
+      Option<Either<MainFailure, AcademicData>> successorFailure});
 }
 
 /// @nodoc
@@ -708,11 +708,11 @@ class __$$AcadenicStateImplCopyWithImpl<$Res>
       academicData: null == academicData
           ? _value.academicData
           : academicData // ignore: cast_nullable_to_non_nullable
-              as AcademicDataModel,
+              as AcademicData,
       successorFailure: null == successorFailure
           ? _value.successorFailure
           : successorFailure // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, AcademicDataModel>>,
+              as Option<Either<MainFailure, AcademicData>>,
     ));
   }
 }
@@ -731,9 +731,9 @@ class _$AcadenicStateImpl implements _AcadenicState {
   @override
   final bool isError;
   @override
-  final AcademicDataModel academicData;
+  final AcademicData academicData;
   @override
-  final Option<Either<MainFailure, AcademicDataModel>> successorFailure;
+  final Option<Either<MainFailure, AcademicData>> successorFailure;
 
   @override
   String toString() {
@@ -769,8 +769,8 @@ abstract class _AcadenicState implements AcademicState {
   const factory _AcadenicState(
       {required final bool isLoading,
       required final bool isError,
-      required final AcademicDataModel academicData,
-      required final Option<Either<MainFailure, AcademicDataModel>>
+      required final AcademicData academicData,
+      required final Option<Either<MainFailure, AcademicData>>
           successorFailure}) = _$AcadenicStateImpl;
 
   @override
@@ -778,9 +778,9 @@ abstract class _AcadenicState implements AcademicState {
   @override
   bool get isError;
   @override
-  AcademicDataModel get academicData;
+  AcademicData get academicData;
   @override
-  Option<Either<MainFailure, AcademicDataModel>> get successorFailure;
+  Option<Either<MainFailure, AcademicData>> get successorFailure;
   @override
   @JsonKey(ignore: true)
   _$$AcadenicStateImplCopyWith<_$AcadenicStateImpl> get copyWith =>

@@ -35,7 +35,7 @@ mixin _$FamilyInfoEvent {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)
+            List<dynamic>? SiblingsdatafromHive)
         postFamilyInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$FamilyInfoEvent {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)?
+            List<dynamic>? SiblingsdatafromHive)?
         postFamilyInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -81,7 +81,7 @@ mixin _$FamilyInfoEvent {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)?
+            List<dynamic>? SiblingsdatafromHive)?
         postFamilyInfo,
     required TResult orElse(),
   }) =>
@@ -180,7 +180,7 @@ class _$StartedImpl implements _Started {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)
+            List<dynamic>? SiblingsdatafromHive)
         postFamilyInfo,
   }) {
     return started();
@@ -206,7 +206,7 @@ class _$StartedImpl implements _Started {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)?
+            List<dynamic>? SiblingsdatafromHive)?
         postFamilyInfo,
   }) {
     return started?.call();
@@ -232,7 +232,7 @@ class _$StartedImpl implements _Started {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)?
+            List<dynamic>? SiblingsdatafromHive)?
         postFamilyInfo,
     required TResult orElse(),
   }) {
@@ -300,7 +300,7 @@ abstract class _$$PostFamilyInfoImplCopyWith<$Res> {
       String? gdisabled,
       String? gocupation,
       String? gincome,
-      dynamic SiblingsdatafromHive});
+      List<dynamic>? SiblingsdatafromHive});
 }
 
 /// @nodoc
@@ -393,9 +393,9 @@ class __$$PostFamilyInfoImplCopyWithImpl<$Res>
           : gincome // ignore: cast_nullable_to_non_nullable
               as String?,
       SiblingsdatafromHive: freezed == SiblingsdatafromHive
-          ? _value.SiblingsdatafromHive
+          ? _value._SiblingsdatafromHive
           : SiblingsdatafromHive // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as List<dynamic>?,
     ));
   }
 }
@@ -419,7 +419,8 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
       this.gdisabled,
       this.gocupation,
       this.gincome,
-      this.SiblingsdatafromHive});
+      final List<dynamic>? SiblingsdatafromHive})
+      : _SiblingsdatafromHive = SiblingsdatafromHive;
 
   @override
   final String? fathername;
@@ -451,8 +452,16 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
   final String? gocupation;
   @override
   final String? gincome;
+  final List<dynamic>? _SiblingsdatafromHive;
   @override
-  final dynamic SiblingsdatafromHive;
+  List<dynamic>? get SiblingsdatafromHive {
+    final value = _SiblingsdatafromHive;
+    if (value == null) return null;
+    if (_SiblingsdatafromHive is EqualUnmodifiableListView)
+      return _SiblingsdatafromHive;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -489,7 +498,7 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
                 other.gocupation == gocupation) &&
             (identical(other.gincome, gincome) || other.gincome == gincome) &&
             const DeepCollectionEquality()
-                .equals(other.SiblingsdatafromHive, SiblingsdatafromHive));
+                .equals(other._SiblingsdatafromHive, _SiblingsdatafromHive));
   }
 
   @override
@@ -510,7 +519,7 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
       gdisabled,
       gocupation,
       gincome,
-      const DeepCollectionEquality().hash(SiblingsdatafromHive));
+      const DeepCollectionEquality().hash(_SiblingsdatafromHive));
 
   @JsonKey(ignore: true)
   @override
@@ -539,7 +548,7 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)
+            List<dynamic>? SiblingsdatafromHive)
         postFamilyInfo,
   }) {
     return postFamilyInfo(
@@ -581,7 +590,7 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)?
+            List<dynamic>? SiblingsdatafromHive)?
         postFamilyInfo,
   }) {
     return postFamilyInfo?.call(
@@ -623,7 +632,7 @@ class _$PostFamilyInfoImpl implements PostFamilyInfo {
             String? gdisabled,
             String? gocupation,
             String? gincome,
-            dynamic SiblingsdatafromHive)?
+            List<dynamic>? SiblingsdatafromHive)?
         postFamilyInfo,
     required TResult orElse(),
   }) {
@@ -698,7 +707,7 @@ abstract class PostFamilyInfo implements FamilyInfoEvent {
       final String? gdisabled,
       final String? gocupation,
       final String? gincome,
-      final dynamic SiblingsdatafromHive}) = _$PostFamilyInfoImpl;
+      final List<dynamic>? SiblingsdatafromHive}) = _$PostFamilyInfoImpl;
 
   String? get fathername;
   String? get falive;
@@ -715,7 +724,7 @@ abstract class PostFamilyInfo implements FamilyInfoEvent {
   String? get gdisabled;
   String? get gocupation;
   String? get gincome;
-  dynamic get SiblingsdatafromHive;
+  List<dynamic>? get SiblingsdatafromHive;
   @JsonKey(ignore: true)
   _$$PostFamilyInfoImplCopyWith<_$PostFamilyInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;

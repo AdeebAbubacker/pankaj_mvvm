@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:panakj_app/core/model/failure/mainfailure.dart';
-import 'package:panakj_app/core/model/residential_data/residential_data.dart';
+import 'package:panakj_app/core/model/residential_data/residential_data_model.dart';
 import 'package:panakj_app/core/service/field_verification_service.dart';
 
 part 'field_verification_event.dart';

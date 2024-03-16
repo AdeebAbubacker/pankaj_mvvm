@@ -1,63 +1,53 @@
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:panakj_app/core/db/adapters/achievment_adapter/achievment_adapter.dart';
-import 'package:panakj_app/core/model/academic_data_model/academic_data_model.dart';
-import 'package:panakj_app/core/model/achievments_data/achievments_data.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'dart:convert';
+import 'package:panakj_app/core/model/academic_data/academic_data.dart';
+import 'package:http/http.dart' as http;
+
+///-----------------------------------------------------------------------------------------------
 
 class AcademicService {
-  final SupabaseClient _client = SupabaseClient(
-    'https://nuijjfzzemdlzirwpahw.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51aWpqZnp6ZW1kbHppcndwYWh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMjIzOTksImV4cCI6MjAyMjY5ODM5OX0.Nh83ebqzf1iGHTaGywss6WIkkNlSiPHE-OFbebPmGYY',
-    autoRefreshToken: true,
-  );
-
-  Future<AcademicDataModel> postAcademicService({
-    final int? school,
-    final int? reg_no,
-    final int? sslc,
-    final int? plus_one,
-    final int? plus_two,
-    final int? course_pref,
-   
+  Future<AcademicData> postAcademicService({
+    required String sslcmark,
+    required String marksplusone,
+    required String marksplustwo,
+    required String schoolId,
+    required String hallTicket,
+    required String preferredcourse,
+    required List achievement,
   }) async {
-    try {
-      // Create a map of data to be added to Supabase
-      final response = await _client.from('student_2_list').upsert({
-        'id': 999999,
-        'school_id': school,
-        'hall_ticket': reg_no,
-        'mark_sslc': sslc,
-        'mark_p1': plus_one,
-        'mark_p2': plus_two,
-        'preferred_course': course_pref,
-      }).execute();
+    final rawData = {
+      "academics": [
+        {
+          "mark_sslc": sslcmark,
+          "mark_p1": marksplusone,
+          "mark_p2": marksplustwo,
+          "school_id": schoolId,
+          "hall_ticket": hallTicket,
+          "preferred_course": preferredcourse
+        }
+      ],
+      "achievements": achievement,
+      
+      // [
+      //   {"category": '43', "achievement_details": '45', "upload_file": '44'},
+      //   {"category": '43', "achievement_details": '45', "upload_file": '44'}
+      // ]
+    };
 
-  
-    } catch (e) {
-      print('Error posting personal info: $e');
-      throw e;
+    final response = await http.post(
+      Uri.parse('https://pankajtrust.org/api/student/academic?id=513491'),
+      body: jsonEncode(rawData),
+      headers: {
+        'Content-Type': 'application/json', // Set content type to JSON
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('response fro aaaaaaaaaapi ${response.body.toString()}');
+      return AcademicData.fromJson(json.decode(response.body));
+    } else {
+      // Handle error response if needed
+      print('Failed to post personal info: ${response.statusCode}');
+      throw Exception('Failed to post personal info: ${response.statusCode}');
     }
-    return AcademicDataModel();
-  }
-
-  // Assuming you have initialized Supabase
-  final SupabaseClient client = SupabaseClient(
-    'https://nuijjfzzemdlzirwpahw.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51aWpqZnp6ZW1kbHppcndwYWh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMjIzOTksImV4cCI6MjAyMjY5ODM5OX0.Nh83ebqzf1iGHTaGywss6WIkkNlSiPHE-OFbebPmGYY',
-    autoRefreshToken: true,
-  );
-
-  Future postAchievementsToSupabase({
-    final int? student_id,
-    final String? title,
-    final String? description,
-    final String? attachment,
-  }) async {
-    final response = await _client.from('student_6_achievements').upsert({
-      'student_id': student_id,
-      'title': title,
-      'description': description,
-      'attachment': attachment
-    }).execute();
   }
 }

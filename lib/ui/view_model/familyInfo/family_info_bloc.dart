@@ -34,6 +34,7 @@ class FamilyInfoBloc extends Bloc<FamilyInfoEvent, FamilyInfoState> {
           gdisabled: event.gdisabled,
           gincome: event.gincome,
           goccupation: event.gocupation,
+          SiblingSdtafromHive: event.SiblingsdatafromHive,
         //  SiblingsdatafromHive: event.SiblingsdatafromHive,
 
           // fathername: event.fathername,

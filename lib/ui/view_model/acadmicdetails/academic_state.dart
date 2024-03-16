@@ -7,7 +7,7 @@ class AcademicState with _$AcademicState {
     return AcademicState(
       isLoading: false,
       isError: false,
-      academicData: AcademicDataModel(),
+      academicData: AcademicData(),
       successorFailure: const None(),
     );
   }
@@ -15,7 +15,7 @@ class AcademicState with _$AcademicState {
   const factory AcademicState({
     required bool isLoading,
     required bool isError,
-    required AcademicDataModel academicData,
-    required Option<Either<MainFailure, AcademicDataModel>> successorFailure,
+    required AcademicData academicData,
+    required Option<Either<MainFailure, AcademicData>> successorFailure,
   }) = _AcadenicState;
 }

@@ -52,6 +52,7 @@ import 'package:panakj_app/ui/view_model/selected_course/selected_course_bloc.da
 import 'package:panakj_app/ui/view_model/selected_occupation/selected_occupation_bloc.dart';
 import 'package:panakj_app/ui/view_model/selected_school/selected_school_bloc.dart';
 import 'package:panakj_app/ui/view_model/students_app_form/students_app_form_bloc.dart';
+import 'package:panakj_app/ui/screens/student/screens/home_screen/navigation_screen.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
@@ -589,10 +590,34 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                             ),
                             nextBtn: InkResponse(
                               onTap: () async {
-                                var siblingsData =
-                                    await getSiblingsDataForApi();
-                                final box =
+                                final Box<SiblingCardDB> box =
                                     Hive.box<SiblingCardDB>('aseebsiblingbox');
+                                List<Map<String, dynamic>> siblingsList = [];
+
+                            
+                                  for (var i = 0; i < box.length; i++) {
+                                    final siblings = box.getAt(i);
+                                    // final siblingsMap = {
+                                    //   'category': siblings?.category.toString(),
+                                    //   'achievement_details': siblings?.achievmentController.toString(),
+                                    //   'upload_file': 44,
+                                    // };
+                                    final siblingsMap = {
+                                      "name": siblings?.name.toString(),
+                                      "gender": siblings?.gender.toString(),
+                                      "qualification":
+                                          siblings?.qualification.toString(),
+                                      "course":
+                                          siblings?.courseofstudy.toString(),
+                                      "occupation":
+                                          siblings?.occupation.toString(),
+                                    };
+                                    siblingsList.add(siblingsMap);
+                                  }
+                                  print("Achievements list: $siblingsList");
+                                
+
+                           
                                 final List<int> keys =
                                     box.keys.cast<int>().toList();
                                 for (int key in keys) {
@@ -667,7 +692,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                               .alive
                                           ? '1'
                                           : '0',
-                                      SiblingsdatafromHive: siblingsData,
+                                      SiblingsdatafromHive: siblingsList,
                                     ));
                                   }
                                 }
@@ -741,7 +766,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                     );
                                   });
 
-                                  print(success.data.toString());
+                                  print(success.toString());
                                   scrollController.jumpTo(0.0);
                                   handleNextPage(3);
                                 },
@@ -873,7 +898,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(
                                     builder: (context) {
-                                      return StudentsHomeScreen();
+                                      return const NavigationScreen();
                                     },
                                   ));
                                 },

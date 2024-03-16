@@ -2,96 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:panakj_app/core/model/family_data/family_data.dart';
 
-// class FamilyInfoService {
-//   final SupabaseClient _client = SupabaseClient(
-//     'https://nuijjfzzemdlzirwpahw.supabase.co',
-//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51aWpqZnp6ZW1kbHppcndwYWh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMjIzOTksImV4cCI6MjAyMjY5ODM5OX0.Nh83ebqzf1iGHTaGywss6WIkkNlSiPHE-OFbebPmGYY',
-//     autoRefreshToken: true,
-//   );
 
-//   Future<FamilyData> postfamilyInfoservice({
-//     final String? fathername,
-//     final int? falive,
-//     final int? fdisabled,
-//     final int? focupation,
-//     final int? fincome,
-//     final String? frelation,
-//     final String? mothername,
-//     final int? malive,
-//     final int? mdisabled,
-//     final int? mocupation,
-//     final int? mincome,
-//     final String? mrelation,
-//     final String? guardainame,
-//     final int? galive,
-//     final int? gdisabled,
-//     final int? gocupation,
-//     final int? gincome,
-//     final String? grelation,
-//   }) async {
-//     try {
-//       // Create a map of data to be added to Supabase
-//       final response = await _client.from('student_3_parents').upsert({
-//         'student_id': 99999,
-//         'name': fathername,
-//         'relation': 'father',
-// //'phone': 99999,
-//         //   'email': 'adeeb@gmail.com',
-//         'dob': '2018-09-23',
-//         'highest_qualification': 1,
-//         'occupation': focupation,
-//         'income': fincome,
-//         'alive': falive,
-//         'disabled': fdisabled,
-//       }).execute();
-
-//       final response2 = await _client.from('student_3_parents').upsert({
-//         'student_id': 99999,
-//         'name': mothername,
-//         'relation': 'mother',
-//         'phone': 99999,
-//         'email': 'adeeb@gmail.com',
-//         'dob': '2018-09-23',
-//         'highest_qualification': 1,
-//         'occupation': mocupation,
-//         'income': mincome,
-//         'alive': malive,
-//         'disabled': mdisabled,
-//       }).execute();
-
-//       final response3 = await _client.from('student_3_parents').upsert({
-//         'student_id': 99999,
-//         'relation': 'guardian',
-//         'name': guardainame,
-//         'phone': 99999,
-//         'email': 'adeeb@gmail.com',
-//         'dob': '2018-09-23',
-//         'highest_qualification': 1,
-//         'occupation': gocupation,
-//         'income': gincome,
-//         'alive': galive,
-//         'disabled': gdisabled,
-//       }).execute();
-
-//       if (response == null) {
-//         throw Exception('Error posting personal info: ${response}');
-//       }
-//     } catch (e) {
-//       print('Error posting personal info: $e');
-//       throw e;
-//     }
-//     return FamilyData();
-//   }
-
-//   Future postSiblingsToSupabase({
-//     final int? student_id,
-
-//   }) async {
-//     final response = await _client.from('student_4_siblings').upsert({
-//       'name': student_id,
-//     }).execute();
-//   }
-// }
 
 class FamilyInfoService {
   Future<FamilyData> postfamilyInfoservice({
@@ -112,6 +23,8 @@ class FamilyInfoService {
     String? galive,
     String? gdisabled,
     String? goccupation,
+    //-----------------------------------
+     List? SiblingSdtafromHive ,
    
   }) async {
     final rawData =
@@ -181,7 +94,7 @@ class FamilyInfoService {
           "relation": "guardian"
         }
       ],
-    //  "siblings": SiblingSdtafromHive,
+     "siblings": SiblingSdtafromHive,
     };
     final response = await http.post(
       Uri.parse('https://pankajtrust.org/api/student/family_info?id=513491'),
