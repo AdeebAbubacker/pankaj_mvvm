@@ -12,13 +12,13 @@ class SiblingCardDB {
   final String gender;
 
   @HiveField(2)
-  final int qualification;
+  final String qualification;
 
   @HiveField(3)
-  final int courseofstudy;
+  final String courseofstudy;
 
   @HiveField(4)
-  final int occupation;
+  final String occupation;
 
   SiblingCardDB({
     required this.name,

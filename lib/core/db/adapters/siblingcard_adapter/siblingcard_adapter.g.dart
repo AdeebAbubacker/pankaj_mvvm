@@ -19,9 +19,9 @@ class SiblingCardDBAdapter extends TypeAdapter<SiblingCardDB> {
     return SiblingCardDB(
       name: fields[0] as dynamic,
       gender: fields[1] as String,
-      qualification: fields[2] as int,
-      courseofstudy: fields[3] as int,
-      occupation: fields[4] as int,
+      qualification: fields[2] as String,
+      courseofstudy: fields[3] as String,
+      occupation: fields[4] as String,
     );
   }
 

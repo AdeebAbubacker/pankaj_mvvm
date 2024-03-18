@@ -94,7 +94,17 @@ class FamilyInfoService {
           "relation": "guardian"
         }
       ],
-     "siblings": SiblingSdtafromHive,
+    //  "siblings": SiblingSdtafromHive,
+    "siblings": [
+        {
+            "name": "Shyam",
+            "gender": "m",
+            "qualification": 2,
+            "course": 5,
+            "occupation": 9
+        }
+       
+    ]
     };
     final response = await http.post(
       Uri.parse('https://pankajtrust.org/api/student/family_info?id=513491'),
@@ -105,7 +115,7 @@ class FamilyInfoService {
     );
 
     if (response.statusCode == 200) {
-      print('response fro aaaaaaaaaapi ${response.body.toString()}');
+      print('response fro aaaaaaaaaapi familly ${response.body.toString()}');
       return FamilyData.fromJson(json.decode(response.body));
     } else {
       // Handle error response if needed

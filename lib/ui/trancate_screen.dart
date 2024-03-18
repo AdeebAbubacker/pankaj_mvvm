@@ -1,14 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:panakj_app/core/db/adapters/achievment_adapter/achievment_adapter.dart';
 import 'package:panakj_app/core/db/adapters/siblingcard_adapter/siblingcard_adapter.dart';
-import 'package:panakj_app/core/service/academic_service.dart';
-import 'package:panakj_app/core/service/auth_service.dart';
-import 'package:panakj_app/core/service/family_service.dart';
-import 'package:panakj_app/core/service/residential_service.dart';
 import 'package:panakj_app/ui/view_model/familyInfo/family_info_bloc.dart';
 
 // class AchievmentsData extends StatelessWidget {
@@ -81,17 +74,12 @@ class SiblingsData extends StatelessWidget {
     siblingsList.clear(); // Clear previous list before populating
     for (var i = 0; i < box.length; i++) {
       final siblings = box.getAt(i);
-      // final siblingsMap = {
-      //   'category': siblings?.category.toString(),
-      //   'achievement_details': siblings?.achievmentController.toString(),
-      //   'upload_file': 44,
-      // };
       final siblingsMap = {
-        "name": "Shyam",
-        "gender": "m",
-        "qualification": 2,
-        "course": 5,
-        "occupation": 9
+        "name": siblings?.name!.toString(),
+        "gender": siblings?.name!.toString(),
+        "qualification": siblings?.name!.toString(),
+        "course": siblings?.name!.toString(),
+        "occupation": siblings?.name!.toString(),
       };
       siblingsList.add(siblingsMap);
     }
@@ -119,26 +107,7 @@ class SiblingsData extends StatelessWidget {
                     .add(FamilyInfoEvent.postFamilyInfo(
                   SiblingsdatafromHive: siblingsList,
                 ));
-                await FamilyInfoService().postfamilyInfoservice(
-                  SiblingSdtafromHive: siblingsList,
-                  falive: '',
-                  fdisabled: '',
-                  fincome: '',
-                  fname: '',
-                  foccupation: '',
-                  galive: '',
-                  gdisabled: '',
-                  gincome: '',
-                  gname: '',
-                  goccupation: '',
-                  malive: '',
-                  mdisabled: '',
-                  mincome: '',
-                  mname: '',
-                  moccupation: '',
-                );
 
-                // await fivemvService().postPersonalInfoservice();
                 // Handling success, you may navigate to another page or show a success message
                 print('Personal info posted successfully');
               },

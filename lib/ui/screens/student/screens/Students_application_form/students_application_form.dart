@@ -20,16 +20,11 @@ import 'package:panakj_app/core/db/boxes/validation_familyBox.dart';
 import 'package:panakj_app/core/db/boxes/validation_personalinfoBox.dart';
 import 'package:panakj_app/core/db/boxes/family_status_box.dart';
 import 'package:panakj_app/core/db/boxes/validation_residentialBox.dart';
-import 'package:panakj_app/core/model/achievments_data/achievments_data.dart';
-import 'package:panakj_app/core/model/sibling_data/sibling_data.dart';
-import 'package:panakj_app/core/repository/achievmentscard_repo.dart';
-import 'package:panakj_app/core/repository/siblingcard_repo.dart';
 import 'package:panakj_app/package/presentation/custom_stepper.dart';
 import 'package:panakj_app/ui/screens/student/screens/academics/screens/academics_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/academics/screens/achievments_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/family/screens/family_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/home/screens/home_screen.dart';
-import 'package:panakj_app/ui/screens/student/screens/home_screen/students_home_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/info/screens/info_layout.dart';
 import 'package:panakj_app/ui/screens/student/widgets/bottom_card.dart';
 import 'package:panakj_app/ui/screens/student/widgets/next_and_previous_button.dart';
@@ -38,8 +33,6 @@ import 'package:panakj_app/ui/view_model/Dob/dob_bloc.dart';
 import 'package:panakj_app/ui/view_model/acadmicdetails/academic_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxfirst/checkboxfirst_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxsec/checkboxsec_bloc.dart';
-import 'package:panakj_app/ui/view_model/checkboxthird/checkboxthird_bloc.dart';
-import 'package:panakj_app/ui/view_model/family/family_bloc.dart';
 import 'package:panakj_app/ui/view_model/familyInfo/family_info_bloc.dart';
 import 'package:panakj_app/ui/view_model/horizontal_radio_btn/horizontal_radio_btn_bloc.dart';
 import 'package:panakj_app/ui/view_model/personalInfo/personal_info_bloc.dart';
@@ -49,7 +42,6 @@ import 'package:panakj_app/ui/view_model/question2_res/question2_res_bloc.dart';
 import 'package:panakj_app/ui/view_model/question3_res/question3_res_bloc.dart';
 import 'package:panakj_app/ui/view_model/selctedbank/selctedbank_bloc.dart';
 import 'package:panakj_app/ui/view_model/selected_course/selected_course_bloc.dart';
-import 'package:panakj_app/ui/view_model/selected_occupation/selected_occupation_bloc.dart';
 import 'package:panakj_app/ui/view_model/selected_school/selected_school_bloc.dart';
 import 'package:panakj_app/ui/view_model/students_app_form/students_app_form_bloc.dart';
 import 'package:panakj_app/ui/screens/student/screens/home_screen/navigation_screen.dart';
@@ -230,6 +222,55 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
     setState(() {});
   }
 
+  Future storedta() async {
+    var box = await Hive.openBox<SiblingCardDB>('aseebsiblingbox');
+
+    // Hardcode some data into Hive
+    await box.add(SiblingCardDB(
+      name: 'John Doe',
+      gender: 'Male',
+      qualification: 'Bachelor',
+      courseofstudy: 'Engineering',
+      occupation: 'Software Developer',
+    ));
+
+    await box.add(SiblingCardDB(
+      name: 'Jane Doe',
+      gender: 'Female',
+      qualification: 'Master',
+      courseofstudy: 'Business Administration',
+      occupation: 'Manager',
+    ));
+
+    // Close the Hive box
+    await box.close();
+  }
+  // Open the Hive box
+
+  final Box<SiblingCardDB> box = Hive.box<SiblingCardDB>('aseebsiblingbox');
+  List<Map<String, dynamic>> siblingsList = [];
+
+  void populateSiblingsList() {
+    siblingsList.clear(); // Clear previous list before populating
+    for (var i = 0; i < box.length; i++) {
+      final sibling = box.getAt(i);
+      final siblingMap = {
+        "name": sibling?.name.toString(),
+        "gender": "m",
+        "qualification": 2,
+        "course": 5,
+        "occupation": 9,
+      };
+      
+      siblingsList.add(siblingMap);
+    }
+ 
+
+    Timer.periodic(Duration(seconds: 8), (timer) {
+      print("Siblings list: $siblingsList");
+    });
+  }
+
   ScrollController scrollController = ScrollController();
 
   // 1st Section
@@ -263,33 +304,10 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
   // 4th section
   TextEditingController landcontroller = TextEditingController();
 
-  Future getSiblingsDataForApi() async {
-    // Open your Hive box
-    var box = await Hive.openBox<SiblingCardDB>('sibling_cards');
-
-    // Retrieve siblings data from Hive
-    List<SiblingCardDB> siblingsList = box.values.toList();
-
-    // Map Hive objects to JSON format
-    List<Map<String, dynamic>> siblingsJsonList = siblingsList.map((sibling) {
-      return {
-        'name': sibling.name,
-        'gender': sibling.gender,
-        'qualification': sibling.qualification,
-        'course': sibling.courseofstudy,
-        'occupation': sibling.occupation,
-      };
-    }).toList();
-
-    // // Close the Hive box
-    // await box.close();
-
-    // Return data in the required format
-    return siblingsJsonList;
-  }
-
   @override
   Widget build(BuildContext context) {
+    populateSiblingsList();
+
     FocusNode focuscontroller1 = FocusNode();
     FocusNode focuscontroller2 = FocusNode();
     FocusNode focuscontroller3 = FocusNode();
@@ -590,112 +608,74 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                             ),
                             nextBtn: InkResponse(
                               onTap: () async {
-                                final Box<SiblingCardDB> box =
-                                    Hive.box<SiblingCardDB>('aseebsiblingbox');
-                                List<Map<String, dynamic>> siblingsList = [];
-
-                            
-                                  for (var i = 0; i < box.length; i++) {
-                                    final siblings = box.getAt(i);
-                                    // final siblingsMap = {
-                                    //   'category': siblings?.category.toString(),
-                                    //   'achievement_details': siblings?.achievmentController.toString(),
-                                    //   'upload_file': 44,
-                                    // };
-                                    final siblingsMap = {
-                                      "name": siblings?.name.toString(),
-                                      "gender": siblings?.gender.toString(),
-                                      "qualification":
-                                          siblings?.qualification.toString(),
-                                      "course":
-                                          siblings?.courseofstudy.toString(),
-                                      "occupation":
-                                          siblings?.occupation.toString(),
-                                    };
-                                    siblingsList.add(siblingsMap);
-                                  }
-                                  print("Achievements list: $siblingsList");
-                                
-
-                           
-                                final List<int> keys =
-                                    box.keys.cast<int>().toList();
-                                for (int key in keys) {
-                                  final achievment = box.get(key);
-                                  if (achievment != null) {
-                                    print(
-                                        'ID: $key, Achievement: ${achievment.courseofstudy}');
-                                    print(
-                                        'ID: $key, category: ${achievment.gender}');
-                                    print(
-                                        'ID: $key, uploadfile: ${achievment.name}');
-                                    BlocProvider.of<FamilyInfoBloc>(context)
-                                        .add(FamilyInfoEvent.postFamilyInfo(
-                                      fathername:
-                                          fathernameController.text.toString(),
-                                      falive: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      fdisabled: context
-                                              .read<CheckboxsecBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      fincome: fatherincomeController.text
-                                          .toString(),
-                                      focupation: '4444',
-                                      mathername:
-                                          mothernameController.text.toString(),
-                                      malive: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      mdisabled: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      mincome: motherincomeController.text
-                                          .toString(),
-                                      mocupation: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      gathername:
-                                          guardianameController.text.toString(),
-                                      galive: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      gdisabled: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      gincome: guardiaincomeController.text
-                                          .toString(),
-                                      gocupation: context
-                                              .read<CheckboxfirstBloc>()
-                                              .state
-                                              .alive
-                                          ? '1'
-                                          : '0',
-                                      SiblingsdatafromHive: siblingsList,
-                                    ));
-                                  }
-                                }
+                                BlocProvider.of<FamilyInfoBloc>(context)
+                                    .add(FamilyInfoEvent.postFamilyInfo(
+                                  fathername:
+                                      fathernameController.text.toString(),
+                                  falive: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  fdisabled: context
+                                          .read<CheckboxsecBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  fincome:
+                                      fatherincomeController.text.toString(),
+                                  focupation: '4444',
+                                  mathername:
+                                      mothernameController.text.toString(),
+                                  malive: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  mdisabled: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  mincome:
+                                      motherincomeController.text.toString(),
+                                  mocupation: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  gathername:
+                                      guardianameController.text.toString(),
+                                  galive: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  gdisabled: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  gincome:
+                                      guardiaincomeController.text.toString(),
+                                  gocupation: context
+                                          .read<CheckboxfirstBloc>()
+                                          .state
+                                          .alive
+                                      ? '1'
+                                      : '0',
+                                  SiblingsdatafromHive: (siblingsList != null &&
+                                          siblingsList!.length < 1)
+                                      ? siblingsList
+                                      : siblingsList,
+                                ));
                               },
                               child: const StepperBtn(
                                 nextorprev: 'Next',

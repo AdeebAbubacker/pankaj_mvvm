@@ -28,7 +28,7 @@ class _SiblingsCardState extends State<SiblingsCard> {
   Map<int, Widget> cards = {}; // Map to store cards with unique keys
   Map<int, TextEditingController> controllers =
       {}; // Map to store controllers for each card
-  int _currentKeyfo11 = 0; // Variable to keep track of unique keys
+  int _currentKeyfo = 0; // Variable to keep track of unique keys
   int _currentKeynormal = 1; // Variable to keep track of unique keys
   String? selectedDropdownValue;
   String? selectedFilePath;
@@ -60,17 +60,17 @@ class _SiblingsCardState extends State<SiblingsCard> {
 
   void _firstcard() {
     setState(() {
-      final currentKey = _currentKeyfo11; // Store the current key
+      final currentKey = _currentKeyfo; // Store the current key
       final controller = TextEditingController();
       controllers[currentKey] = controller;
       Hive.box<SiblingCardDB>('aseebsiblingbox').put(
         currentKey,
         SiblingCardDB(
-          courseofstudy: 1,
+          courseofstudy: '1',
           gender: 's',
            name: controllers[currentKey]?.text ?? 'dd',
-          occupation: 1,
-          qualification: 1,
+          occupation: '1',
+          qualification: '1',
         ),
       );
       controller.addListener(() {
@@ -78,11 +78,11 @@ class _SiblingsCardState extends State<SiblingsCard> {
         Hive.box<SiblingCardDB>('aseebsiblingbox').put(
           currentKey,
           SiblingCardDB(
-            courseofstudy: 1,
+            courseofstudy: '1',
             gender: 's',
              name: controllers[currentKey]?.text ?? 'dd',
-            occupation: 1,
-            qualification: 1,
+            occupation: '1',
+            qualification: '1',
           ),
         );
       });
@@ -99,11 +99,11 @@ class _SiblingsCardState extends State<SiblingsCard> {
       Hive.box<SiblingCardDB>('aseebsiblingbox').put(
         currentKey,
         SiblingCardDB(
-          courseofstudy: 1,
+          courseofstudy: '1',
           gender: 's',
         name: controllers[currentKey]?.text ?? 'dd',
-          occupation: 1,
-          qualification: 1,
+          occupation: '1',
+          qualification: '1',
         ),
       );
       controller.addListener(() {
@@ -111,11 +111,11 @@ class _SiblingsCardState extends State<SiblingsCard> {
         Hive.box<SiblingCardDB>('aseebsiblingbox').put(
           currentKey,
           SiblingCardDB(
-            courseofstudy: 1,
+            courseofstudy: '1',
             gender: 's',
             name: controllers[currentKey]?.text ?? 'dd',
-            occupation: 1,
-            qualification: 1,
+            occupation: '1',
+            qualification: '1',
           ),
         );
       });
@@ -140,11 +140,11 @@ class _SiblingsCardState extends State<SiblingsCard> {
     Hive.box<SiblingCardDB>('aseebsiblingbox').put(
       key,
       SiblingCardDB(
-        courseofstudy: 1,
+        courseofstudy: '1',
         gender: 's',
         name: controllers[key]?.text ?? 'dd',
-        occupation: 1,
-        qualification: 1,
+        occupation: '1',
+        qualification: '1',
       ),
     );
   }
@@ -195,7 +195,7 @@ class _SiblingsCardState extends State<SiblingsCard> {
                 ],
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 12),
+                padding: EdgeInsets.only(top: 5, bottom: 2),
                 child: Text('Brother / Sister', style: kfamiltTitleTextColor),
               ),
               LabelInputText(
@@ -251,7 +251,7 @@ class _SiblingsCardState extends State<SiblingsCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 12),
+                padding: EdgeInsets.only(top: 5, bottom: 2),
                 child: Text('Brother / Sister', style: kfamiltTitleTextColor),
               ),
               LabelInputText(

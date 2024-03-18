@@ -25,12 +25,20 @@ class AcademicService {
           "preferred_course": preferredcourse
         }
       ],
-      "achievements": achievement,
+     // "achievements": achievement,
       
-      // [
-      //   {"category": '43', "achievement_details": '45', "upload_file": '44'},
-      //   {"category": '43', "achievement_details": '45', "upload_file": '44'}
-      // ]
+      "achievements":[
+		{
+            "category": 43,
+            "achievement_details": 45,
+            "upload_file": 44
+        },
+		{
+            "category": 43,
+            "achievement_details": 45,
+            "upload_file": 44
+        }
+	]
     };
 
     final response = await http.post(
@@ -42,7 +50,7 @@ class AcademicService {
     );
 
     if (response.statusCode == 200) {
-      print('response fro aaaaaaaaaapi ${response.body.toString()}');
+      print('response fro aaaaaaaaaapi  academics ${response.body.toString()}');
       return AcademicData.fromJson(json.decode(response.body));
     } else {
       // Handle error response if needed
