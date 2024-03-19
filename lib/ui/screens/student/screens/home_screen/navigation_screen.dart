@@ -159,7 +159,6 @@ class ContactUsScreen extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 radius: 50.0,
-                backgroundImage: AssetImage('assets/icon.png'),
               ),
               SizedBox(height: 20.0),
               Text(
@@ -172,7 +171,7 @@ class ContactUsScreen extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                'Address: 123 Main Street\nCity: Your City\nState: Your State\nCountry: Your Country\n\nEmail: contact@example.com\nPhone: +123 456 7890',
+                'Address: 123 Main Street\nCity: Kochin \nState: Kerala\nCountry: INDIA\n\nEmail: adeebabu655@example.com\nPhone: +91 8848055651',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16.0,
@@ -195,36 +194,33 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const CircleAvatar(
-              radius: 50.0,
-              backgroundImage: AssetImage('assets/icon.png'),
-            ),
-            const SizedBox(height: 20.0),
-            Text(
-              'About Us',
-              style: GoogleFonts.montserrat(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const CircleAvatar(
+                radius: 50.0,
               ),
-            ),
-            const SizedBox(height: 10.0),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(
-                  'This Trust was established and funded in April 1999 by its Founder Dr. Thampil Pankaj, under the CHARITABLE TRUST ACT OF KERALA. Remembering his own childhood experience of poverty and resulting hardships, and aware of the great value of some assistance he received to further his own education, Dr. Pankaj set up this Educational and Charity Trust mainly to help poor, meritorious students to pursue their higher education. He believes that there are too many bright talented young children who are unable to receive higher education because of their family\'s poor financial background. With some financial assistance for their studies, they can do better in life and also serve the overall society much better. Through this Trust and its scholarship program he hopes to help at least some of these children to get the opportunity for higher education.',
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16.0,
-                  ),
+              const SizedBox(height: 20.0),
+              Text(
+                'About Us',
+                style: GoogleFonts.montserrat(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 10.0),
+              Text(
+                'This Trust was established and funded in April 1999 by its Founder Dr. Thampil Pankaj, under the CHARITABLE TRUST ACT OF KERALA. Remembering his own childhood experience of poverty and resulting hardships, and aware of the great value of some assistance he received to further his own education, Dr. Pankaj set up this Educational and Charity Trust mainly to help poor, meritorious students to pursue their higher education. He believes that there are too many bright talented young children who are unable to receive higher education because of their family\'s poor financial background. With some financial assistance for their studies, they can do better in life and also serve the overall society much better. Through this Trust and its scholarship program he hopes to help at least some of these children to get the opportunity for higher education.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.montserrat(
+                  fontSize: 16.0,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

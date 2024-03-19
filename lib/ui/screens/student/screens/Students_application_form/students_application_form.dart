@@ -20,6 +20,7 @@ import 'package:panakj_app/core/db/boxes/validation_familyBox.dart';
 import 'package:panakj_app/core/db/boxes/validation_personalinfoBox.dart';
 import 'package:panakj_app/core/db/boxes/family_status_box.dart';
 import 'package:panakj_app/core/db/boxes/validation_residentialBox.dart';
+import 'package:panakj_app/core/service/firebase_sibling.dart';
 import 'package:panakj_app/package/presentation/custom_stepper.dart';
 import 'package:panakj_app/ui/screens/student/screens/academics/screens/academics_screen.dart';
 import 'package:panakj_app/ui/screens/student/screens/academics/screens/achievments_screen.dart';
@@ -255,16 +256,15 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
     for (var i = 0; i < box.length; i++) {
       final sibling = box.getAt(i);
       final siblingMap = {
-        "name": sibling?.name.toString(),
-        "gender": "m",
-        "qualification": 2,
-        "course": 5,
-        "occupation": 9,
+        "name": sibling?.name.toString() ?? 'ddd',
+        "gender":sibling?.name.toString() ?? 'ddd',
+        "qualification": sibling?.name.toString() ?? 'ddd',
+        "course": sibling?.name.toString() ?? 'ddd',
+        "occupation":sibling?.name.toString() ?? 'ddd',
       };
-      
+
       siblingsList.add(siblingMap);
     }
- 
 
     Timer.periodic(Duration(seconds: 8), (timer) {
       print("Siblings list: $siblingsList");
@@ -608,6 +608,17 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                             ),
                             nextBtn: InkResponse(
                               onTap: () async {
+                                // Instantiate your FirestoreService
+                                FirestoreService firestoreService =
+                                    FirestoreService();
+                                Map<String, dynamic> data = {
+                                  'name': 'John Doe',
+                                  'age': 25,
+                                  'siblings': siblingsList
+                                  // Add other fields as needed
+                                };
+                                // Call the postData method with your data
+                                await firestoreService.postData(data);
                                 BlocProvider.of<FamilyInfoBloc>(context)
                                     .add(FamilyInfoEvent.postFamilyInfo(
                                   fathername:
@@ -765,56 +776,22 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                             ),
                             nextBtn: InkResponse(
                               onTap: () async {
-                                final box =
-                                    Hive.box<AchievmentDB>('achievmentBox');
-                                final List<int> keys =
-                                    box.keys.cast<int>().toList();
-                                for (int key in keys) {
-                                  final achievment = box.get(key);
-                                  if (achievment != null) {
-                                    print(
-                                        'ID: $key, Achievement: ${achievment.achievmentController}');
-                                    print(
-                                        'ID: $key, category: ${achievment.category}');
-                                    print(
-                                        'ID: $key, uploadfile: ${achievment.uploadfile}');
-                                    context.read<AcademicBloc>().add(
-                                        AcademicEvent.postAchievmentInfo(
-                                            student_id: key,
-                                            title: achievment.category,
-                                            description: achievment
-                                                .achievmentController));
-                                  }
-                                }
-                                String stringWithoutPercentsslc =
-                                    sslcmarksController.text
-                                        .replaceAll(RegExp(r'[^0-9]'), '');
-                                String stringWithoutPercentplusone =
-                                    plusoneMarksController.text
-                                        .replaceAll(RegExp(r'[^0-9]'), '');
-                                String stringWithoutPercentplustwo =
-                                    plustwoMarksController.text
-                                        .replaceAll(RegExp(r'[^0-9]'), '');
-                                int parsedNumbersslc =
-                                    int.parse(stringWithoutPercentsslc);
-                                int parsedNumberplusone =
-                                    int.parse(stringWithoutPercentplusone);
-                                int parsedNumberplustwo =
-                                    int.parse(stringWithoutPercentplustwo);
                                 BlocProvider.of<AcademicBloc>(context).add(
                                   AcademicEvent.postAcademicInfo(
                                     school: context
                                         .read<SelectedSchoolBloc>()
                                         .state
-                                        .selectedschool,
-                                    reg_no: int.parse(examregcontroller.text),
-                                    sslc: parsedNumbersslc,
-                                    plus_one: parsedNumberplusone,
-                                    plus_two: parsedNumberplustwo,
+                                        .selectedschool
+                                        .toString(),
+                                    reg_no: '23',
+                                    sslc: sslcmarksController.text,
+                                    plus_one: plusoneMarksController.text,
+                                    plus_two: plustwoMarksController.text,
                                     course_pref: context
                                         .read<SelectedCourseBloc>()
                                         .state
-                                        .selectedCourse,
+                                        .selectedCourse
+                                        .toString(),
                                   ),
                                 );
                               },

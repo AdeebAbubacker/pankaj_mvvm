@@ -14,31 +14,40 @@ class AcademicService {
     required String preferredcourse,
     required List achievement,
   }) async {
-    final rawData = {
+    final rawData =
+        // {
+        //   "academics": [
+        //     {
+        //       "mark_sslc": sslcmark,
+        //       "mark_p1": marksplusone,
+        //       "mark_p2": marksplustwo,
+        //       "school_id": '1',
+        //       "hall_ticket": hallTicket,
+        //       "preferred_course": '1'
+        //     }
+        //   ],
+
+        //   "achievements": [
+        //     {"category": '43', "achievement_details": '45', "upload_file": '44'},
+        //     {"category": '43', "achievement_details": '45', "upload_file": '44'}
+        //   ]
+        // }
+
+        {
       "academics": [
         {
-          "mark_sslc": sslcmark,
-          "mark_p1": marksplusone,
-          "mark_p2": marksplustwo,
-          "school_id": schoolId,
-          "hall_ticket": hallTicket,
-          "preferred_course": preferredcourse
+          "mark_sslc": 43,
+          "mark_p1": 45,
+          "mark_p2": 44,
+          "school_id": 2,
+          "hall_ticket": 456,
+          "preferred_course": 4
         }
       ],
-     // "achievements": achievement,
-      
-      "achievements":[
-		{
-            "category": 43,
-            "achievement_details": 45,
-            "upload_file": 44
-        },
-		{
-            "category": 43,
-            "achievement_details": 45,
-            "upload_file": 44
-        }
-	]
+      "achievements": [
+        {"category": 43, "achievement_details": 45, "upload_file": 44},
+        {"category": 43, "achievement_details": 45, "upload_file": 44}
+      ]
     };
 
     final response = await http.post(
@@ -54,7 +63,7 @@ class AcademicService {
       return AcademicData.fromJson(json.decode(response.body));
     } else {
       // Handle error response if needed
-      print('Failed to post personal info: ${response.statusCode}');
+      print('Failed to post academics info: ${response.statusCode}');
       throw Exception('Failed to post personal info: ${response.statusCode}');
     }
   }

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:panakj_app/core/model/family_data/family_data.dart';
 
-
-
 class FamilyInfoService {
   Future<FamilyData> postfamilyInfoservice({
     String? fname,
@@ -24,88 +22,91 @@ class FamilyInfoService {
     String? gdisabled,
     String? goccupation,
     //-----------------------------------
-     List? SiblingSdtafromHive ,
-   
+    List? SiblingSdtafromHive,
   }) async {
-    final rawData =
-
-        // {
-        //   "guardians": [
-        //     {
-        //       "name": fname,
-        //       "alive": falive,
-        //       "disabled": fdisabled,
-        //       "ocupation": foccupation,
-        //       "income": fincome,
-        //       "relation": "father"
-        //     },
-        //     {
-        //       "name": mname,
-        //       "alive": malive,
-        //       "disabled": mdisabled,
-        //       "ocupation": moccupation,
-        //       "income": mincome,
-        //       "relation": "mother"
-        //     },
-        //     {
-        //       "name": gname,
-        //       "alive": galive,
-        //       "disabled": gdisabled,
-        //       "ocupation": goccupation,
-        //       "income": gincome,
-        //       "relation": "guardian"
-        //     }
-        //   ],
-        //   "siblings": [
-        //     {
-        //       "name": "Shyam",
-        //       "gender": "m",
-        //       "qualification": 2,
-        //       "course": 5,
-        //       "occupation": 9
-        //     }
-        //   ]
-        // };
-
-        {
+    final rawData = {
       "guardians": [
-        {
-          "name": "Ravi11",
-          "alive": 1,
-          "disabled": 1,
-          "ocupation": 99,
-          "income": 12000,
-          "relation": "father"
-        },
-        {
-          "name": "Sathi",
-          "alive": 0,
-          "disabled": 1,
-          "ocupation": 99,
-          "income": 0,
-          "relation": "mother"
-        },
-        {
-          "name": "akash11",
-          "alive": 1,
-          "disabled": 1,
-          "ocupation": 89,
-          "income": 12000,
-          "relation": "guardian"
-        }
+        if (fname!.isNotEmpty &&
+            falive!.isNotEmpty &&
+            fdisabled!.isNotEmpty &&
+            foccupation!.isNotEmpty &&
+            fincome!.isNotEmpty)
+          {
+            "name": fname,
+            "alive": falive,
+            "disabled": fdisabled,
+            "ocupation": foccupation,
+            "income": fincome,
+            "relation": "father"
+          },
+        if (mname!.isNotEmpty &&
+            malive!.isNotEmpty &&
+            mdisabled!.isNotEmpty &&
+            moccupation!.isNotEmpty &&
+            mincome!.isNotEmpty)
+          {
+            "name": mname,
+            "alive": malive,
+            "disabled": mdisabled,
+            "ocupation": moccupation,
+            "income": mincome,
+            "relation": "mother"
+          },
+        if (gname!.isNotEmpty &&
+            galive!.isNotEmpty &&
+            gdisabled!.isNotEmpty &&
+            goccupation!.isNotEmpty &&
+            gincome!.isNotEmpty)
+          {
+            "name": gname,
+            "alive": galive,
+            "disabled": gdisabled,
+            "ocupation": goccupation,
+            "income": gincome,
+            "relation": "guardian"
+          },
       ],
-    //  "siblings": SiblingSdtafromHive,
-    "siblings": [
+      // "siblings": SiblingSdtafromHive ?? [],
+      "siblings": [
         {
-            "name": "Shyam",
-            "gender": "m",
-            "qualification": 2,
-            "course": 5,
-            "occupation": 9
+          "name": "Shyam",
+          "gender": "m",
+          "qualification": 2,
+          "course": 5,
+          "occupation": 9
         }
-       
-    ]
+      ]
     };
+
+    //     {
+    //   "guardians": [
+    //     {
+    //       "name": "Ravi11",
+    //       "alive": 1,
+    //       "disabled": 1,
+    //       "ocupation": 99,
+    //       "income": 12000,
+    //       "relation": "father"
+    //     },
+    //     {
+    //       "name": "Sathi",
+    //       "alive": 0,
+    //       "disabled": 1,
+    //       "ocupation": 99,
+    //       "income": 0,
+    //       "relation": "mother"
+    //     },
+    //     {
+    //       "name": "akash11",
+    //       "alive": 1,
+    //       "disabled": 1,
+    //       "ocupation": 89,
+    //       "income": 12000,
+    //       "relation": "guardian"
+    //     }
+    //   ],
+    //  "siblings": SiblingSdtafromHive,
+    // };
     final response = await http.post(
       Uri.parse('https://pankajtrust.org/api/student/family_info?id=513491'),
       body: jsonEncode(rawData),

@@ -423,12 +423,10 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: '',
-        //  theme: ThemeData(useMaterial3: false),
         //  home: AdminDashboard(),
         home: const SplashScreen(),
-        //   home: const PostScreen(),
-        //  home: const PostScreen(),
-        //  home: SiblingsData(),
+      // home: SiblingsData(),
+  
       ),
     );
   }

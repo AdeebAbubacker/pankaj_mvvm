@@ -19,31 +19,25 @@ mixin _$AcademicEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)
+    required TResult Function(String school, String reg_no, String sslc,
+            String plus_one, String plus_two, String course_pref)
         postAcademicInfo,
-    required TResult Function(int student_id, String title, String description)
-        postAchievmentInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
+    TResult? Function(String school, String reg_no, String sslc,
+            String plus_one, String plus_two, String course_pref)?
         postAcademicInfo,
-    TResult? Function(int student_id, String title, String description)?
-        postAchievmentInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
+    TResult Function(String school, String reg_no, String sslc, String plus_one,
+            String plus_two, String course_pref)?
         postAcademicInfo,
-    TResult Function(int student_id, String title, String description)?
-        postAchievmentInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,21 +45,18 @@ mixin _$AcademicEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(postAcademicInfo value) postAcademicInfo,
-    required TResult Function(PostAchievmentInfo value) postAchievmentInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(postAcademicInfo value)? postAcademicInfo,
-    TResult? Function(PostAchievmentInfo value)? postAchievmentInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(postAcademicInfo value)? postAcademicInfo,
-    TResult Function(PostAchievmentInfo value)? postAchievmentInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,11 +119,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)
+    required TResult Function(String school, String reg_no, String sslc,
+            String plus_one, String plus_two, String course_pref)
         postAcademicInfo,
-    required TResult Function(int student_id, String title, String description)
-        postAchievmentInfo,
   }) {
     return started();
   }
@@ -141,11 +130,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
+    TResult? Function(String school, String reg_no, String sslc,
+            String plus_one, String plus_two, String course_pref)?
         postAcademicInfo,
-    TResult? Function(int student_id, String title, String description)?
-        postAchievmentInfo,
   }) {
     return started?.call();
   }
@@ -154,11 +141,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
+    TResult Function(String school, String reg_no, String sslc, String plus_one,
+            String plus_two, String course_pref)?
         postAcademicInfo,
-    TResult Function(int student_id, String title, String description)?
-        postAchievmentInfo,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,7 +157,6 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(postAcademicInfo value) postAcademicInfo,
-    required TResult Function(PostAchievmentInfo value) postAchievmentInfo,
   }) {
     return started(this);
   }
@@ -182,7 +166,6 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(postAcademicInfo value)? postAcademicInfo,
-    TResult? Function(PostAchievmentInfo value)? postAchievmentInfo,
   }) {
     return started?.call(this);
   }
@@ -192,7 +175,6 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(postAcademicInfo value)? postAcademicInfo,
-    TResult Function(PostAchievmentInfo value)? postAchievmentInfo,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -213,12 +195,12 @@ abstract class _$$postAcademicInfoImplCopyWith<$Res> {
       __$$postAcademicInfoImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {int school,
-      int reg_no,
-      int sslc,
-      int plus_one,
-      int plus_two,
-      int course_pref});
+      {String school,
+      String reg_no,
+      String sslc,
+      String plus_one,
+      String plus_two,
+      String course_pref});
 }
 
 /// @nodoc
@@ -243,27 +225,27 @@ class __$$postAcademicInfoImplCopyWithImpl<$Res>
       school: null == school
           ? _value.school
           : school // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       reg_no: null == reg_no
           ? _value.reg_no
           : reg_no // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       sslc: null == sslc
           ? _value.sslc
           : sslc // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       plus_one: null == plus_one
           ? _value.plus_one
           : plus_one // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       plus_two: null == plus_two
           ? _value.plus_two
           : plus_two // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       course_pref: null == course_pref
           ? _value.course_pref
           : course_pref // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -280,17 +262,17 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
       required this.course_pref});
 
   @override
-  final int school;
+  final String school;
   @override
-  final int reg_no;
+  final String reg_no;
   @override
-  final int sslc;
+  final String sslc;
   @override
-  final int plus_one;
+  final String plus_one;
   @override
-  final int plus_two;
+  final String plus_two;
   @override
-  final int course_pref;
+  final String course_pref;
 
   @override
   String toString() {
@@ -328,11 +310,9 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)
+    required TResult Function(String school, String reg_no, String sslc,
+            String plus_one, String plus_two, String course_pref)
         postAcademicInfo,
-    required TResult Function(int student_id, String title, String description)
-        postAchievmentInfo,
   }) {
     return postAcademicInfo(
         school, reg_no, sslc, plus_one, plus_two, course_pref);
@@ -342,11 +322,9 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
+    TResult? Function(String school, String reg_no, String sslc,
+            String plus_one, String plus_two, String course_pref)?
         postAcademicInfo,
-    TResult? Function(int student_id, String title, String description)?
-        postAchievmentInfo,
   }) {
     return postAcademicInfo?.call(
         school, reg_no, sslc, plus_one, plus_two, course_pref);
@@ -356,11 +334,9 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
+    TResult Function(String school, String reg_no, String sslc, String plus_one,
+            String plus_two, String course_pref)?
         postAcademicInfo,
-    TResult Function(int student_id, String title, String description)?
-        postAchievmentInfo,
     required TResult orElse(),
   }) {
     if (postAcademicInfo != null) {
@@ -375,7 +351,6 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(postAcademicInfo value) postAcademicInfo,
-    required TResult Function(PostAchievmentInfo value) postAchievmentInfo,
   }) {
     return postAcademicInfo(this);
   }
@@ -385,7 +360,6 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(postAcademicInfo value)? postAcademicInfo,
-    TResult? Function(PostAchievmentInfo value)? postAchievmentInfo,
   }) {
     return postAcademicInfo?.call(this);
   }
@@ -395,7 +369,6 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(postAcademicInfo value)? postAcademicInfo,
-    TResult Function(PostAchievmentInfo value)? postAchievmentInfo,
     required TResult orElse(),
   }) {
     if (postAcademicInfo != null) {
@@ -407,196 +380,21 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
 
 abstract class postAcademicInfo implements AcademicEvent {
   const factory postAcademicInfo(
-      {required final int school,
-      required final int reg_no,
-      required final int sslc,
-      required final int plus_one,
-      required final int plus_two,
-      required final int course_pref}) = _$postAcademicInfoImpl;
+      {required final String school,
+      required final String reg_no,
+      required final String sslc,
+      required final String plus_one,
+      required final String plus_two,
+      required final String course_pref}) = _$postAcademicInfoImpl;
 
-  int get school;
-  int get reg_no;
-  int get sslc;
-  int get plus_one;
-  int get plus_two;
-  int get course_pref;
+  String get school;
+  String get reg_no;
+  String get sslc;
+  String get plus_one;
+  String get plus_two;
+  String get course_pref;
   @JsonKey(ignore: true)
   _$$postAcademicInfoImplCopyWith<_$postAcademicInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$PostAchievmentInfoImplCopyWith<$Res> {
-  factory _$$PostAchievmentInfoImplCopyWith(_$PostAchievmentInfoImpl value,
-          $Res Function(_$PostAchievmentInfoImpl) then) =
-      __$$PostAchievmentInfoImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int student_id, String title, String description});
-}
-
-/// @nodoc
-class __$$PostAchievmentInfoImplCopyWithImpl<$Res>
-    extends _$AcademicEventCopyWithImpl<$Res, _$PostAchievmentInfoImpl>
-    implements _$$PostAchievmentInfoImplCopyWith<$Res> {
-  __$$PostAchievmentInfoImplCopyWithImpl(_$PostAchievmentInfoImpl _value,
-      $Res Function(_$PostAchievmentInfoImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? student_id = null,
-    Object? title = null,
-    Object? description = null,
-  }) {
-    return _then(_$PostAchievmentInfoImpl(
-      student_id: null == student_id
-          ? _value.student_id
-          : student_id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$PostAchievmentInfoImpl implements PostAchievmentInfo {
-  const _$PostAchievmentInfoImpl(
-      {required this.student_id,
-      required this.title,
-      required this.description});
-
-  @override
-  final int student_id;
-  @override
-  final String title;
-  @override
-  final String description;
-
-  @override
-  String toString() {
-    return 'AcademicEvent.postAchievmentInfo(student_id: $student_id, title: $title, description: $description)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PostAchievmentInfoImpl &&
-            (identical(other.student_id, student_id) ||
-                other.student_id == student_id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, student_id, title, description);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PostAchievmentInfoImplCopyWith<_$PostAchievmentInfoImpl> get copyWith =>
-      __$$PostAchievmentInfoImplCopyWithImpl<_$PostAchievmentInfoImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)
-        postAcademicInfo,
-    required TResult Function(int student_id, String title, String description)
-        postAchievmentInfo,
-  }) {
-    return postAchievmentInfo(student_id, title, description);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
-        postAcademicInfo,
-    TResult? Function(int student_id, String title, String description)?
-        postAchievmentInfo,
-  }) {
-    return postAchievmentInfo?.call(student_id, title, description);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(int school, int reg_no, int sslc, int plus_one,
-            int plus_two, int course_pref)?
-        postAcademicInfo,
-    TResult Function(int student_id, String title, String description)?
-        postAchievmentInfo,
-    required TResult orElse(),
-  }) {
-    if (postAchievmentInfo != null) {
-      return postAchievmentInfo(student_id, title, description);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(postAcademicInfo value) postAcademicInfo,
-    required TResult Function(PostAchievmentInfo value) postAchievmentInfo,
-  }) {
-    return postAchievmentInfo(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(postAcademicInfo value)? postAcademicInfo,
-    TResult? Function(PostAchievmentInfo value)? postAchievmentInfo,
-  }) {
-    return postAchievmentInfo?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(postAcademicInfo value)? postAcademicInfo,
-    TResult Function(PostAchievmentInfo value)? postAchievmentInfo,
-    required TResult orElse(),
-  }) {
-    if (postAchievmentInfo != null) {
-      return postAchievmentInfo(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PostAchievmentInfo implements AcademicEvent {
-  const factory PostAchievmentInfo(
-      {required final int student_id,
-      required final String title,
-      required final String description}) = _$PostAchievmentInfoImpl;
-
-  int get student_id;
-  String get title;
-  String get description;
-  @JsonKey(ignore: true)
-  _$$PostAchievmentInfoImplCopyWith<_$PostAchievmentInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
