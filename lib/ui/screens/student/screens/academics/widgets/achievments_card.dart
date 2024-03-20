@@ -343,11 +343,21 @@ class _AchievmentsCardState extends State<AchievmentsCard> {
       }
     }
   }
-
-
-  void _firstCard() {
+void _firstCard() {
   final box = Hive.box<AchievmentDB>('achievmentBox');
   final List<int> keys = box.keys.cast<int>().toList();
+  
+  // Check if there are no achievements in the box
+  if (keys.isEmpty) {
+    final controller = TextEditingController();
+    controllers[0] = controller;
+    controller.addListener(() {
+      _updateHiveData(0);
+    });
+    cards[0] = _buildInitialCard(0);
+    return; // Exit the method if there are no achievements
+  }
+  
   setState(() {
     for (int key in keys) {
       final controller = TextEditingController();

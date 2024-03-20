@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:panakj_app/core/constant/constants.dart';
+import 'package:panakj_app/ui/screens/student/screens/family/widgets/card/sibling_card.dart';
 import 'package:panakj_app/ui/screens/student/screens/family/widgets/local_widgets/occupation_bottomsheet.dart';
 import 'package:panakj_app/ui/screens/student/screens/family/widgets/local_widgets/checkbox_data.dart';
 import 'package:panakj_app/ui/screens/student/widgets/labul_NumericalText.dart';
@@ -128,7 +129,8 @@ class _FamilyCardState extends State<FamilyCard> {
               mytext: 'Monthly Income',
               numController: widget.guardiaincomeController),
           const LineDivider(),
-          widget.siblings
+          widget.siblings,
+          
         ],
       ),
     );

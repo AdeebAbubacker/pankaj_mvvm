@@ -424,9 +424,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: '',
         //  home: AdminDashboard(),
-        home: const SplashScreen(),
-      // home: SiblingsData(),
-  
+       home: const SplashScreen(),
+       // home: SiblingsData(),
       ),
     );
   }

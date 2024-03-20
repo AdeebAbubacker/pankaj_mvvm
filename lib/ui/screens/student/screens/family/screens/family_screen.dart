@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:panakj_app/core/db/adapters/siblingcard_adapter/siblingcard_adapter.dart';
@@ -172,9 +171,16 @@ class FamilyScreen extends StatelessWidget {
     return StreamBuilder(
       stream: Hive.box<SiblingCardDB>('aseebsiblingbox').watch(),
       builder: (context, snapshot) {
+        // final Box<SiblingCardDB> box =
+        //     Hive.box<SiblingCardDB>('aseebsiblingbox');
+        // final numberOfAchievements = box.length;
+        // final dynamicHeight = 0 + (numberOfAchievements * 620);
         final Box<SiblingCardDB> box =
             Hive.box<SiblingCardDB>('aseebsiblingbox');
-        final numberOfAchievements = box.length;
+        final numberOfCards = box.length;
+
+        // Add 1 for the default card if there are no items in the box
+        final numberOfAchievements = numberOfCards == 0 ? 1 : numberOfCards + 1;
         final dynamicHeight = 0 + (numberOfAchievements * 620);
 
         // Timer.periodic(Duration(seconds: 3), (timer) {
@@ -183,7 +189,7 @@ class FamilyScreen extends StatelessWidget {
         //   print("Number of  siblings 3 : ${box.length}");
         // });
 
-        print("Family Layout Height: ${760 + box.keys.length * 500}");
+        print("Family Layout Height: ${dynamicHeight}");
 
         return SingleChildScrollView(
           child: Column(
@@ -223,14 +229,23 @@ class FamilyScreen extends StatelessWidget {
               //       )
               //     : const Text(''),
 
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 20),
+              //   child: FamilyLayout(
+              //     familyLayoutheight: dynamicHeight.toDouble(),
+              //     title: 'Siblings Details',
+              //     familyDetailsCard: const SiblingsCard(),
+              //   ),
+              // ),
+              Text('data'),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: FamilyLayout(
                   familyLayoutheight: dynamicHeight.toDouble(),
                   title: 'Siblings Details',
-                  familyDetailsCard: SiblingsCard(),
+                  familyDetailsCard: const SiblingsCard(),
                 ),
-              )
+              ),
             ],
           ),
         );
