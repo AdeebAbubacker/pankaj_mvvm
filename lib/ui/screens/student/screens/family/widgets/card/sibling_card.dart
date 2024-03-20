@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -781,32 +783,55 @@ class _SiblingsCardState extends State<SiblingsCard> {
       }
     });
   }
+void _addCard() {
+  final currentKey = cards.keys.isEmpty ? 0 : cards.keys.reduce(max) + 1;
+  final controller = TextEditingController();
+  controllers[currentKey] = controller;
+  controller.addListener(() {
+    _updateHiveData(currentKey);
+  });
 
-  void _addCard() {
-    final currentKey = _currentKeynormal;
-    final controller = TextEditingController();
-    controllers[currentKey] = controller;
-    controller.addListener(() {
-      _updateHiveData(currentKey);
-    });
+  setState(() {
+    Hive.box<SiblingCardDB>('aseebsiblingbox').put(
+      currentKey,
+      SiblingCardDB(
+        name: selectedDropdownValue ?? 'No Category',
+        gender: 'ss',
+        occupation: controller.text.isNotEmpty ? controller.text : 'No Achievement',
+        courseofstudy: '',
+        qualification: '',
+      ),
+    );
 
-    setState(() {
-      Hive.box<SiblingCardDB>('aseebsiblingbox').put(
-        currentKey,
-        SiblingCardDB(
-          name: selectedDropdownValue ?? 'No Category',
-          gender: 'ss',
-          occupation:
-              controller.text.isNotEmpty ? controller.text : 'No Achievement',
-          courseofstudy: '',
-          qualification: '',
-        ),
-      );
+    cards[currentKey] = _buildCard(currentKey);
+  });
+}
 
-      cards[currentKey] = _buildCard(currentKey);
-      _currentKeynormal++;
-    });
-  }
+  // void _addCard() {
+  //   final currentKey = _currentKeynormal;
+  //   final controller = TextEditingController();
+  //   controllers[currentKey] = controller;
+  //   controller.addListener(() {
+  //     _updateHiveData(currentKey);
+  //   });
+
+  //   setState(() {
+  //     Hive.box<SiblingCardDB>('aseebsiblingbox').put(
+  //       currentKey,
+  //       SiblingCardDB(
+  //         name: selectedDropdownValue ?? 'No Category',
+  //         gender: 'ss',
+  //         occupation:
+  //             controller.text.isNotEmpty ? controller.text : 'No Achievement',
+  //         courseofstudy: '',
+  //         qualification: '',
+  //       ),
+  //     );
+
+  //     cards[currentKey] = _buildCard(currentKey);
+  //     _currentKeynormal++;
+  //   });
+  // }
 
   void _deleteCard(int key) async {
     await Hive.box<SiblingCardDB>('aseebsiblingbox').delete(key);
