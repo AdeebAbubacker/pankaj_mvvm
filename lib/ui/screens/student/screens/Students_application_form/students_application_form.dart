@@ -223,31 +223,6 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
     setState(() {});
   }
 
-  Future storedta() async {
-    var box = await Hive.openBox<SiblingCardDB>('aseebsiblingbox');
-
-    // Hardcode some data into Hive
-    await box.add(SiblingCardDB(
-      name: 'John Doe',
-      gender: 'Male',
-      qualification: 'Bachelor',
-      courseofstudy: 'Engineering',
-      occupation: 'Software Developer',
-    ));
-
-    await box.add(SiblingCardDB(
-      name: 'Jane Doe',
-      gender: 'Female',
-      qualification: 'Master',
-      courseofstudy: 'Business Administration',
-      occupation: 'Manager',
-    ));
-
-    // Close the Hive box
-    await box.close();
-  }
-  // Open the Hive box
-
   final Box<SiblingCardDB> box = Hive.box<SiblingCardDB>('aseebsiblingbox');
   List<Map<String, dynamic>> siblingsList = [];
 
@@ -257,14 +232,21 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
       final sibling = box.getAt(i);
       final siblingMap = {
         "name": sibling?.name.toString() ?? 'ddd',
-        "gender":sibling?.name.toString() ?? 'ddd',
+        "gender": sibling?.name.toString() ?? 'ddd',
         "qualification": sibling?.name.toString() ?? 'ddd',
         "course": sibling?.name.toString() ?? 'ddd',
-        "occupation":sibling?.name.toString() ?? 'ddd',
+        "occupation": sibling?.name.toString() ?? 'ddd',
       };
 
       siblingsList.add(siblingMap);
     }
+    // Set up a watcher to update siblingsList when changes occur
+    final subscription = box.watch().listen((event) {
+      {
+        // Re-populate siblingsList when changes occur
+        populateSiblingsList();
+      }
+    });
 
     Timer.periodic(Duration(seconds: 8), (timer) {
       print("Siblings list: $siblingsList");
