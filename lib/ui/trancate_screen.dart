@@ -8,7 +8,7 @@ class SiblingsData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -43,3 +43,26 @@ class SiblingsData extends StatelessWidget {
     );
   }
 }
+
+
+// class ExampleScreen extends StatelessWidget {
+//   final ExampleClass exampleClass = ExampleClass();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Example Screen'),
+//       ),
+//       body: Center(
+//         child: ElevatedButton(
+//           onPressed: () {
+//             // Call the service function when the button is pressed
+//             exampleClass.serviceFunction();
+//           },
+//           child: Text('Call Service Function'),
+//         ),
+//       ),
+//     );
+//   }
+// }
