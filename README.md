@@ -5,8 +5,7 @@ A new Flutter project.
 ## Getting Started
 
 <p float="left">
-   <img src="https://github.com/AdeebAbubacker/pankaj_mvvm/blob/main/assets/mother.jpg" width="570" />
- 
+   <img src="https://github.com/AdeebAbubacker/pankaj_mvvm/blob/main/assets/logo400.png" width="70" />
 </p>
 
 
