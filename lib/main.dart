@@ -144,7 +144,7 @@ void main() async {
   ///-------------Initialize Hive----------------------------
   await Hive.initFlutter();
 
-  ///-------------register adapter----------------------------
+  ///-------------Register Adapter----------------------------
   Hive.registerAdapter(BankDBAdapter());
   Hive.registerAdapter(personalInfoDBAdapter());
   Hive.registerAdapter(CourseDBAdapter());
@@ -173,7 +173,7 @@ void main() async {
   Hive.registerAdapter(SiblingEducationDBAdapter());
   Hive.registerAdapter(SiblingDataFVDBAdapter());
 
-  ///----------------open box-------------------------------------------------
+  ///----------------0pen Box-------------------------------------------------
   bankBox = await Hive.openBox<BankDB>('bankBox');
   houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
   houseplasterBox = await Hive.openBox<HousePlasterDB>('houseplasterBox');
