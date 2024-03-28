@@ -79,9 +79,12 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
     // Load existing data from Hive into controllers
     _loadDataFromHive();
     _loadDataFromHiveres();
-    timer = Timer.periodic(Duration(seconds: 3), _printHiveValuesresidentail);
-    timer = Timer.periodic(
-        Duration(seconds: 3), _printHiveValuesvalidationresidentail);
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      openAndPrintAchievmentBox();
+    });
+    // timer = Timer.periodic(Duration(seconds: 3), _printHiveValuesresidentail);
+    // timer = Timer.periodic(
+    //     Duration(seconds: 3), _printHiveValuesvalidationresidentail);
 //     // Start periodic timer
 //     timer = Timer.periodic(Duration(seconds: 3), _printHiveValues);
   }
@@ -132,56 +135,56 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
     await cachescreen4box.put(1, residentialdetails);
   }
 
-  void _printHiveValues(Timer timer) {
-    // Print Hive values every 3 seconds
-    final personalInfo = cachescreen1box.get(1);
+  // void _printHiveValues(Timer timer) {
+  //   // Print Hive values every 3 seconds
+  //   final personalInfo = cachescreen1box.get(1);
 
-    if (personalInfo != null) {
-      print(
-          'Hive Values name: ${personalInfo.name1},Hive Values addressController: ${personalInfo.name2},Hive Values emailController: ${personalInfo.name3},Hive Values phoneNoController: ${personalInfo.name4},Hive Values nameatBankController: ${personalInfo.name5},Hive Values accNoController: ${personalInfo.name6},Hive Values ifsc: ${personalInfo.name7},Hive Values gender: ${personalInfo.gender},');
-    } else {
-      //   print('Hive Values: null');
-    }
-  }
+  //   if (personalInfo != null) {
+  //     print(
+  //         'Hive Values name: ${personalInfo.name1},Hive Values addressController: ${personalInfo.name2},Hive Values emailController: ${personalInfo.name3},Hive Values phoneNoController: ${personalInfo.name4},Hive Values nameatBankController: ${personalInfo.name5},Hive Values accNoController: ${personalInfo.name6},Hive Values ifsc: ${personalInfo.name7},Hive Values gender: ${personalInfo.gender},');
+  //   } else {
+  //     //   print('Hive Values: null');
+  //   }
+  // }
 
-  void _printHiveValuesvalidationresidentail(Timer timer) {
-    // Print Hive values every 3 seconds
-    final validationData = validationResidentailBox.get('key');
-    final validationData2 = validationAcademicBox.get('key');
+  // void _printHiveValuesvalidationresidentail(Timer timer) {
+  //   // Print Hive values every 3 seconds
+  //   final validationData = validationResidentailBox.get('key');
+  //   final validationData2 = validationAcademicBox.get('key');
 
-    if (validationData != null) {
-      print(
-          'Hive Values name validation residential: ${validationData.status},');
-      print(
-          'Hive Values name validation residential: ${validationData.status},');
-    } else {
-      //  print('Hive Values: null');
-    }
-  }
+  //   if (validationData != null) {
+  //     print(
+  //         'Hive Values name validation residential: ${validationData.status},');
+  //     print(
+  //         'Hive Values name validation residential: ${validationData.status},');
+  //   } else {
+  //     //  print('Hive Values: null');
+  //   }
+  // }
 
-  void _printHiveValuesresidentail(Timer timer) {
-    // Print Hive values every 3 seconds
-    final residentialdetails = cachescreen4box.get(1);
-    final validationresidentails = validationResidentailBox.get('key')?.status;
-    final validationacademic = validationAcademicBox.get('key')?.status;
-    final validationfamily = validationFamilyBox.get('key')?.status;
-    final validationPersonalInfoBox = validationAcademicBox.get('key')?.status;
+  // void _printHiveValuesresidentail(Timer timer) {
+  //   // Print Hive values every 3 seconds
+  //   final residentialdetails = cachescreen4box.get(1);
+  //   final validationresidentails = validationResidentailBox.get('key')?.status;
+  //   final validationacademic = validationAcademicBox.get('key')?.status;
+  //   final validationfamily = validationFamilyBox.get('key')?.status;
+  //   final validationPersonalInfoBox = validationAcademicBox.get('key')?.status;
 
-    if (residentialdetails != null) {
-      print('Hive Values name residentail land: ${residentialdetails.land},');
-      print(
-          'Hive Values name residential ownhouse: ${residentialdetails.ownhouse},');
-      print(
-          'Hive Values name validation residentail: ${validationresidentails},');
-      print('Hive Values name validation academics: ${validationacademic},');
-      print(
-          'Hive Values name validation validationfamily: ${validationfamily},');
-      print(
-          'Hive Values name validation validationPersonalInfoBox: ${validationPersonalInfoBox},');
-    } else {
-      //  print('Hive Values null aaanu: null');
-    }
-  }
+  //   if (residentialdetails != null) {
+  //     print('Hive Values name residentail land: ${residentialdetails.land},');
+  //     print(
+  //         'Hive Values name residential ownhouse: ${residentialdetails.ownhouse},');
+  //     print(
+  //         'Hive Values name validation residentail: ${validationresidentails},');
+  //     print('Hive Values name validation academics: ${validationacademic},');
+  //     print(
+  //         'Hive Values name validation validationfamily: ${validationfamily},');
+  //     print(
+  //         'Hive Values name validation validationPersonalInfoBox: ${validationPersonalInfoBox},');
+  //   } else {
+  //     //  print('Hive Values null aaanu: null');
+  //   }
+  // }
 
   void _loadDataFromHive() {
     final personalInfo = cachescreen1box.get(1);
@@ -224,7 +227,30 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
   }
 
   final Box<SiblingCardDB> box = Hive.box<SiblingCardDB>('aseebsiblingbox');
+  final Box<AchievmentDB> box2 = Hive.box<AchievmentDB>('achievmentBox');
+
+  Future<void> openAndPrintAchievmentBox() async {
+    // Open the achievmentBox
+    final Box<AchievmentDB> box =
+        await Hive.openBox<AchievmentDB>('achievmentBox');
+
+    // Iterate through all entries in the box
+    for (int i = 0; i < box.length; i++) {
+      // Get the achievment object at index i
+      final achievment = box.getAt(i);
+
+      // Print the details of the achievment
+      print('Achievment at index $i:');
+      print('Category: ${achievment?.achievmentController}');
+      print('Achievement Details: ${achievment?.achievmentController}');
+      print('Upload File: ${achievment?.achievmentController}');
+      // Add more print statements for other fields if necessary
+      print('--------------------------------------');
+    }
+  }
+
   List<Map<String, dynamic>> siblingsList = [];
+  List<Map<String, dynamic>> achievmentsList = [];
 
   void populateSiblingsList() {
     siblingsList.clear(); // Clear previous list before populating
@@ -248,9 +274,32 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
       }
     });
 
-    Timer.periodic(Duration(seconds: 8), (timer) {
-      print("Siblings list: $siblingsList");
+    // Timer.periodic(Duration(seconds: 8), (timer) {
+    //   print("Siblings list: $siblingsList");
+    // });
+  }
+
+  void populateAchievmentsList() {
+    achievmentsList.clear(); // Clear previous list before populating
+    for (var i = 0; i < box2.length; i++) {
+      final achievment = box2.getAt(i);
+      final achievmentMap = {
+        "name": achievment?.achievmentController.toString() ?? 'ddd',
+      };
+
+      achievmentsList.add(achievmentMap);
+    }
+    // Set up a watcher to update siblingsList when changes occur
+    final subscription = box2.watch().listen((event) {
+      {
+        // Re-populate siblingsList when changes occur
+        populateAchievmentsList();
+      }
     });
+
+    // Timer.periodic(Duration(seconds: 8), (timer) {
+    //   print("Siblings list: $siblingsList");
+    // });
   }
 
   ScrollController scrollController = ScrollController();
@@ -289,6 +338,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
   @override
   Widget build(BuildContext context) {
     populateSiblingsList();
+    populateAchievmentsList();
 
     FocusNode focuscontroller1 = FocusNode();
     FocusNode focuscontroller2 = FocusNode();
@@ -457,7 +507,16 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                           builder: (context, state) {
                             return BottomCard(
                               nextBtn: InkResponse(
-                                onTap: () {
+                                onTap: () async {
+                                  FirestoreService firestoreService =
+                                      FirestoreService();
+                                  Map<String, dynamic> data = {
+                                    'name': 'John Doe',
+                                    'siblings': siblingsList,
+                                    'achievmentsList': achievmentsList,
+                                  };
+                                  // Call the postData method with your data
+                                  await firestoreService.postData(data);
                                   BlocProvider.of<PersonalInfoBloc>(context)
                                       .add(
                                     PostPersonalInfo(
@@ -571,7 +630,9 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                               'the success msg is ------------ ${success.toString()}')));
                                   print(
                                       'Family Status ID: ${familystatusInfoBox.get('key')?.id}');
-                                  print(success.data.toString());
+
+                                  debugPrint(success.data.toString());
+
                                   scrollController.jumpTo(0.0);
                                   handleNextPage(2);
                                 },
@@ -591,16 +652,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                             nextBtn: InkResponse(
                               onTap: () async {
                                 // Instantiate your FirestoreService
-                                FirestoreService firestoreService =
-                                    FirestoreService();
-                                Map<String, dynamic> data = {
-                                  'name': 'John Doe',
-                                  'age': 25,
-                                  'siblings': siblingsList
-                                  // Add other fields as needed
-                                };
-                                // Call the postData method with your data
-                                await firestoreService.postData(data);
+
                                 BlocProvider.of<FamilyInfoBloc>(context)
                                     .add(FamilyInfoEvent.postFamilyInfo(
                                   fathername:
@@ -758,6 +810,17 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                             ),
                             nextBtn: InkResponse(
                               onTap: () async {
+                                // Instantiate your FirestoreService
+                                FirestoreService firestoreService =
+                                    FirestoreService();
+                                Map<String, dynamic> data = {
+                                  'name': 'John Doe',
+                                  'age': 25,
+                                  'siblings': achievmentsList
+                                  // Add other fields as needed
+                                };
+                                // Call the postData method with your data
+                                await firestoreService.postData(data);
                                 BlocProvider.of<AcademicBloc>(context).add(
                                   AcademicEvent.postAcademicInfo(
                                     school: context
@@ -774,6 +837,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                         .state
                                         .selectedCourse
                                         .toString(),
+                                    achievmentsdatafromHive: [],
                                   ),
                                 );
                               },

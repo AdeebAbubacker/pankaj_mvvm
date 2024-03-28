@@ -38,26 +38,26 @@ class _SiblingsCardState extends State<SiblingsCard> {
   @override
   void initState() {
     _firstCard();
-    Timer.periodic(Duration(seconds: 7), (timer) {
-      _printValuesWithKeys();
-    });
+    // Timer.periodic(Duration(seconds: 7), (timer) {
+    //   _printValuesWithKeys();
+    // });
     super.initState();
   }
 
-  void _printValuesWithKeys() {
-    final box = Hive.box<SiblingCardDB>('aseebsiblingbox');
-    final List<int> keys = box.keys.cast<int>().toList();
-    for (int key in keys) {
-      final achievment = box.get(key);
-      if (achievment != null) {
-        print('ID: $key, Sbling: ${achievment.name}');
-        print('ID: $key, Sbling: ${achievment.name}');
-        print('ID: $key, Sbling: ${achievment.name}');
-      } else {
-        print('ID: $key, Sbling: No Sbling');
-      }
-    }
-  }
+  // void _printValuesWithKeys() {
+  //   final box = Hive.box<SiblingCardDB>('aseebsiblingbox');
+  //   final List<int> keys = box.keys.cast<int>().toList();
+  //   for (int key in keys) {
+  //     final achievment = box.get(key);
+  //     if (achievment != null) {
+  //       print('ID: $key, Sbling: ${achievment.name}');
+  //       print('ID: $key, Sbling: ${achievment.name}');
+  //       print('ID: $key, Sbling: ${achievment.name}');
+  //     } else {
+  //       print('ID: $key, Sbling: No Sbling');
+  //     }
+  //   }
+  // }
 
   void _firstCard() {
     final box = Hive.box<SiblingCardDB>('aseebsiblingbox');

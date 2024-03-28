@@ -10,6 +10,7 @@ class AcademicEvent with _$AcademicEvent {
     required final String plus_one,
     required final String plus_two,
     required final String course_pref,
+    List? achievmentsdatafromHive,
    
   }) = postAcademicInfo;
 

@@ -26,7 +26,7 @@ class AcademicBloc extends Bloc<AcademicEvent, AcademicState> {
           schoolId: event.school.toString(),
           hallTicket: '1234',
           preferredcourse: event.course_pref.toString(),
-          achievement: [],
+          achievement: event.achievmentsdatafromHive!,
         );
         // postAcademicService(
         //   // school: event.school,

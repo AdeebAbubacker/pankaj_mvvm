@@ -44,10 +44,11 @@ class AcademicService {
           "preferred_course": 4
         }
       ],
-      "achievements": [
-        {"category": 43, "achievement_details": 45, "upload_file": 44},
-        {"category": 43, "achievement_details": 45, "upload_file": 44}
-      ]
+      "achievements": achievement
+      // [
+      //   {"category": 43, "achievement_details": 45, "upload_file": 44},
+      //   {"category": 43, "achievement_details": 45, "upload_file": 44}
+      // ]
     };
 
     final response = await http.post(

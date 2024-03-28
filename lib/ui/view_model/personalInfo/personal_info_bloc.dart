@@ -32,8 +32,7 @@ class PersonalInfoBloc extends Bloc<PersonalInfoEvent, PersonalInfoState> {
           bankId: event.bankid,
           bankIfsc: event.bankifsc,
         );
-        await Poststudent1InviteService()
-            .poststudent1InviteService(id: 9999999, appl_status: '25');
+        
         emit(state.copyWith(
             isLoading: false,
             isError: false,

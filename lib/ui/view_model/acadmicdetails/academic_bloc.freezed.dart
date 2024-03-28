@@ -19,24 +19,42 @@ mixin _$AcademicEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String school, String reg_no, String sslc,
-            String plus_one, String plus_two, String course_pref)
+    required TResult Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)
         postAcademicInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String school, String reg_no, String sslc,
-            String plus_one, String plus_two, String course_pref)?
+    TResult? Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)?
         postAcademicInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String school, String reg_no, String sslc, String plus_one,
-            String plus_two, String course_pref)?
+    TResult Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)?
         postAcademicInfo,
     required TResult orElse(),
   }) =>
@@ -119,8 +137,14 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String school, String reg_no, String sslc,
-            String plus_one, String plus_two, String course_pref)
+    required TResult Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)
         postAcademicInfo,
   }) {
     return started();
@@ -130,8 +154,14 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String school, String reg_no, String sslc,
-            String plus_one, String plus_two, String course_pref)?
+    TResult? Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)?
         postAcademicInfo,
   }) {
     return started?.call();
@@ -141,8 +171,14 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String school, String reg_no, String sslc, String plus_one,
-            String plus_two, String course_pref)?
+    TResult Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)?
         postAcademicInfo,
     required TResult orElse(),
   }) {
@@ -200,7 +236,8 @@ abstract class _$$postAcademicInfoImplCopyWith<$Res> {
       String sslc,
       String plus_one,
       String plus_two,
-      String course_pref});
+      String course_pref,
+      List<dynamic>? achievmentsdatafromHive});
 }
 
 /// @nodoc
@@ -220,6 +257,7 @@ class __$$postAcademicInfoImplCopyWithImpl<$Res>
     Object? plus_one = null,
     Object? plus_two = null,
     Object? course_pref = null,
+    Object? achievmentsdatafromHive = freezed,
   }) {
     return _then(_$postAcademicInfoImpl(
       school: null == school
@@ -246,6 +284,10 @@ class __$$postAcademicInfoImplCopyWithImpl<$Res>
           ? _value.course_pref
           : course_pref // ignore: cast_nullable_to_non_nullable
               as String,
+      achievmentsdatafromHive: freezed == achievmentsdatafromHive
+          ? _value._achievmentsdatafromHive
+          : achievmentsdatafromHive // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -259,7 +301,9 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
       required this.sslc,
       required this.plus_one,
       required this.plus_two,
-      required this.course_pref});
+      required this.course_pref,
+      final List<dynamic>? achievmentsdatafromHive})
+      : _achievmentsdatafromHive = achievmentsdatafromHive;
 
   @override
   final String school;
@@ -273,10 +317,20 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   final String plus_two;
   @override
   final String course_pref;
+  final List<dynamic>? _achievmentsdatafromHive;
+  @override
+  List<dynamic>? get achievmentsdatafromHive {
+    final value = _achievmentsdatafromHive;
+    if (value == null) return null;
+    if (_achievmentsdatafromHive is EqualUnmodifiableListView)
+      return _achievmentsdatafromHive;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'AcademicEvent.postAcademicInfo(school: $school, reg_no: $reg_no, sslc: $sslc, plus_one: $plus_one, plus_two: $plus_two, course_pref: $course_pref)';
+    return 'AcademicEvent.postAcademicInfo(school: $school, reg_no: $reg_no, sslc: $sslc, plus_one: $plus_one, plus_two: $plus_two, course_pref: $course_pref, achievmentsdatafromHive: $achievmentsdatafromHive)';
   }
 
   @override
@@ -292,12 +346,21 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
             (identical(other.plus_two, plus_two) ||
                 other.plus_two == plus_two) &&
             (identical(other.course_pref, course_pref) ||
-                other.course_pref == course_pref));
+                other.course_pref == course_pref) &&
+            const DeepCollectionEquality().equals(
+                other._achievmentsdatafromHive, _achievmentsdatafromHive));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, school, reg_no, sslc, plus_one, plus_two, course_pref);
+      runtimeType,
+      school,
+      reg_no,
+      sslc,
+      plus_one,
+      plus_two,
+      course_pref,
+      const DeepCollectionEquality().hash(_achievmentsdatafromHive));
 
   @JsonKey(ignore: true)
   @override
@@ -310,38 +373,56 @@ class _$postAcademicInfoImpl implements postAcademicInfo {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String school, String reg_no, String sslc,
-            String plus_one, String plus_two, String course_pref)
+    required TResult Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)
         postAcademicInfo,
   }) {
-    return postAcademicInfo(
-        school, reg_no, sslc, plus_one, plus_two, course_pref);
+    return postAcademicInfo(school, reg_no, sslc, plus_one, plus_two,
+        course_pref, achievmentsdatafromHive);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String school, String reg_no, String sslc,
-            String plus_one, String plus_two, String course_pref)?
+    TResult? Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)?
         postAcademicInfo,
   }) {
-    return postAcademicInfo?.call(
-        school, reg_no, sslc, plus_one, plus_two, course_pref);
+    return postAcademicInfo?.call(school, reg_no, sslc, plus_one, plus_two,
+        course_pref, achievmentsdatafromHive);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String school, String reg_no, String sslc, String plus_one,
-            String plus_two, String course_pref)?
+    TResult Function(
+            String school,
+            String reg_no,
+            String sslc,
+            String plus_one,
+            String plus_two,
+            String course_pref,
+            List<dynamic>? achievmentsdatafromHive)?
         postAcademicInfo,
     required TResult orElse(),
   }) {
     if (postAcademicInfo != null) {
-      return postAcademicInfo(
-          school, reg_no, sslc, plus_one, plus_two, course_pref);
+      return postAcademicInfo(school, reg_no, sslc, plus_one, plus_two,
+          course_pref, achievmentsdatafromHive);
     }
     return orElse();
   }
@@ -385,7 +466,8 @@ abstract class postAcademicInfo implements AcademicEvent {
       required final String sslc,
       required final String plus_one,
       required final String plus_two,
-      required final String course_pref}) = _$postAcademicInfoImpl;
+      required final String course_pref,
+      final List<dynamic>? achievmentsdatafromHive}) = _$postAcademicInfoImpl;
 
   String get school;
   String get reg_no;
@@ -393,6 +475,7 @@ abstract class postAcademicInfo implements AcademicEvent {
   String get plus_one;
   String get plus_two;
   String get course_pref;
+  List<dynamic>? get achievmentsdatafromHive;
   @JsonKey(ignore: true)
   _$$postAcademicInfoImplCopyWith<_$postAcademicInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;

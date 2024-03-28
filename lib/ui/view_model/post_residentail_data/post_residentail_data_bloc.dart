@@ -34,8 +34,8 @@ class PostResidentailDataBloc
           // houselandSize: event.houselandSize,
           // houseroof: event.houseroof,
         );
-        await Poststudent1InviteService()
-            .poststudent1InviteService(id: 9999999, appl_status: '100');
+        // await Poststudent1InviteService()
+        //     .poststudent1InviteService(id: 9999999, appl_status: '100');
         emit(state.copyWith(
             isLoading: false,
             isError: false,

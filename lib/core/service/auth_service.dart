@@ -1,35 +1,8 @@
 import 'dart:convert';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:panakj_app/core/model/auth_response/auth_response.dart';
-import 'package:panakj_app/core/model/update_student_data/update_student_data.dart';
 
-// class AuthService {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-//   Future<User?> signInWithEmailAndPassword(
-//       {required String email, required String password}) async {
-//     try {
-//       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-//         email: email,
-//         password: password,
-//       );
-//       print('haai this is my user ${userCredential.user}');
-//       return userCredential.user;
-//     } on FirebaseAuthException catch (e) {
-//       print('Login failed: ${e.message}');
-//       return null;
-//     }
-//   }
-
-//   // Add other authentication methods (e.g., sign up, sign out) as needed
-
-//   // Example of sign out method:
-//   Future<void> signOut() async {
-//     await _auth.signOut();
-//   }
-// }
 
 class AuthService {
   Future<AuthResponse> signInWithEmailAndPassword({
@@ -39,8 +12,8 @@ class AuthService {
     final url = Uri.parse('https://pankajtrust.org/api/login');
 
     final formData = {
-      'email': 'rishi1@gmail.com',
-      'password': '12345',
+      'email': email,
+      'password': password,
       'role': '2', // Converting to string
     };
 

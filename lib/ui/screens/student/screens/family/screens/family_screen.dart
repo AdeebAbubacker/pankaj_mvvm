@@ -237,7 +237,7 @@ class FamilyScreen extends StatelessWidget {
               //     familyDetailsCard: const SiblingsCard(),
               //   ),
               // ),
-              Text('data'),
+             
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: FamilyLayout(

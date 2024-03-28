@@ -12,26 +12,26 @@ class Poststudent1InviteService {
     autoRefreshToken: true,
   );
 
-  Future<PersonalInfoData> poststudent1InviteService({
-    required int id,
-    required var appl_status,
-  }) async {
-    try {
-      // Create a map of data to be added to Supabase
-      final response = await _client.from('student_1_invite_list').upsert({
-        'id': id,
-        'appl_status': appl_status,
-      }).execute();
+  // Future<PersonalInfoData> poststudent1InviteService({
+  //   required int id,
+  //   required var appl_status,
+  // }) async {
+  //   try {
+  //     // Create a map of data to be added to Supabase
+  //     final response = await _client.from('student_1_invite_list').upsert({
+  //       'id': id,
+  //       'appl_status': appl_status,
+  //     }).execute();
 
-      if (response == null) {
-        throw Exception('Error posting personal info: ${response}');
-      }
-    } catch (e) {
-      print('Error posting personal info: $e');
-      throw e;
-    }
-    return PersonalInfoData();
-  }
+  //     if (response == null) {
+  //       throw Exception('Error posting personal info: ${response}');
+  //     }
+  //   } catch (e) {
+  //     print('Error posting personal info: $e');
+  //     throw e;
+  //   }
+  //   return PersonalInfoData();
+  // }
 }
 
 class PostPersonalInfoService {
