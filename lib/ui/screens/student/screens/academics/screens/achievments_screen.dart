@@ -21,7 +21,7 @@ class AchievmentsScreen extends StatelessWidget {
       builder: (context, snapshot) {
         final Box<AchievmentDB> box = Hive.box<AchievmentDB>('achievmentBox');
         final numberOfAchievements = box.length;
-        final dynamicHeight = 570 + (numberOfAchievements * 485);
+        final dynamicHeight = 70 + (numberOfAchievements * 485);
 
         // Timer.periodic(Duration(seconds: 3), (timer) {
         //   print("Number of achievments1 : ${box.isEmpty}");
