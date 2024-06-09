@@ -34,7 +34,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
 
             successorFailure: optionOf(right(response)),
           ));
-        print('course length --------------------- ${response.data!.length}');
+    
         } catch (e) {
           emit(
             CoursesState(

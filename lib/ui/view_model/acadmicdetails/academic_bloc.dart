@@ -18,8 +18,7 @@ class AcademicBloc extends Bloc<AcademicEvent, AcademicState> {
   AcademicBloc(this.academicService) : super(AcademicState.initial()) {
     on<postAcademicInfo>((event, emit) async {
       try {
-        print('from academic bloc success');
-        final response = await academicService.postAcademicService(
+     final response = await academicService.postAcademicService(
           sslcmark: event.sslc.toString(),
           marksplusone: event.plus_one.toString(),
           marksplustwo: event.plus_two.toString(),
@@ -43,8 +42,7 @@ class AcademicBloc extends Bloc<AcademicEvent, AcademicState> {
             academicData: response,
             successorFailure: optionOf(right(response))));
       } catch (e) {
-        // print('from  acdemic bloc file errorr ${e.toString()}');
-        emit(state.copyWith(
+     emit(state.copyWith(
             isLoading: false,
             isError: true,
             successorFailure: optionOf(

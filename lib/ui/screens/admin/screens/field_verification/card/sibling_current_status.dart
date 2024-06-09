@@ -32,9 +32,7 @@ class _SiblingCurrentStatusCardState extends State<SiblingCurrentStatusCard> {
   void initState() {
     _firstcard();
     // TODO: implement initState
-    Timer.periodic(const Duration(seconds: 7), (timer) {
-      _printValuesWithKeys();
-    });
+
     super.initState();
   }
 

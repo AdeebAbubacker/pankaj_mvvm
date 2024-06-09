@@ -16,9 +16,7 @@ class FieldVerificationBloc
       : super(FieldVerificationState.initial()) {
     on<Postfieldverification>((event, emit) async {
       try {
-        print(
-            '-----------------------------------------field verification success');
-
+   
         final response = await residentialService.fieldVerificationService(
           app_id: 1,
           hall_ticket: 1,
@@ -38,12 +36,7 @@ class FieldVerificationBloc
             successorFailure: optionOf(right(response as ResidentialData))));
       } catch (e) {
         // ignore: avoid_print
-        print(
-            '----------------------------------------field verification failure');
-        // ignore: avoid_print
-        print('Error: $e'); // Add this line
-
-        emit(state.copyWith(
+    emit(state.copyWith(
             isLoading: false,
             isError: true,
             successorFailure: optionOf(

@@ -28,11 +28,7 @@ class FieldVerificationScreen extends StatelessWidget {
           final numberOfAchievements = box.length;
           double dynamicHeight = 1652 + (numberOfAchievements * 198);
 
-          Timer.periodic(Duration(seconds: 3), (timer) {
-            print("Number of siblings1 : ${box.isEmpty}");
-            print("Number of  siblings 2 : ${box.keys.length}");
-            print("Number of  siblings 3 : ${box.length}");
-          });
+    
           return Scaffold(
             backgroundColor: const Color.fromARGB(255, 245, 244, 244),
             appBar: PreferredSize(

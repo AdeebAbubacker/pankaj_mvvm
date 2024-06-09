@@ -26,25 +26,21 @@ class GetWaterSourceBloc extends Bloc<GetWaterSourceEvent, GetWaterSourceState> 
       try {
         final List<FieldVerificationModel> response =
             await getAllFieldVerficationService.getwaterSource();
-        print('my water source are ---------------- ${response.length}');
-        emit(GetWaterSourceState(
+     emit(GetWaterSourceState(
           isLoading: false,
           isError: false,
           lifestatus: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success ${response.length}');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(GetWaterSourceState(
+    } catch (e) {
+    emit(GetWaterSourceState(
           isLoading: false,
           isError: true,
           lifestatus: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+    }
     });
   }
 }

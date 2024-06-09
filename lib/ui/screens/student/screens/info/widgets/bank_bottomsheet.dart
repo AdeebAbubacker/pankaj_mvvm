@@ -14,11 +14,14 @@ class BankBottomSheet extends StatefulWidget {
   final bottomSheetheight;
   final String title;
   final hintText;
+    final String? initialFilePath;
+  final void Function(String?)? onFileSelected;
 
   BankBottomSheet({
     Key? key,
     required this.title,
-    this.bottomSheetheight = 0.9,
+    this.bottomSheetheight = 0.9,   this.onFileSelected,
+    this.initialFilePath,
     this.hintText,
   }) : super(key: key);
 
@@ -33,12 +36,18 @@ class _BankBottomSheetState extends State<BankBottomSheet> {
   List<String> newDisplayedBanks = [];
   late StreamController<bool>? _updateStreamController;
   late TextEditingController textController;
+  
 
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
     setupBankBox();
+    if (widget.initialFilePath != null) {
+      setState(() {
+        textController.text = widget.initialFilePath.toString();
+      });
+    }
   }
 
   @override
@@ -208,7 +217,11 @@ class _BankBottomSheetState extends State<BankBottomSheet> {
 
                                     textController.text =
                                         selectedBankObject.name;
+   // Trigger the callback
+                                    widget.onFileSelected!(
+                                        selectedBankObject.name);
 
+                                   
                                     BlocProvider.of<SelctedbankBloc>(context)
                                         .add(
                                       SelctedbankEvent.selectedBank(
@@ -224,7 +237,11 @@ class _BankBottomSheetState extends State<BankBottomSheet> {
 
                                     textController.text =
                                         selectedBankObject.name;
+   // Trigger the callback
+                                    widget.onFileSelected!(
+                                        selectedBankObject.name);
 
+                                   
                                     BlocProvider.of<SelctedbankBloc>(context)
                                         .add(
                                       SelctedbankEvent.selectedBank(
@@ -259,6 +276,8 @@ class _BankBottomSheetState extends State<BankBottomSheet> {
       return true;
     });
   }
+
+
 
   void _searchFromHive(String searchTerm) {
     if (mounted) {

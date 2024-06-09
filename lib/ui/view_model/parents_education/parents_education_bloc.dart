@@ -28,25 +28,21 @@ class ParentsEducationBloc extends Bloc<ParentsEducationEvent, ParentsEducationS
       try {
         final List<FieldVerificationModel> response =
             await getAllFieldVerficationService.parentseducation();
-        print('my applicants are ---------------- ${response.length}');
-        emit(ParentsEducationState(
+  emit(ParentsEducationState(
           isLoading: false,
           isError: false,
           lifestatus: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success ${response.length}');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(ParentsEducationState(
+ } catch (e) {
+  emit(ParentsEducationState(
           isLoading: false,
           isError: true,
           lifestatus: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+ }
     });
   }
 }

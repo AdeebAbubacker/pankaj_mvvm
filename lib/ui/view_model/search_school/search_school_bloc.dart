@@ -30,8 +30,7 @@ class SearchSchoolBloc extends Bloc<SearchSchoolEvent, SearchSchoolState> {
           school: response,
           successorFailure: optionOf(right(response)),
         ));
-         print('school length --------------------- ${response.data!.length}');
-          // Call storeDataInHive to update Hive with the new data
+       // Call storeDataInHive to update Hive with the new data
     await storeDataInHive(response.data!.toList());
       } catch (e) {
         emit(

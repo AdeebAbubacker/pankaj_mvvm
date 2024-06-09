@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:panakj_app/core/db/adapters/academics_adapter/academics_adapter.dart';
 import 'package:panakj_app/core/db/adapters/achievment_adapter/achievment_adapter.dart';
 import 'package:panakj_app/core/db/adapters/bank_adapter/bank_adapter.dart';
 import 'package:panakj_app/core/db/adapters/cache_screen1_adapter/cache_screen1_adap.dart';
@@ -8,6 +9,7 @@ import 'package:panakj_app/core/db/adapters/cache_screen4_adapter/cache_screen4_
 import 'package:panakj_app/core/db/adapters/college_adapter/college_adapter.dart';
 import 'package:panakj_app/core/db/adapters/course_adapter/course_adapter.dart';
 import 'package:panakj_app/core/db/adapters/family_success_status/family_status_adapter.dart';
+import 'package:panakj_app/core/db/adapters/familycard_adapter/familycard_adapter.dart';
 import 'package:panakj_app/core/db/adapters/house_plaster_adapter/house_plaster_adapter.dart';
 import 'package:panakj_app/core/db/adapters/house_plotsize_adapter/house_plotsize_adapter.dart';
 import 'package:panakj_app/core/db/adapters/house_roof_adapter/house_roof_adapter.dart';
@@ -28,6 +30,7 @@ import 'package:panakj_app/core/db/adapters/validation_familyscreen/validation_f
 import 'package:panakj_app/core/db/adapters/validation_personalinfo/validation_personalinfoadapter.dart';
 import 'package:panakj_app/core/db/adapters/validation_residential/validation_residentialadapter.dart';
 import 'package:panakj_app/core/db/adapters/water_source_adapter/water_source_adapter.dart';
+import 'package:panakj_app/core/db/boxes/academic_box.dart';
 import 'package:panakj_app/core/db/boxes/achievment_box.dart';
 import 'package:panakj_app/core/db/boxes/bank_box.dart';
 import 'package:panakj_app/core/db/boxes/cache_screen1_box.dart';
@@ -35,6 +38,7 @@ import 'package:panakj_app/core/db/boxes/cache_screen4_box.dart';
 import 'package:panakj_app/core/db/boxes/college_box.dart';
 import 'package:panakj_app/core/db/boxes/course_box.dart';
 import 'package:panakj_app/core/db/boxes/family_status_box.dart';
+import 'package:panakj_app/core/db/boxes/familycard_box.dart';
 import 'package:panakj_app/core/db/boxes/house_plaster.dart';
 import 'package:panakj_app/core/db/boxes/house_plot_size.dart';
 import 'package:panakj_app/core/db/boxes/house_roof.dart';
@@ -172,12 +176,16 @@ void main() async {
   Hive.registerAdapter(RentalHouseDBAdapter());
   Hive.registerAdapter(SiblingEducationDBAdapter());
   Hive.registerAdapter(SiblingDataFVDBAdapter());
+Hive.registerAdapter(AcademicsDBAdapter());
+  Hive.registerAdapter(FamilyCardDBAdapter());
+
 
   ///----------------0pen Box-------------------------------------------------
   bankBox = await Hive.openBox<BankDB>('bankBox');
   houseplotsizeBox = await Hive.openBox<HousePlotSizeDB>('houseplotsizeBox');
   houseplasterBox = await Hive.openBox<HousePlasterDB>('houseplasterBox');
   siblingdataFVbox = await Hive.openBox<SiblingDataFVDB>('siblingdataFVbox');
+  familyCardbox = await Hive.openBox<FamilyCardDB>('familyCardbox');
   siblingeducationbox =
       await Hive.openBox<SiblingEducationDB>('siblingeducationbox');
   houseroofBox = await Hive.openBox<HouseRoofDB>('houseroofBox');
@@ -185,6 +193,7 @@ void main() async {
   rentalHouseBox = await Hive.openBox<RentalHouseDB>('rentalHouseBox');
   lifestatusInfoBox = await Hive.openBox<LifeStatusDB>('lifestatusInfoBox');
   parentsIncomeBox = await Hive.openBox<ParentsIncomeDB>('parentsIncomeBox');
+  academicBox = await Hive.openBox<AcademicsDB>('academicBox');
   parentsEducationBox =
       await Hive.openBox<ParentsEducationDB>('parentsEducationBox');
   school_group_box = await Hive.openBox<SchoolGroupDB>('school_group_box');
@@ -258,7 +267,7 @@ class MyApp extends StatelessWidget {
           create: (context) => FieldVerificationBloc(fieldVerificationService),
         ),
         BlocProvider(
-          create: (context) => HorizontalRadioBtnBloc(),
+          create: (context) => HorizontalRadioBtnBloc(0),
         ),
         BlocProvider(
           create: (context) => StudentsAppFormBloc(),
@@ -430,12 +439,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-///---------------------
-///
-///
-///
-///
-///
-///
-///

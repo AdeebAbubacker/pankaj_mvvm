@@ -33,9 +33,7 @@ class _SiblingsQualificationCardState extends State<SiblingsQualificationCard> {
   void initState() {
     _firstcard();
     // TODO: implement initState
-    Timer.periodic(Duration(seconds: 7), (timer) {
-      _printValuesWithKeys();
-    });
+
     super.initState();
   }
 

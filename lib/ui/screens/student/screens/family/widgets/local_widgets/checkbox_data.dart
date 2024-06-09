@@ -6,200 +6,104 @@ import 'package:panakj_app/ui/view_model/checkboxfirst/checkboxfirst_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxsec/checkboxsec_bloc.dart';
 import 'package:panakj_app/ui/view_model/checkboxthird/checkboxthird_bloc.dart';
 
-class CheckBoxData1 extends StatelessWidget {
-  const CheckBoxData1({Key? key}) : super(key: key);
+
+class CheckBoxData1 extends StatefulWidget {
+  final bool? initialAlive;
+  final bool? initialDisabled;
+  final Function(bool, bool) onCheckboxChanged;
+
+  const CheckBoxData1({
+    Key? key,
+    required this.onCheckboxChanged,
+    this.initialAlive,
+    this.initialDisabled,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CheckboxfirstBloc, CheckboxfirstState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Alive',
-                  style: kCardContentStyle,
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: context.read<CheckboxfirstBloc>().state.alive,
-                  onChanged: (value) {
-                    context.read<CheckboxfirstBloc>().add(
-                          const CheckboxfirstEvent.togglealive(),
-                        );
-                  },
-                ),
-                Checkbox(
-                  value: context.read<CheckboxfirstBloc>().state.notalive,
-                  onChanged: (value) {
-                    context.read<CheckboxfirstBloc>().add(
-                          const CheckboxfirstEvent.togglenotalive(),
-                        );
-                  },
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  'Disabled/bedridden',
-                  style: kCardContentStyle,
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: context.read<CheckboxfirstBloc>().state.disabled,
-                  onChanged: (value) {
-                    context.read<CheckboxfirstBloc>().add(
-                          const CheckboxfirstEvent.togglebedridden(),
-                        );
-                  },
-                ),
-                Checkbox(
-                  value: context.read<CheckboxfirstBloc>().state.notdisabled,
-                  onChanged: (value) {
-                    context.read<CheckboxfirstBloc>().add(
-                          const CheckboxfirstEvent.togglenotbedridden(),
-                        );
-                  },
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
-  }
+  _CheckBoxData1State createState() => _CheckBoxData1State();
 }
 
-class CheckBoxData2 extends StatelessWidget {
-  const CheckBoxData2({Key? key}) : super(key: key);
+class _CheckBoxData1State extends State<CheckBoxData1> {
+  late bool isAlive;
+  late bool isDisabled;
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CheckboxsecBloc, CheckboxsecState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Alive',
-                  style: kCardContentStyle,
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: context.read<CheckboxsecBloc>().state.alive,
-                  onChanged: (value) {
-                    context.read<CheckboxsecBloc>().add(
-                          const CheckboxsecEvent.togglealive(),
-                        );
-                  },
-                ),
-                Checkbox(
-                  value: context.read<CheckboxsecBloc>().state.notalive,
-                  onChanged: (value) {
-                    context.read<CheckboxsecBloc>().add(
-                          const CheckboxsecEvent.togglenotalive(),
-                        );
-                  },
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  'Disabled/bedridden',
-                  style: kCardContentStyle,
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: context.read<CheckboxsecBloc>().state.disabled,
-                  onChanged: (value) {
-                    context.read<CheckboxsecBloc>().add(
-                          const CheckboxsecEvent.togglebedridden(),
-                        );
-                  },
-                ),
-                Checkbox(
-                  value: context.read<CheckboxsecBloc>().state.notdisabled,
-                  onChanged: (value) {
-                    context.read<CheckboxsecBloc>().add(
-                          const CheckboxsecEvent.togglenotbedridden(),
-                        );
-                  },
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
+  void initState() {
+    super.initState();
+    // Ensure both checkboxes are unchecked initially if no initial values are provided
+    isAlive = widget.initialAlive ?? false;
+    isDisabled = widget.initialDisabled ?? false;
   }
-}
 
-class CheckBoxData3 extends StatelessWidget {
-  const CheckBoxData3({Key? key}) : super(key: key);
+  void _updateCheckboxValues() {
+    widget.onCheckboxChanged(isAlive, isDisabled);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CheckboxthirdBloc, CheckboxthirdState>(
-      builder: (context, state) {
-        return Column(
+    return Column(
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                Text(
-                  'Alive',
-                  style: kCardContentStyle,
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: context.read<CheckboxthirdBloc>().state.alive,
-                  onChanged: (value) {
-                    context.read<CheckboxthirdBloc>().add(
-                          const CheckboxthirdEvent.togglealive(),
-                        );
-                  },
-                ),
-                Checkbox(
-                  value: context.read<CheckboxthirdBloc>().state.notalive,
-                  onChanged: (value) {
-                    context.read<CheckboxthirdBloc>().add(
-                          const CheckboxthirdEvent.togglenotalive(),
-                        );
-                  },
-                ),
-              ],
+            Text(
+              'Alive',
+              style: kCardContentStyle,
             ),
-            Row(
-              children: [
-                Text(
-                  'Disabled/bedridden',
-                  style: kCardContentStyle,
-                ),
-                const Spacer(),
-                Checkbox(
-                  value: context.read<CheckboxthirdBloc>().state.disabled,
-                  onChanged: (value) {
-                    context
-                        .read<CheckboxthirdBloc>()
-                        .add(const CheckboxthirdEvent.togglebedridden());
-                  },
-                ),
-                Checkbox(
-                  value: context.read<CheckboxthirdBloc>().state.notdisabled,
-                  onChanged: (value) {
-                    context.read<CheckboxthirdBloc>().add(
-                          const CheckboxthirdEvent.togglenotbedridden(),
-                        );
-                  },
-                ),
-              ],
+            const Spacer(),
+            Checkbox(
+              value: isAlive,
+              onChanged: (value) {
+                setState(() {
+                  isAlive = value ?? false;
+                  _updateCheckboxValues();
+                });
+              },
             ),
+            Text('Yes'),
+            const SizedBox(width: 10),
+            Checkbox(
+              value: !isAlive,
+              onChanged: (value) {
+                setState(() {
+                  isAlive = !(value ?? false);
+                  _updateCheckboxValues();
+                });
+              },
+            ),
+            Text('No'),
           ],
-        );
-      },
+        ),
+        Row(
+          children: [
+            Text(
+              'Disabled/bedridden',
+              style: kCardContentStyle,
+            ),
+            const Spacer(),
+            Checkbox(
+              value: isDisabled,
+              onChanged: (value) {
+                setState(() {
+                  isDisabled = value ?? false;
+                  _updateCheckboxValues();
+                });
+              },
+            ),
+            Text('Yes'),
+            const SizedBox(width: 10),
+            Checkbox(
+              value: !isDisabled,
+              onChanged: (value) {
+                setState(() {
+                  isDisabled = !(value ?? false);
+                  _updateCheckboxValues();
+                });
+              },
+            ),
+            Text('No'),
+          ],
+        ),
+      ],
     );
   }
 }

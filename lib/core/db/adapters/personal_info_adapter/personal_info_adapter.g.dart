@@ -18,8 +18,8 @@ class personalInfoDBAdapter extends TypeAdapter<personalInfoDB> {
     };
     return personalInfoDB(
       name: fields[0] as String,
-      gender: fields[1] as bool,
-      dob: fields[2] as DateTime,
+      gender: fields[1] as int,
+      dob: fields[2] as dynamic,
       address: fields[3] as String,
       mobno: fields[4] as dynamic,
       email: fields[5] as String,

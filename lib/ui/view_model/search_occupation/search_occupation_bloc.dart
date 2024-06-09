@@ -27,8 +27,7 @@ class SearchOccupationBloc
           final response = await occupationDropdownService.getSearchBank(
               searchKeyword: event.searchQuery);
           storeDataInHive(response.data!.toList());
-          print(
-              'searched item from occupation -----------------${response.data!.length}');
+      
           emit(SearchOccupationState(
             isLoading: false,
             isError: false,
@@ -37,8 +36,7 @@ class SearchOccupationBloc
           ));
           // ignore: avoid_print
 
-          // print(
-          //     'my respone is ----------- ${response.data!.map((e) => e.)}');
+        
         } catch (e) {
           emit(SearchOccupationState(
             isLoading: false,

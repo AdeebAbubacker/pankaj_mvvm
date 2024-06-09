@@ -14,8 +14,7 @@ class GetcollegesBloc extends Bloc<GetcollegesEvent, GetcollegesState> {
 
   GetcollegesBloc(this.getCollegeService) : super(GetcollegesState.initial()) {
     on<Getcolleges>((event, emit) async {
-      print('eveny');
-      emit(const GetcollegesState(
+   emit(const GetcollegesState(
           isLoading: true,
           isError: false,
           college: [],
@@ -28,18 +27,15 @@ class GetcollegesBloc extends Bloc<GetcollegesEvent, GetcollegesState> {
           college: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success $response');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(GetcollegesState(
+   } catch (e) {
+      emit(GetcollegesState(
           isLoading: false,
           isError: true,
           college: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+    }
     });
 
     on<_EditName>((event, emit) async {

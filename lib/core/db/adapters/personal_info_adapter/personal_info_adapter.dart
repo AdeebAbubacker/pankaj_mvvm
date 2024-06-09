@@ -7,10 +7,10 @@ class personalInfoDB {
   String name;
 
   @HiveField(1)
-  bool gender;
+  int gender;
 
   @HiveField(2)
-  DateTime dob;
+  dynamic dob;
 
   @HiveField(3)
   String address;
@@ -37,17 +37,17 @@ class personalInfoDB {
   var BranchIFSC;
 
   personalInfoDB({
-    required this.name,
-    required this.gender,
-    required this.dob,
-    required this.address,
-    required this.mobno,
-    required this.email,
-    required this.doyouHaveBankAcc,
-    required this.nameasPerBank,
-    required this.AccNumber,
-    required this.bankName,
-    required this.BranchIFSC,
+    this.name = '',
+    this.gender= 1,
+    this.dob,
+    this.address= '',
+    this.mobno= '',
+    this.email= '',
+    this.doyouHaveBankAcc= true,
+    this.nameasPerBank= '',
+    this.AccNumber= '',
+    this.bankName= '',
+    this.BranchIFSC= '',
   });
 
   factory personalInfoDB.fromJson(Map<String, dynamic> json) {

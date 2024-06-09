@@ -10,7 +10,7 @@ class TruncateBloc extends Bloc<TruncateEvent, TruncateState> {
   final TruncateService truncateService;
   TruncateBloc(this.truncateService) : super(_Initial()) {
     on<DeleteTable>((event, emit) async{
-      print('table deleted');
+    
      await truncateService.truncateColleges();
      
     });

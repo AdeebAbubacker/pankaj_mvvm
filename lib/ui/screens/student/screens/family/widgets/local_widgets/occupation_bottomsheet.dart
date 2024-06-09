@@ -13,11 +13,14 @@ import 'package:panakj_app/ui/view_model/selected_occupation/selected_occupation
 class OccupationBottomSheet extends StatefulWidget {
   final bottomSheetheight;
   final String title;
+  final String? initialFilePath;
+  final void Function(String?)? onFileSelected;
  
   final hintText;
 
   OccupationBottomSheet({
-    Key? key,
+    Key? key, this.onFileSelected,
+    this.initialFilePath,
     required this.title,
     this.bottomSheetheight = 0.9,
    
@@ -41,6 +44,11 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
     super.initState();
     textController = TextEditingController();
     setupOccupationBox();
+     if (widget.initialFilePath != null) {
+      setState(() {
+        textController.text = widget.initialFilePath.toString();
+      });
+    }
   }
 
   @override
@@ -215,6 +223,8 @@ BlocProvider.of<SearchOccupationBloc>(context).stream.listen((state) {
 
                                     textController.text =
                                         selectedBankObject.name;
+       widget.onFileSelected!(
+                                        selectedBankObject.name);
 
                                     BlocProvider.of<SelectedOccupationBloc>(
                                             context)
@@ -233,6 +243,8 @@ BlocProvider.of<SearchOccupationBloc>(context).stream.listen((state) {
 
                                     textController.text =
                                         selectedBankObject.name;
+       widget.onFileSelected!(
+                                        selectedBankObject.name);
 
                                     BlocProvider.of<SelectedOccupationBloc>(
                                             context)

@@ -13,8 +13,7 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
   final ApplicantService applicantService;
   ApplicantsBloc(this.applicantService) : super(ApplicantsState.initial()) {
     on<GetallApplicants>((event, emit) async {
-      print('eveny');
-      emit(const ApplicantsState(
+    emit(const ApplicantsState(
           isLoading: true,
           isError: false,
           applicants: [],
@@ -22,29 +21,24 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
       try {
         final List<Applicants> response =
             await applicantService.getAllApplicant();
-            print('my applicants are ---------------- ${response.length}');
-        emit(ApplicantsState(
+   emit(ApplicantsState(
           isLoading: false,
           isError: false,
           applicants: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success $response');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(ApplicantsState(
+    } catch (e) {
+      emit(ApplicantsState(
           isLoading: false,
           isError: true,
           applicants: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+    }
     });
     on<GetcompletedApplicants>((event, emit) async {
-      print('eveny');
-      emit(const ApplicantsState(
+  emit(const ApplicantsState(
           isLoading: true,
           isError: false,
           applicants: [],
@@ -52,29 +46,24 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
       try {
         final List<Applicants> response =
             await applicantService.applicationCompleted();
-            print('my applicants are ---------------- ${response.length}');
-        emit(ApplicantsState(
+       emit(ApplicantsState(
           isLoading: false,
           isError: false,
           applicants: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success $response');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(ApplicantsState(
+   } catch (e) {
+      emit(ApplicantsState(
           isLoading: false,
           isError: true,
           applicants: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+  }
     });
     on<GetincompletedApplicants>((event, emit) async {
-      print('eveny');
-      emit(const ApplicantsState(
+    emit(const ApplicantsState(
           isLoading: true,
           isError: false,
           applicants: [],
@@ -82,25 +71,21 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
       try {
         final List<Applicants> response =
             await applicantService.applicationInCompleted();
-            print('my applicants are ---------------- ${response.length}');
-        emit(ApplicantsState(
+    emit(ApplicantsState(
           isLoading: false,
           isError: false,
           applicants: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success $response');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(ApplicantsState(
+   } catch (e) {
+     emit(ApplicantsState(
           isLoading: false,
           isError: true,
           applicants: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+   }
     });
   
   

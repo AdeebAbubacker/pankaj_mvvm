@@ -2,11 +2,16 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:panakj_app/core/colors/colors.dart';
 import 'package:path/path.dart';
+import 'package:path/path.dart' as path;
 
 class FilePickerScreen extends StatefulWidget {
   final void Function(String?) onFileSelected;
+  final String? initialFilePath;
+  final Key? key;
 
-  const FilePickerScreen({required this.onFileSelected});
+  const FilePickerScreen(
+      {required this.onFileSelected, this.initialFilePath, this.key})
+      : super(key: key);
 
   @override
   State<FilePickerScreen> createState() => _FilePickerScreenState();
@@ -17,13 +22,25 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
   String? filePath = '';
   bool myVisibility = false;
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialFilePath != null) {
+      setState(() {
+        filePath = widget.initialFilePath;
+        fileName = path.basename(filePath!);
+        myVisibility = true;
+      });
+    }
+  }
+
   void _openFilePicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
       setState(() {
         filePath = result.files.single.path!;
-        fileName = basename(filePath!);
+        fileName = path.basename(filePath!);
         print("Selected file: $fileName");
         _visible();
         widget.onFileSelected(filePath);
@@ -36,6 +53,7 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
       filePath = '';
       fileName = '';
       _visible();
+      widget.onFileSelected(null); // Clear the file path
     });
   }
 

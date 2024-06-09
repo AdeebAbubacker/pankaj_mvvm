@@ -19,8 +19,7 @@ class PostResidentailDataBloc
       : super(PostResidentailDataState.initial()) {
     on<PostResidentailInfo>((event, emit) async {
       try {
-        print('-----------------------------------------residential success');
-        await validationResidentailBox.put(
+  await validationResidentailBox.put(
           'key',
           ValidationResidentailScreenDB(status: 2),
         );
@@ -45,11 +44,7 @@ class PostResidentailDataBloc
           'key',
           ValidationResidentailScreenDB(status: 2),
         );
-        // ignore: avoid_print
-        print('----------------------------------------residential failure');
-        // ignore: avoid_print
-        print('Error: $e'); // Add this line
-
+     
         emit(state.copyWith(
             isLoading: false,
             isError: true,

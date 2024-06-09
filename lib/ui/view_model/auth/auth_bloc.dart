@@ -24,11 +24,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString('accessToken', user.accessToken.toString());
 
-          // Print the stored access token
-          String accessToken =
+      String accessToken =
               prefs.getString('accessToken') ?? 'Access Token empty';
-          print('Stored Access Token: $accessToken');
-        } else {
+      } else {
           emit(const AuthState.authError(message: 'Login failed'));
         }
       } catch (e) {

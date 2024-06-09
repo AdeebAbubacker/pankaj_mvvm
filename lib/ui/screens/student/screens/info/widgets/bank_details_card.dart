@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:panakj_app/core/db/adapters/bank_adapter/bank_adapter.dart';
+import 'package:panakj_app/core/db/adapters/personal_info_adapter/personal_info_adapter.dart';
 import 'package:panakj_app/ui/screens/student/screens/info/widgets/bank_bottomsheet.dart';
 import 'package:panakj_app/ui/screens/student/widgets/input_label.dart';
 import 'package:panakj_app/ui/screens/student/widgets/label_inputText.dart';
@@ -8,18 +11,17 @@ import 'package:panakj_app/ui/screens/student/widgets/spacer_height.dart';
 import 'package:hive/hive.dart';
 
 class BankCard extends StatefulWidget {
-  bool mybool;
-  final width;
-  FocusNode banknamefocusnode;
-  FocusNode accnofocusnode;
-  FocusNode bankifscfocusnode;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController accNoController = TextEditingController();
-  TextEditingController ifscController = TextEditingController();
+  final bool mybool;
+
+  final FocusNode banknamefocusnode;
+  final FocusNode accnofocusnode;
+  final FocusNode bankifscfocusnode;
+  final TextEditingController nameController;
+  final TextEditingController accNoController;
+  final TextEditingController ifscController;
 
   BankCard({
     super.key,
-    this.width,
     required this.mybool,
     required this.banknamefocusnode,
     required this.accnofocusnode,
@@ -36,10 +38,65 @@ class BankCard extends StatefulWidget {
 class _BankCardState extends State<BankCard> {
   late Box<BankDB> bankBox;
   List<String> bankNames = [];
+  String? selectedBank;
+  String? selectedBankName;
+
   @override
   void initState() {
     super.initState();
     setupBankBox();
+    _loaddata();
+    widget.nameController.addListener(_updateHiveData);
+    widget.accNoController.addListener(_updateHiveData);
+    widget.ifscController.addListener(_updateHiveData);
+  }
+
+  @override
+  void dispose() {
+    widget.nameController.removeListener(_updateHiveData);
+    widget.accNoController.removeListener(_updateHiveData);
+    widget.ifscController.removeListener(_updateHiveData);
+    widget.banknamefocusnode.dispose();
+    widget.accnofocusnode.dispose();
+    widget.bankifscfocusnode.dispose();
+    super.dispose();
+  }
+
+  void _loaddata() async {
+    final box = Hive.box<personalInfoDB>('personalInfoBox');
+    final data = box.get(0);
+
+    if (data != null) {
+      setState(() {
+        selectedBankName = data.bankName.toString();
+        widget.nameController.text = data.nameasPerBank.toString();
+        widget.accNoController.text = data.AccNumber.toString();
+        widget.ifscController.text = data.BranchIFSC.toString();
+    
+      });
+    }
+  }
+
+  void _updateHiveData() {
+    final box = Hive.box<personalInfoDB>('personalInfoBox');
+    final existingData = box.get(0) ?? personalInfoDB();
+
+    box.put(
+      0,
+      personalInfoDB(
+        name: existingData.name,
+        gender: existingData.gender,
+        dob: existingData.dob,
+        address: existingData.address,
+        mobno: existingData.mobno,
+        email: existingData.email,
+        doyouHaveBankAcc: widget.mybool,
+        nameasPerBank: widget.nameController.text,
+        AccNumber: widget.accNoController.text,
+        bankName: selectedBankName ?? existingData.bankName,
+        BranchIFSC: widget.ifscController.text,
+      ),
+    );
   }
 
   Future<void> setupBankBox() async {
@@ -51,19 +108,15 @@ class _BankCardState extends State<BankCard> {
 
     List<int> keys = bankBox.keys.cast<int>().toList();
 
-    if (keys.isEmpty) {
-      return;
-    }
+    if (keys.isNotEmpty) {
+      bankNames = keys.map((key) {
+        BankDB bank = bankBox.get(key)!;
+        return bank.name;
+      }).toList();
 
-    // Extract names from BankDB objects
-    bankNames = keys.map((key) {
-      BankDB bank = bankBox.get(key)!;
-      return bank.name;
-    }).toList();
-
-    // Ensure that the widget is rebuilt after the bankNames are populated
-    if (mounted) {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
@@ -87,7 +140,15 @@ class _BankCardState extends State<BankCard> {
           const HeightSpacer(height: 14),
           InputLabel(mytext: 'Bank Name'),
           BankBottomSheet(
-            title: 'ssss',
+            onFileSelected: (filePath) {
+              setState(() {
+                selectedBank = filePath.toString();
+                selectedBankName = filePath;
+                _updateHiveData();
+              });
+            },
+            initialFilePath: selectedBankName ?? '',
+            title: 'Select Bank',
             hintText: '',
           ),
           const HeightSpacer(height: 14),

@@ -25,7 +25,7 @@ class StudentsInviteListBloc
             studentsInviteListModel: fieldverification,
             isLoading: false,
             successorFailure: optionOf(right(fieldverification))));
-        print('succes from bloc $fieldverification');
+      
       } catch (e) {
         // Handle error and update state
         emit(state.copyWith(

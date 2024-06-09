@@ -25,7 +25,7 @@ class SearchBankBloc extends Bloc<SearchBankEvent, SearchBankState> {
         // Placeholder for fetching data from the service
         final bankData =
             await bankDropdownService.getSearchBank(searchKeyword: event.bank);
-print('my baaaank -------------------------------${bankData.data!.length}');
+
           storeDataInHive(bankData.data!.toList());
        
         emit(state.copyWith(

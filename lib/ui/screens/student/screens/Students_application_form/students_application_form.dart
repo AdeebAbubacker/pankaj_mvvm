@@ -63,77 +63,71 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
   void initState() {
     super.initState();
 
-    personalInfo();
+   // personalInfo();
 
     validationOfScreens();
     // Attach listener to each controller
 
-    nameController.addListener(_saveDataToCacheScreen1);
-    addressController.addListener(_saveDataToCacheScreen1);
-    emailController.addListener(_saveDataToCacheScreen1);
-    phoneNoController.addListener(_saveDataToCacheScreen1);
-    nameatBankController.addListener(_saveDataToCacheScreen1);
-    accNoController.addListener(_saveDataToCacheScreen1);
-    ifscController.addListener(_saveDataToCacheScreen1);
-    landcontroller.addListener(_saveDataToCacheScreen4);
+    // nameController.addListener(_saveDataToCacheScreen1);
+    // addressController.addListener(_saveDataToCacheScreen1);
+    // emailController.addListener(_saveDataToCacheScreen1);
+    // phoneNoController.addListener(_saveDataToCacheScreen1);
+    // nameatBankController.addListener(_saveDataToCacheScreen1);
+    // accNoController.addListener(_saveDataToCacheScreen1);
+    // ifscController.addListener(_saveDataToCacheScreen1);
+   // landcontroller.addListener(_saveDataToCacheScreen4);
     // Load existing data from Hive into controllers
-    _loadDataFromHive();
+   // _loadDataFromHive();
     _loadDataFromHiveres();
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      openAndPrintAchievmentBox();
-    });
-    // timer = Timer.periodic(Duration(seconds: 3), _printHiveValuesresidentail);
-    // timer = Timer.periodic(
-    //     Duration(seconds: 3), _printHiveValuesvalidationresidentail);
-//     // Start periodic timer
-//     timer = Timer.periodic(Duration(seconds: 3), _printHiveValues);
+  
+
   }
 
   @override
-  void personalInfo() async {
-    personalInfoBox = await Hive.openBox<personalInfoDB>('personalInfoBox');
-    setState(() {});
-  }
+  // void personalInfo() async {
+  //   personalInfoBox = await Hive.openBox<personalInfoDB>('personalInfoBox');
+  //   setState(() {});
+  // }
 
   //cache screen1 - personal info
-  void _saveDataToCacheScreen1() async {
-    final personalInfo = cacheScreen1DB(
-        id: 1,
-        name1: nameController.text,
-        name2: addressController.text,
-        name3: emailController.text,
-        name4: phoneNoController.text,
-        name5: nameatBankController.text,
-        name6: accNoController.text,
-        name7: ifscController.text,
-        bankaccstatus:
-            context.read<StudentsAppFormBloc>().state.forBankAccountholder,
-        gender: context.read<HorizontalRadioBtnBloc>().state.groupValue);
+  // void _saveDataToCacheScreen1() async {
+  //   final personalInfo = cacheScreen1DB(
+  //       id: 1,
+  //       name1: nameController.text,
+  //       name2: addressController.text,
+  //       name3: emailController.text,
+  //       name4: phoneNoController.text,
+  //       name5: nameatBankController.text,
+  //       name6: accNoController.text,
+  //       name7: ifscController.text,
+  //       bankaccstatus:
+  //           context.read<StudentsAppFormBloc>().state.forBankAccountholder,
+  //       gender: context.read<HorizontalRadioBtnBloc>().state.groupValue);
 
-    await cachescreen1box.put(1, personalInfo);
-  }
+  //   await cachescreen1box.put(1, personalInfo);
+  // }
 
-  void _saveDataToCacheScreen4() async {
-    final question1ResState = context.read<Question1ResBloc>().state;
-    final question2ResState = context.read<Question2ResBloc>().state;
-    final question3ResState = context.read<Question3ResBloc>().state;
-    final residentialdetails = cacheScreen4DB(
-      ownhouse: question1ResState.ownHouse,
-      rentalhouse: question1ResState.rentalHouse,
-      sheet: question2ResState.sheet,
-      concrete: question2ResState.concrete,
-      tilled: question2ResState.Tilled,
-      pipewater: question3ResState.pipewater,
-      wellwater: question3ResState.wellwater,
-      othersource: question3ResState.othersource,
-      land: landcontroller.text,
-    );
-    print(
-        'Question1ResBloc ownhouse: ${context.read<Question1ResBloc>().state.ownHouse}');
-    print(
-        'Question1ResBloc rental: ${context.read<Question1ResBloc>().state.rentalHouse}');
-    await cachescreen4box.put(1, residentialdetails);
-  }
+  // void _saveDataToCacheScreen4() async {
+  //   final question1ResState = context.read<Question1ResBloc>().state;
+  //   final question2ResState = context.read<Question2ResBloc>().state;
+  //   final question3ResState = context.read<Question3ResBloc>().state;
+  //   final residentialdetails = cacheScreen4DB(
+  //     ownhouse: question1ResState.ownHouse,
+  //     rentalhouse: question1ResState.rentalHouse,
+  //     sheet: question2ResState.sheet,
+  //     concrete: question2ResState.concrete,
+  //     tilled: question2ResState.Tilled,
+  //     pipewater: question3ResState.pipewater,
+  //     wellwater: question3ResState.wellwater,
+  //     othersource: question3ResState.othersource,
+  //     land: landcontroller.text,
+  //   );
+  //   print(
+  //       'Question1ResBloc ownhouse: ${context.read<Question1ResBloc>().state.ownHouse}');
+  //   print(
+  //       'Question1ResBloc rental: ${context.read<Question1ResBloc>().state.rentalHouse}');
+  //   await cachescreen4box.put(1, residentialdetails);
+  // }
 
   // void _printHiveValues(Timer timer) {
   //   // Print Hive values every 3 seconds
@@ -186,20 +180,20 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
   //   }
   // }
 
-  void _loadDataFromHive() {
-    final personalInfo = cachescreen1box.get(1);
-    setState(() {
-      if (personalInfo != null) {
-        nameController.text = personalInfo.name1;
-        addressController.text = personalInfo.name2;
-        emailController.text = personalInfo.name3;
-        phoneNoController.text = personalInfo.name4;
-        nameatBankController.text = personalInfo.name5;
-        accNoController.text = personalInfo.name6;
-        ifscController.text = personalInfo.name7;
-      }
-    });
-  }
+  // void _loadDataFromHive() {
+  //   final personalInfo = cachescreen1box.get(1);
+  //   setState(() {
+  //     if (personalInfo != null) {
+  //       nameController.text = personalInfo.name1;
+  //       addressController.text = personalInfo.name2;
+  //       emailController.text = personalInfo.name3;
+  //       phoneNoController.text = personalInfo.name4;
+  //       nameatBankController.text = personalInfo.name5;
+  //       accNoController.text = personalInfo.name6;
+  //       ifscController.text = personalInfo.name7;
+  //     }
+  //   });
+  // }
 
   void _loadDataFromHiveres() {
     final residen = cachescreen4box.get(1);
@@ -274,9 +268,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
       }
     });
 
-    // Timer.periodic(Duration(seconds: 8), (timer) {
-    //   print("Siblings list: $siblingsList");
-    // });
+
   }
 
   void populateAchievmentsList() {
@@ -297,9 +289,7 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
       }
     });
 
-    // Timer.periodic(Duration(seconds: 8), (timer) {
-    //   print("Siblings list: $siblingsList");
-    // });
+
   }
 
   ScrollController scrollController = ScrollController();
@@ -458,23 +448,23 @@ class _StudentsApplicationFormState extends State<StudentsApplicationForm> {
                                       );
                                     });
 
-                                    personalInfoBox!.put(
-                                      'key',
-                                      personalInfoDB(
-                                        name: nameController.text,
-                                        gender: true,
-                                        dob: selectedDate,
-                                        address: addressController.text,
-                                        mobno: phoneNoController.text,
-                                        email: emailController.text,
-                                        doyouHaveBankAcc: true,
-                                        nameasPerBank:
-                                            nameatBankController.text,
-                                        AccNumber: accNoController.text,
-                                        bankName: "Federal Bank",
-                                        BranchIFSC: ifscController.text,
-                                      ),
-                                    );
+                                    // personalInfoBox!.put(
+                                    //   0,
+                                    //   personalInfoDB(
+                                    //     name: nameController.text,
+                                    //     gender: true,
+                                    //     dob: selectedDate,
+                                    //     address: addressController.text,
+                                    //     mobno: phoneNoController.text,
+                                    //     email: emailController.text,
+                                        // doyouHaveBankAcc: true,
+                                        // nameasPerBank:
+                                        //     nameatBankController.text,
+                                        // AccNumber: accNoController.text,
+                                        // bankName: "Federal Bank",
+                                        // BranchIFSC: ifscController.text,
+                                      // ),
+                                    // );
 
                                     for (var data in personalInfoBox!.values) {
                                       print(

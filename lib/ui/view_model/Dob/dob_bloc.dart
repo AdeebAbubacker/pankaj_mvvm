@@ -22,8 +22,7 @@ class DobBloc extends Bloc<DobEvent, DobState> {
         if (picked != null) {
           selectedDate = picked;
           emit(DobState.dobSelectedState(selectedDate: picked));
-            print('Selected Date: ${(selectedDate)}');
-        }
+      }
       },
       
     );

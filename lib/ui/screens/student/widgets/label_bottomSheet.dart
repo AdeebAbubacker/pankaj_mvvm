@@ -168,9 +168,7 @@ class _labelBottomSheetState extends State<labelBottomSheet> {
                             onTap: () {
                               textController.text = widget.listofData[index];
                               // ignore: avoid_print
-                              print(
-                                  'Selected item in bottom sheet----------$index');
-                              Navigator.of(context).pop();
+                      Navigator.of(context).pop();
                             },
                           );
                         },

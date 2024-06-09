@@ -12,7 +12,7 @@ class SiblingCardDB {
   final String gender;
 
   @HiveField(2)
-  final String qualification;
+   String? qualification;
 
   @HiveField(3)
   final String courseofstudy;

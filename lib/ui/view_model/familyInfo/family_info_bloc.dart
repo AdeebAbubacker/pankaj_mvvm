@@ -63,19 +63,16 @@ class FamilyInfoBloc extends Bloc<FamilyInfoEvent, FamilyInfoState> {
             isLoading: false,
             isError: false,
             successorFailure: optionOf(right(response))));
-        print('from bloc file sucess');
-      } catch (e) {
+   } catch (e) {
         if (e is FormatException) {
           // Handle non-JSON response
-          print('Invalid JSON format: $e');
-          emit(state.copyWith(
+       emit(state.copyWith(
               isLoading: false,
               isError: true,
               successorFailure: optionOf(left(
                   MainFailure.clientFailure(message: 'Invalid JSON format')))));
         } else {
-          print('from bloc file errorr');
-          emit(state.copyWith(
+      emit(state.copyWith(
               isLoading: false,
               isError: true,
               successorFailure: optionOf(

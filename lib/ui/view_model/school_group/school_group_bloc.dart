@@ -24,16 +24,16 @@ class SchoolGroupBloc extends Bloc<SchoolGroupEvent, SchoolGroupState> {
       try {
         final List<SchoolGroup> response =
             await schoolGroupService.getAllSchoolGroups();
-        print('my applicants are ---------------- ${response.length}');
+    
         emit(SchoolGroupState(
           isLoading: false,
           isError: false,
           recipients: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success ${response.length}');
+    
       } catch (e) {
-        print('Error caught: $e');
+    
         emit(SchoolGroupState(
           isLoading: false,
           isError: true,
@@ -41,7 +41,7 @@ class SchoolGroupBloc extends Bloc<SchoolGroupEvent, SchoolGroupState> {
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
+
       }
     });
   }

@@ -14,9 +14,12 @@ class CoursebottomSheet extends StatefulWidget {
   final bottomSheetheight;
   final String title;
   final hintText;
+    final String? initialFilePath;
+  final void Function(String?)? onFileSelected;
 
   CoursebottomSheet({
-    Key? key,
+    Key? key,  this.onFileSelected,
+    this.initialFilePath,
     required this.title,
     this.bottomSheetheight = 0.9,
     this.hintText,
@@ -39,6 +42,11 @@ class _CoursebottomSheetState extends State<CoursebottomSheet> {
     super.initState();
     textController = TextEditingController();
     setupCourseBox();
+     if (widget.initialFilePath != null) {
+      setState(() {
+        textController.text = widget.initialFilePath.toString();
+      });
+    }
   }
 
   @override
@@ -208,7 +216,10 @@ class _CoursebottomSheetState extends State<CoursebottomSheet> {
 
                                     textController.text =
                                         selectedBankObject.name;
+                 widget.onFileSelected!(
+                                        selectedBankObject.name);
 
+                                 
                                     BlocProvider.of<SelectedCourseBloc>(context)
                                         .add(
                                    
@@ -223,7 +234,10 @@ class _CoursebottomSheetState extends State<CoursebottomSheet> {
 
                                     textController.text =
                                         selectedBankObject.name;
+                 widget.onFileSelected!(
+                                        selectedBankObject.name);
 
+                                 
                                     BlocProvider.of<SelectedCourseBloc>(context)
                                         .add(
                                    

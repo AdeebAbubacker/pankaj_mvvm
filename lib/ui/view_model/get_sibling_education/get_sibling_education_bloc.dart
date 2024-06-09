@@ -25,25 +25,21 @@ class GetSiblingEducationBloc
       try {
         final List<FieldVerificationModel> response =
             await getAllFieldVerficationService.getSiblingEducational();
-        print('my renatl  source are ---------------- ${response.length}');
-        emit(GetSiblingEducationState(
+     emit(GetSiblingEducationState(
           isLoading: false,
           isError: false,
           lifestatus: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success ${response.length}');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(GetSiblingEducationState(
+    } catch (e) {
+    emit(GetSiblingEducationState(
           isLoading: false,
           isError: true,
           lifestatus: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+    }
     });
   }
 }

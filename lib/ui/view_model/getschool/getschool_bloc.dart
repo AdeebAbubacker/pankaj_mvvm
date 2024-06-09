@@ -13,8 +13,7 @@ class GetschoolBloc extends Bloc<GetschoolEvent, GetschoolState> {
 
   GetschoolBloc(this.getSchoolService) : super(GetschoolState.initial()) {
     on<Getschool>((event, emit) async {
-      print('eveny');
-      emit(GetschoolState(
+ emit(GetschoolState(
           isLoading: true,
           isError: false,
           school: [],
@@ -27,18 +26,15 @@ class GetschoolBloc extends Bloc<GetschoolEvent, GetschoolState> {
           school: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success $response');
-      } catch (e) {
-        print('Error caught: $e');
-        emit(GetschoolState(
+   } catch (e) {
+    emit(GetschoolState(
           isLoading: false,
           isError: true,
           school: [],
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
-      }
+   }
     });
   
     

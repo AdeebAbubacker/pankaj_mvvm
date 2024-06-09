@@ -1,41 +1,142 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:panakj_app/core/constant/constants.dart';
-import 'package:panakj_app/ui/view_model/question1_res/question1_res_bloc.dart';
+
+
+
 
 class Question1CheckBox extends StatefulWidget {
-  const Question1CheckBox({super.key});
+  final Function(bool ownHouse, bool rentalHouse)? onChanged;
+  final bool? initialOwnHouse;
+  final bool? initialRentalHouse;
+
+  const Question1CheckBox({
+    Key? key,
+    this.onChanged,
+    this.initialOwnHouse,
+    this.initialRentalHouse,
+  }) : super(key: key);
 
   @override
-  State<Question1CheckBox> createState() => _Question1CheckBoxState();
+  _Question1CheckBoxState createState() => _Question1CheckBoxState();
 }
 
 class _Question1CheckBoxState extends State<Question1CheckBox> {
+  late bool ownHouse;
+  late bool rentalHouse;
+
+  @override
+  void initState() {
+    super.initState();
+    ownHouse = widget.initialOwnHouse ?? false;
+    rentalHouse = widget.initialRentalHouse ?? false;
+  }
+
+  @override
+  void didUpdateWidget(Question1CheckBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialOwnHouse != widget.initialOwnHouse) {
+      ownHouse = widget.initialOwnHouse ?? false;
+    }
+    if (oldWidget.initialRentalHouse != widget.initialRentalHouse) {
+      rentalHouse = widget.initialRentalHouse ?? false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<Question1ResBloc, Question1ResState>(
-      builder: (context, state) {
-        return Row(
-          children: [
-            Checkbox(
-                value: state.ownHouse,
-                onChanged: (value) {
-                  context.read<Question1ResBloc>().add(ToggleOwnHouseEvent());
-                }),
-            const Text('Own House', style: checkboxOptionStyle),
-            const Spacer(),
-            Checkbox(
-                value: state.rentalHouse,
-                onChanged: (value) {
-                  context
-                      .read<Question1ResBloc>()
-                      .add(ToggleRentalHouseEvent());
-                }),
-            const Text('Rental House', style: checkboxOptionStyle),
-            const Spacer(),
-          ],
-        );
-      },
+    return Row(
+      children: [
+        Checkbox(
+          value: ownHouse,
+          onChanged: (value) {
+            setState(() {
+              ownHouse = value ?? false;
+            });
+            widget.onChanged?.call(ownHouse, rentalHouse);
+          },
+        ),
+        const Text('Own House', style: checkboxOptionStyle),
+        const Spacer(),
+        Checkbox(
+          value: rentalHouse,
+          onChanged: (value) {
+            setState(() {
+              rentalHouse = value ?? false;
+            });
+            widget.onChanged?.call(ownHouse, rentalHouse);
+          },
+        ),
+        const Text('Rental House', style: checkboxOptionStyle),
+        const Spacer(),
+      ],
     );
   }
 }
+
+
+
+
+// class Question1CheckBox extends StatefulWidget {
+//   final Function(bool ownHouse, bool rentalHouse)? onChanged;
+//   final bool? initialOwnHouse;
+//   final bool? initialRentalHouse;
+
+//   const Question1CheckBox({
+//     Key? key,
+//      this.onChanged,
+//      this.initialOwnHouse,
+//      this.initialRentalHouse,
+//   }) : super(key: key);
+
+//   @override
+//   _Question1CheckBoxState createState() => _Question1CheckBoxState();
+// }
+
+// class _Question1CheckBoxState extends State<Question1CheckBox> {
+//   late bool ownHouse;
+//   late bool rentalHouse;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     ownHouse = widget.initialOwnHouse!;
+//     rentalHouse = widget.initialRentalHouse!;
+//   }
+
+//   @override
+//   void didUpdateWidget(Question1CheckBox oldWidget) {
+//     super.didUpdateWidget(oldWidget);
+//     ownHouse = widget.initialOwnHouse!;
+//     rentalHouse = widget.initialRentalHouse!;
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         Checkbox(
+//           value: ownHouse,
+//           onChanged: (value) {
+//             setState(() {
+//               ownHouse = value ?? false;
+//             });
+//             widget.onChanged!(ownHouse, rentalHouse);
+//           },
+//         ),
+//         const Text('Own House', style: checkboxOptionStyle),
+//         const Spacer(),
+//         Checkbox(
+//           value: rentalHouse,
+//           onChanged: (value) {
+//             setState(() {
+//               rentalHouse = value ?? false;
+//             });
+//             widget.onChanged!(ownHouse, rentalHouse);
+//           },
+//         ),
+//         const Text('Rental House', style: checkboxOptionStyle),
+//         const Spacer(),
+//       ],
+//     );
+//   }
+// }

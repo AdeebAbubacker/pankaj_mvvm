@@ -17,8 +17,6 @@ import 'dart:async';
 import 'package:hive/hive.dart';
 import 'package:panakj_app/ui/view_model/horizontal_radio_btn/horizontal_radio_btn_bloc.dart';
 
-
-
 class SiblingsCard extends StatefulWidget {
   const SiblingsCard({Key? key}) : super(key: key);
 
@@ -30,6 +28,9 @@ class _SiblingsCardState extends State<SiblingsCard> {
   Map<int, Widget> cards = {}; // Map to store cards with unique keys
   Map<int, TextEditingController> controllers =
       {}; // Map to store controllers for each card
+  Map<int, String> filePaths = {};
+    Map<int, String> occupationfilePaths = {};
+      Map<int, String> coursefilePaths = {};
   int _currentKeyfo11 = 0; // Variable to keep track of unique keys
   int _currentKeynormal = 1; // Variable to keep track of unique keys
   String? selectedDropdownValue;
@@ -38,26 +39,9 @@ class _SiblingsCardState extends State<SiblingsCard> {
   @override
   void initState() {
     _firstCard();
-    // Timer.periodic(Duration(seconds: 7), (timer) {
-    //   _printValuesWithKeys();
-    // });
+  
     super.initState();
   }
-
-  // void _printValuesWithKeys() {
-  //   final box = Hive.box<SiblingCardDB>('aseebsiblingbox');
-  //   final List<int> keys = box.keys.cast<int>().toList();
-  //   for (int key in keys) {
-  //     final achievment = box.get(key);
-  //     if (achievment != null) {
-  //       print('ID: $key, Sbling: ${achievment.name}');
-  //       print('ID: $key, Sbling: ${achievment.name}');
-  //       print('ID: $key, Sbling: ${achievment.name}');
-  //     } else {
-  //       print('ID: $key, Sbling: No Sbling');
-  //     }
-  //   }
-  // }
 
   void _firstCard() {
     final box = Hive.box<SiblingCardDB>('aseebsiblingbox');
@@ -82,6 +66,9 @@ class _SiblingsCardState extends State<SiblingsCard> {
         if (data != null) {
           controller.text = data.name;
           selectedDropdownValue = data.gender;
+          filePaths[key] = data.qualification ?? 'dd'; // Load file path from Hive
+          occupationfilePaths[key] = data.occupation ?? 'dd';
+          coursefilePaths[key] = data.courseofstudy ?? 'dd';
         }
         controller.addListener(() {
           _updateHiveData(key);
@@ -90,31 +77,32 @@ class _SiblingsCardState extends State<SiblingsCard> {
       }
     });
   }
-void _addCard() {
-  final currentKey = cards.keys.isEmpty ? 0 : cards.keys.reduce(max) + 1;
-  final controller = TextEditingController();
-  controllers[currentKey] = controller;
-  controller.addListener(() {
-    _updateHiveData(currentKey);
-  });
 
-  setState(() {
-    Hive.box<SiblingCardDB>('aseebsiblingbox').put(
-      currentKey,
-      SiblingCardDB(
-        name: selectedDropdownValue ?? 'No Category',
-        gender: 'ss',
-        occupation: controller.text.isNotEmpty ? controller.text : 'No Achievement',
-        courseofstudy: '',
-        qualification: '',
-      ),
-    );
+  void _addCard() async {
+    final currentKey = cards.keys.isEmpty ? 0 : cards.keys.reduce(max) + 1;
+    final controller = TextEditingController();
+    controllers[currentKey] = controller;
+    controller.addListener(() {
+      _updateHiveData(currentKey);
+    });
 
-    cards[currentKey] = _buildCard(currentKey);
-  });
-}
+    setState(() {
+      Hive.box<SiblingCardDB>('aseebsiblingbox').put(
+        currentKey,
+        SiblingCardDB(
+          name: selectedDropdownValue ?? 'No Category',
+          gender: 'ss',
+          occupation:
+              occupationfilePaths[currentKey] ?? 'sded',
+          courseofstudy:    coursefilePaths[currentKey] ?? 'sded',
+          // Store filePaths[currentKey] directly as String
+          qualification: filePaths[currentKey] ?? 'aaaaaaaaaaaa', 
+        ),
+      );
 
-  
+      cards[currentKey] = _buildCard(currentKey);
+    });
+  }
 
   void _deleteCard(int key) async {
     await Hive.box<SiblingCardDB>('aseebsiblingbox').delete(key);
@@ -122,6 +110,9 @@ void _addCard() {
       controllers[key]?.dispose();
       controllers.remove(key);
       cards.remove(key);
+      filePaths.remove(key);
+      occupationfilePaths.remove(key);
+      coursefilePaths.remove(key);
     });
   }
 
@@ -130,10 +121,11 @@ void _addCard() {
       key,
       SiblingCardDB(
         name: controllers[key]?.text ?? 'No Achievement',
-        courseofstudy: '',
+        courseofstudy: coursefilePaths[key] ?? 'lllllllllll', 
         gender: '',
-        occupation: '',
-        qualification: '',
+        occupation: occupationfilePaths[key] ?? 'lllllllllll', 
+        // Use filePaths[key] directly
+        qualification: filePaths[key] ?? 'lllllllllll', 
       ),
     );
   }
@@ -198,7 +190,7 @@ void _addCard() {
                   ),
                   BlocProvider<HorizontalRadioBtnBloc>(
                     key: const Key('siblinggenderBloc2'),
-                    create: (context) => HorizontalRadioBtnBloc(),
+                    create: (context) => HorizontalRadioBtnBloc(1),
                     child: HorizontalRadioBtn(
                       steps: [
                         Content(choiceLabel: 'Male'),
@@ -208,13 +200,50 @@ void _addCard() {
                     ),
                   ),
                   InputLabel(mytext: 'Qualification'),
-                  QualificationbottomSheet(title: 'title'),
+                  QualificationbottomSheet(
+                      key: ValueKey('qualification_$key'), // Add a key to the FilePickerScreen
+                      onFileSelected: (filePath) {
+                        setState(() {
+                          selectedFilePath = filePath.toString();
+                          filePaths[key] = filePath ?? 'hhhh';
+                          _updateHiveData(key);
+                        });
+                      },
+                      initialFilePath:
+                          filePaths[key].toString() ?? 'ssss', // Set the initial file path
+
+                      title: 'title'),
                   const HeightSpacer(),
                   InputLabel(mytext: 'Course of Study'),
-                  CoursebottomSheet(title: 'Course of Study'),
+                  CoursebottomSheet(
+                  key: ValueKey('course_$key'), // Add a key to the FilePickerScreen
+                  onFileSelected: (filePath) {
+                    setState(() {
+                      selectedFilePath = filePath.toString();
+                      coursefilePaths[key] = filePath.toString();
+
+                      _updateHiveData(key);
+                    });
+                  },
+                  initialFilePath: coursefilePaths[key], // Set the initial file path
+
+                  title: 'title'),
                   const HeightSpacer(),
                   InputLabel(mytext: 'Occupation / Job'),
-                  OccupationBottomSheet(title: 'title'),
+                
+                    OccupationBottomSheet(
+                    key: ValueKey('occupation_$key'), // Add a key to the FilePickerScreen
+                      onFileSelected: (filePath) {
+                        setState(() {
+                          selectedFilePath = filePath.toString();
+                          occupationfilePaths[key] = filePath ?? 'hhhh';
+                          _updateHiveData(key);
+                        });
+                      },
+                      initialFilePath:
+                          occupationfilePaths[key].toString() ?? 'ssss', // Set the initial file path
+
+                      title: 'title'),
                 ],
               ),
             ),
@@ -257,7 +286,7 @@ void _addCard() {
               ),
               BlocProvider<HorizontalRadioBtnBloc>(
                 key: const Key('siblinggenderBloc2'),
-                create: (context) => HorizontalRadioBtnBloc(),
+                create: (context) => HorizontalRadioBtnBloc(1),
                 child: HorizontalRadioBtn(
                   steps: [
                     Content(choiceLabel: 'Male'),
@@ -267,13 +296,50 @@ void _addCard() {
                 ),
               ),
               InputLabel(mytext: 'Qualification'),
-              QualificationbottomSheet(title: 'title'),
+              QualificationbottomSheet(
+                  key: ValueKey('qualification_$key'), // Add a key to the FilePickerScreen
+                  onFileSelected: (filePath) {
+                    setState(() {
+                      selectedFilePath = filePath.toString();
+                      filePaths[key] = filePath.toString();
+
+                      _updateHiveData(key);
+                    });
+                  },
+                  initialFilePath: filePaths[key], // Set the initial file path
+
+                  title: 'title'),
               const HeightSpacer(),
               InputLabel(mytext: 'Course of Study'),
-              CoursebottomSheet(title: 'Course of Study'),
+               CoursebottomSheet(
+                  key: ValueKey('course_$key'), // Add a key to the FilePickerScreen
+                  onFileSelected: (filePath) {
+                    setState(() {
+                      selectedFilePath = filePath.toString();
+                      coursefilePaths[key] = filePath.toString();
+
+                      _updateHiveData(key);
+                    });
+                  },
+                  initialFilePath: coursefilePaths[key], // Set the initial file path
+
+                  title: 'title'),
+              
               const HeightSpacer(),
               InputLabel(mytext: 'Occupation / Job'),
-              OccupationBottomSheet(title: 'title'),
+               OccupationBottomSheet(
+                      key: ValueKey('occupation_$key'), // Add a key to the FilePickerScreen
+                      onFileSelected: (filePath) {
+                        setState(() {
+                          selectedFilePath = filePath.toString();
+                          occupationfilePaths[key] = filePath ?? 'hhhh';
+                          _updateHiveData(key);
+                        });
+                      },
+                      initialFilePath:
+                          occupationfilePaths[key].toString() ?? 'ssss', // Set the initial file path
+
+                      title: 'title'),
             ],
           ),
         ),

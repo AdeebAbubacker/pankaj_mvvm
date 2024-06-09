@@ -15,7 +15,7 @@ class RecipentsBloc extends Bloc<RecipentsEvent, RecipentsState> {
   RecipentsBloc(this.recepientService) : super(RecipentsState.initial()) {
   
       on<GetallRecipients>((event, emit) async {
-      print('eveny');
+    
       emit( RecipentsState(
           isLoading: true,
           isError: false,
@@ -24,16 +24,16 @@ class RecipentsBloc extends Bloc<RecipentsEvent, RecipentsState> {
       try {
         final List<Recipient> response =
             await recepientService.recipients();
-            print('my applicants are ---------------- ${response.length}');
+
         emit(RecipentsState(
           isLoading: false,
           isError: false,
           recipients: response,
           successorFailure: optionOf(right(response)),
         ));
-        print('success $response');
+       
       } catch (e) {
-        print('Error caught: $e');
+       
         emit(RecipentsState(
           isLoading: false,
           isError: true,
@@ -41,7 +41,7 @@ class RecipentsBloc extends Bloc<RecipentsEvent, RecipentsState> {
           successorFailure:
               optionOf(left(MainFailure.clientFailure(message: e.toString()))),
         ));
-        print('failure from bloc');
+ 
       }
     });
   }

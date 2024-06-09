@@ -18,9 +18,7 @@ class PersonalInfoBloc extends Bloc<PersonalInfoEvent, PersonalInfoState> {
       : super(PersonalInfoState.initial()) {
     on<PostPersonalInfo>((event, emit) async {
       try {
-        print(
-            '----------------------------------------------success occures in bloc');
-        final response = await postPersonalInfoService.postPersonalInfoservice(
+ final response = await postPersonalInfoService.postPersonalInfoservice(
           name: event.name,
           gender: event.gender,
           dob: event.dob,
@@ -38,9 +36,7 @@ class PersonalInfoBloc extends Bloc<PersonalInfoEvent, PersonalInfoState> {
             isError: false,
             successorFailure: optionOf(right(response))));
       } catch (e) {
-        print(
-            '---------------------------------------------failure occures in bloc ${e.toString()}');
-        emit(state.copyWith(
+  emit(state.copyWith(
             isLoading: false,
             isError: true,
             successorFailure: optionOf(

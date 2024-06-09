@@ -63,10 +63,7 @@ import 'package:panakj_app/ui/screens/student/screens/family/widgets/local_widge
 //           builder: (context, state) {
 //             final siblings = box.values.toList();
 //             final numberOfSiblings = siblings.length;
-//             Timer.periodic(Duration(seconds: 3), (timer) {
-//               print("Number of Siblings: $numberOfSiblings");
-//               print("Number of Siblings in state: ${state.siblings}");
-//             });
+
 
 //             print(
 //                 "Family Layout Height: ${6460 + (numberOfSiblings > 1 ? numberOfSiblings * 545 : 0)}");
@@ -183,11 +180,7 @@ class FamilyScreen extends StatelessWidget {
         final numberOfAchievements = numberOfCards == 0 ? 1 : numberOfCards + 1;
         final dynamicHeight = 0 + (numberOfAchievements * 620);
 
-        // Timer.periodic(Duration(seconds: 3), (timer) {
-        //   print("Number of siblings1 : ${box.isEmpty}");
-        //   print("Number of  siblings 2 : ${box.keys.length}");
-        //   print("Number of  siblings 3 : ${box.length}");
-        // });
+
 
         print("Family Layout Height: ${dynamicHeight}");
 

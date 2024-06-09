@@ -37,8 +37,7 @@ class DeleteStudentInvitelistBloc extends Bloc<
             createNewInvitedStudent: fieldverification,
             isLoading: false,
             successorFailure: optionOf(right(fieldverification))));
-        print('succes from bloc $fieldverification');
-      } catch (e) {
+     } catch (e) {
         // Handle error and update state
         emit(state.copyWith(
             isError: true,

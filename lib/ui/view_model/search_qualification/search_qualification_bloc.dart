@@ -27,8 +27,7 @@ class SearchQualificationBloc
               .getSearchQualification(searchKeyword: event.searchQuery);
           // Store data in Hive
           storeDataInHive(response.data!.toList());
-          print(
-              'searched item from qualification length -----------------${response.data!.length}');
+       
           emit(SearchQualificationState(
             isLoading: false,
             isError: false,

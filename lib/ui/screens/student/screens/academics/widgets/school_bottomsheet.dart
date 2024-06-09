@@ -16,12 +16,15 @@ class schoolBottomSheet extends StatefulWidget {
   final bottomSheetheight;
   final String title;
   final hintText;
+    final String? initialFilePath;
+  final void Function(String?)? onFileSelected;
 
   schoolBottomSheet({
     Key? key,
     required this.title,
     this.bottomSheetheight = 0.9,
-    this.hintText,
+    this.hintText, this.onFileSelected,
+    this.initialFilePath,
   }) : super(key: key);
 
   @override
@@ -40,7 +43,11 @@ class _schoolBottomSheetState extends State<schoolBottomSheet> {
   void initState() {
     super.initState();
     textController = TextEditingController();
-    setupSchoolBox();
+    setupSchoolBox(); if (widget.initialFilePath != null) {
+      setState(() {
+        textController.text = widget.initialFilePath.toString();
+      });
+    }
   }
 
   @override
@@ -209,6 +216,8 @@ class _schoolBottomSheetState extends State<schoolBottomSheet> {
 
                                     textController.text =
                                         selectedBankObject.name;
+   widget.onFileSelected!(
+                                        selectedBankObject.name);
 
                                     BlocProvider.of<SelectedSchoolBloc>(context)
                                         .add(SelectedSchoolEvent.selectedSchool(
@@ -223,7 +232,10 @@ class _schoolBottomSheetState extends State<schoolBottomSheet> {
 
                                     textController.text =
                                         selectedBankObject.name;
+        widget.onFileSelected!(
+                                        selectedBankObject.name);
 
+                                 
                                     BlocProvider.of<SelectedSchoolBloc>(context)
                                         .add(
                                     

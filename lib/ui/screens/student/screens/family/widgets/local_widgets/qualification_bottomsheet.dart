@@ -11,22 +11,25 @@ import 'package:panakj_app/ui/view_model/search_qualification/search_qualificati
 import 'package:panakj_app/ui/view_model/selected_qualification/selected_qualification_bloc.dart';
 
 
-
-
 class QualificationbottomSheet extends StatefulWidget {
-  final bottomSheetheight;
+  final double bottomSheetheight;
   final String title;
-  final hintText;
+  final String? initialFilePath;
+  final void Function(String?)? onFileSelected;
+  final String? hintText;
 
   QualificationbottomSheet({
     Key? key,
+    this.onFileSelected,
+    this.initialFilePath,
     required this.title,
     this.bottomSheetheight = 0.9,
     this.hintText,
   }) : super(key: key);
 
   @override
-  State<QualificationbottomSheet> createState() => _QualificationbottomSheetState();
+  State<QualificationbottomSheet> createState() =>
+      _QualificationbottomSheetState();
 }
 
 class _QualificationbottomSheetState extends State<QualificationbottomSheet> {
@@ -42,11 +45,17 @@ class _QualificationbottomSheetState extends State<QualificationbottomSheet> {
     super.initState();
     textController = TextEditingController();
     setupQualificationBox();
+    if (widget.initialFilePath != null) {
+      setState(() {
+        textController.text = widget.initialFilePath.toString();
+      });
+    }
   }
 
   @override
   void dispose() {
     _updateStreamController?.close();
+    textController.dispose();
     super.dispose();
   }
 
@@ -54,18 +63,22 @@ class _QualificationbottomSheetState extends State<QualificationbottomSheet> {
     qualificationBox = await Hive.openBox<qualificationDB>('qualificationBox');
 
     // Initialize displayedQualifications with the initial values from Hive
-    displayedQualifications = qualificationBox.values.map((qualification) => qualification.name).toList();
+    displayedQualifications = qualificationBox.values
+        .map((qualification) => qualification.name)
+        .toList();
 
     // Add a listener to update the displayed qualifications when data changes in Hive
     qualificationBox.listenable().addListener(() {
       if (mounted) {
         setState(() {
-          displayedQualifications = qualificationBox.values.map((qualification) => qualification.name).toList();
+          displayedQualifications = qualificationBox.values
+              .map((qualification) => qualification.name)
+              .toList();
         });
       }
     });
 
-    // Listen to changes from the sch
+    // Listen to changes from the search bloc
     // ignore: use_build_context_synchronously
     BlocProvider.of<SearchQualificationBloc>(context).stream.listen((state) {
       if (state.qualification.data!.isNotEmpty) {
@@ -148,9 +161,11 @@ class _QualificationbottomSheetState extends State<QualificationbottomSheet> {
                             child: TextField(
                               onChanged: (searchTerm) {
                                 _searchFromHive(searchTerm);
-                                BlocProvider.of<SearchQualificationBloc>(context).add(
-                                    SearchQualificationEvent.searchQualificationList(
-                                        searchQuery: searchTerm));
+                                BlocProvider.of<SearchQualificationBloc>(
+                                        context)
+                                    .add(SearchQualificationEvent
+                                        .searchQualificationList(
+                                            searchQuery: searchTerm));
                               },
                               style: kCardContentStyle,
                               controller: textController,
@@ -168,7 +183,8 @@ class _QualificationbottomSheetState extends State<QualificationbottomSheet> {
                                     icon: const Icon(
                                       FontAwesomeIcons.eraser,
                                       size: 24,
-                                      color: Color.fromARGB(255, 140, 138, 138),
+                                      color:
+                                          Color.fromARGB(255, 140, 138, 138),
                                     ),
                                     color: const Color(0xFF1F91E7),
                                     onPressed: () {
@@ -198,38 +214,63 @@ class _QualificationbottomSheetState extends State<QualificationbottomSheet> {
                                     index, displayedQualifications),
                                 onTap: () {
                                   if (newDisplayedQualifications.isNotEmpty &&
-                                      index < newDisplayedQualifications.length) {
+                                      index <
+                                          newDisplayedQualifications.length) {
                                     final selectedBankName =
                                         newDisplayedQualifications[index];
-                                    final selectedBankObject = qualificationBox.values
-                                        .firstWhere((qualification) =>
-                                            qualification.name == selectedBankName);
+                                    final selectedBankObject =
+                                        qualificationBox.values.firstWhere(
+                                            (qualification) =>
+                                                qualification.name ==
+                                                selectedBankName);
 
                                     textController.text =
                                         selectedBankObject.name;
 
-                                    BlocProvider.of<SelectedQualificationBloc>(context)
-                                        .add(SelectedQualificationEvent.selectedqualification(
-                                            selectedqualification:
-                                                selectedBankObject.id));
-                                  } else if (index < displayedQualifications.length) {
+                                    // Trigger the callback
+                                    widget.onFileSelected!(
+                                        selectedBankObject.name);
+
+                                    // Update the selected qualification in the bloc (if applicable)
+                                    BlocProvider.of<
+                                            SelectedQualificationBloc>(
+                                        context)
+                                        .add(SelectedQualificationEvent
+                                            .selectedqualification(
+                                                selectedqualification:
+                                                    selectedBankObject.id));
+
+                                    // Close the sheet
+                                    Navigator.of(context).pop();
+                                  } else if (index <
+                                      displayedQualifications.length) {
                                     final selectedBankName =
                                         displayedQualifications[index];
-                                    final selectedBankObject = qualificationBox.values
-                                        .firstWhere((qualification) =>
-                                            qualification.name == selectedBankName);
+                                    final selectedBankObject =
+                                        qualificationBox.values.firstWhere(
+                                            (qualification) =>
+                                                qualification.name ==
+                                                selectedBankName);
 
                                     textController.text =
                                         selectedBankObject.name;
 
-                                    BlocProvider.of<SelectedQualificationBloc>(context)
-                                        .add(
-                                    
-                                      SelectedQualificationEvent.selectedqualification(selectedqualification: selectedBankObject.id)
-                                    );
-                                  }
+                                    // Trigger the callback
+                                    widget.onFileSelected!(
+                                        selectedBankObject.name);
 
-                                  Navigator.of(context).pop();
+                                    // Update the selected qualification in the bloc (if applicable)
+                                    BlocProvider.of<
+                                            SelectedQualificationBloc>(
+                                        context)
+                                        .add(SelectedQualificationEvent
+                                            .selectedqualification(
+                                                selectedqualification:
+                                                    selectedBankObject.id));
+
+                                    // Close the sheet
+                                    Navigator.of(context).pop();
+                                  }
                                 },
                               );
                             },
